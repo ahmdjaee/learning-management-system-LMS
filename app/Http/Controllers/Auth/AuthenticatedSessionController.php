@@ -33,6 +33,7 @@ class AuthenticatedSessionController extends Controller
         } elseif ($request->user()->role == 'instructor') {
             return redirect()->intended(route('instructor.dashboard', absolute: false));
         }
+        
         abort(403);
     }
 
