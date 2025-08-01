@@ -5,7 +5,7 @@
         SIGN UP START
     ============================-->
     <section class="wsus__sign_in sign_up">
-        <div class="row align-items-center">
+        <div class="row">
             <div class="col-xxl-5 col-xl-6 col-lg-6 wow fadeInLeft">
                 <div class="wsus__sign_img">
                     <img src="{{ asset('frontend/assets/images/login_img_2.jpg') }}" alt="login" class="img-fluid">
@@ -31,10 +31,10 @@
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                             aria-labelledby="pills-home-tab" tabindex="0">
-                            <form method="POST" action="{{ route('register') }}">
+                            <form method="POST" action="{{ route('register', ['type' => 'student']) }}">
                                 @csrf
                                 <h2>Sign Up<span>!</span></h2>
-                                <p class="new_user">Already have an account? <a href="sign_in.html">Sign In</a></p>
+                                <p class="new_user">Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
@@ -77,46 +77,49 @@
 
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab" tabindex="0">
-                            <form action="#">
-                                <h2>Sign Up<span>!</span></h2>
-                                <p class="new_user">Already have an account? <a href="sign_in.html">Sign In</a></p>
+                            <form method="POST" enctype="multipart/form-data" action="{{ route('register', ['type' => 'instructor']) }}">
+                                @csrf
+                                <h2>Instructor Sign Up<span>!</span></h2>
+                                <p class="new_user">Already have an account? <a href="{{ route('login') }}">Sign In</a></p>
                                 <div class="row">
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
-                                            <label>First name</label>
-                                            <input type="text" placeholder="First name">
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-12">
-                                        <div class="wsus__login_form_input">
-                                            <label>Last name</label>
-                                            <input type="text" placeholder="Last name">
+                                            <label>Name</label>
+                                            <input type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name" placeholder="Name">
+                                            <x-input-error :messages="$errors->get('name')" class="mt-2" /> 
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
                                             <label>Your email</label>
-                                            <input type="email" placeholder="Your email">
+                                            <input type="email" name="email" value="{{ old('email') }}" required autocomplete="username" placeholder="Your email" >
+                                            <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
                                     </div>
+                                    <div class="col-xl-12">
+                                        <div class="wsus__login_form_input">
+                                            <label>Document (Education/Certificate)</label>
+                                            <input type="file" name="document" required value="{{ old('document') }}" placeholder="Document" >
+                                            <x-input-error :messages="$errors->get('document')" class="mt-2" />
+                                        </div>
+                                    </div>
+
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
                                             <label>Password</label>
-                                            <input type="password" placeholder="Your password">
+                                            <input type="password" name="password" required autocomplete="new-password" placeholder="Your password">
+                                            <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault1">
-                                                <label class="form-check-label" for="flexCheckDefault1"> By clicking
-                                                    Create
-                                                    account, I agree that I have read and accepted the <a href="#">Terms
-                                                        of
-                                                        Use</a> and <a href="#">Privacy Policy.</a>
-                                                </label>
-                                            </div>
+                                            <label>Confirm Password</label>
+                                            <input type="password" name="password_confirmation" required autocomplete="new-password" placeholder="Your password">
+                                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="wsus__login_form_input">
                                             <button type="submit" class="common_btn">Sign Up</button>
                                         </div>
                                     </div>

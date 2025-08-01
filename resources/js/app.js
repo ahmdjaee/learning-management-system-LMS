@@ -1,4 +1,5 @@
 import './bootstrap';
+import '@tabler/icons';
 
 import Alpine from 'alpinejs';
 

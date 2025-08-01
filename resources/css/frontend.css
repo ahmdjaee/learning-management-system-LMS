@@ -1,3 +1,16 @@
 .wsus__sign_in{
-    margin-top: 100px;
+    margin-top:99px;
 }
+
+.wsus__sign_in.sign_up{
+    height: 100%;
+}
+
+.wsus__sign_in.sign_up .wsus__sign_img{
+    height: 100%;
+}
+
+.wsus__sign_in.sign_up .wsus__sign_form_area{
+    min-height: calc(820px - 2vw);
+}
+
