@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->enum('role', ['instructor', 'student']);
-            $table->string('images')->default('/default-files/avatar.png');
+            $table->string('image')->default('/default-files/avatar.png');
             $table->string('name');
             $table->string('email')->unique();
             $table->string('headline')->nullable();

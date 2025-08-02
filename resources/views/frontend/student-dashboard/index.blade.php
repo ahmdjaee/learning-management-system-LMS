@@ -31,196 +31,7 @@
   <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
-        <div class="col-xl-3 col-md-4 wow fadeInLeft">
-          <div class="wsus__dashboard_sidebar">
-            <div class="wsus__dashboard_sidebar_top">
-              <div class="dashboard_banner">
-                <img
-                  class="img-fluid"
-                  src="images/single_topic_sidebar_banner.jpg"
-                  alt="img"
-                >
-              </div>
-              <div class="img">
-                <img
-                  class="img-fluid w-100"
-                  src="images/dashboard_profile_img.png"
-                  alt="profile"
-                >
-              </div>
-              <h4>Norman Gordon</h4>
-              <p>Instructor</p>
-            </div>
-            <ul class="wsus__dashboard_sidebar_menu">
-              <li>
-                <a class="active" href="dashboard.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_8.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Dashboard
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_profile.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_1.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Profile
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_courses.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_2.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Courses
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_review.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_4.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Reviews
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_order.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_5.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Orders
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_student.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_6.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Students
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_payout.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_7.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Payouts
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_support.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_8.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Support Tickets
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_security.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_10.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Security
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_social_account.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_11.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Social Profile
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_notification.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_12.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Notifications
-                </a>
-              </li>
-              <li>
-                <a href="dashboard_privacy.html">
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="images/dash_icon_13.png"
-                      alt="icon"
-                    >
-                  </div>
-                  Profile Privacy
-                </a>
-              </li>
-              <li>
-                <a href="#"
-                  onclick="event.preventDefault();
-                                                            $('#logout').submit();"
-                >
-                  <div class="img">
-                    <img
-                      class="img-fluid w-100"
-                      src="{{ asset('frontend/assets/images/dash_icon_16.png') }}"
-                      alt="icon"
-                    >
-                  </div>
-                  Sign Out
-                  <form
-                    id="logout"
-                    method="POST"
-                    action="{{ route('logout') }}"
-                  >
-                    @csrf
-                  </form>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+        @include('frontend.student-dashboard.sidebar')
         <div class="col-xl-9 col-md-8">
 
           @if (auth()->user()->approve_status == 'pending')
@@ -255,23 +66,30 @@
           <div class="text-end"><a class="common_btn"
               href="{{ route('student.become-instructor') }}"
             >Become a Instructor</a></div>
-          <div class="row">
-            @include('frontend.student-dashboard.sidebar')
-            <div class="col-xl-4 col-sm-6 wow fadeInUp">
-              <div class="wsus__dash_earning">
-                <h6>STUDENTS ENROLLMENTS</h6>
-                <h3>16,450</h3>
-                <p>Progress this month</p>
-              </div>
+            <div class="row">
+                <div class="col-xl-4 col-sm-6 wow fadeInUp">
+                    <div class="wsus__dash_earning">
+                        <h6>REVENUE</h6>
+                        <h3>$2456.34</h3>
+                        <p>Earning this month</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 wow fadeInUp">
+                    <div class="wsus__dash_earning">
+                        <h6>STUDENTS ENROLLMENTS</h6>
+                        <h3>16,450</h3>
+                        <p>Progress this month</p>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6 wow fadeInUp">
+                    <div class="wsus__dash_earning">
+                        <h6>COURSES RATING</h6>
+                        <h3>4.70</h3>
+                        <p>Rating this month</p>
+                    </div>
+                </div>
             </div>
-            <div class="col-xl-4 col-sm-6 wow fadeInUp">
-              <div class="wsus__dash_earning">
-                <h6>COURSES RATING</h6>
-                <h3>4.70</h3>
-                <p>Rating this month</p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
