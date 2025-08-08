@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@tabler/icons-webfont": "^3.34.1",
-        "jquery": "^3.7.1"
+        "jquery": "^3.7.1",
+        "notyf": "^3.0.1"
     }
 }

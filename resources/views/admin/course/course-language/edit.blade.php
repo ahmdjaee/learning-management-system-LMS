@@ -1,0 +1,44 @@
+@extends('admin.layouts.master')
+
+@section('content')
+  <div class="page-body">
+    <div class="container-xl">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Update Language</h3>
+          <div class="card-actions">
+            <div class="card-actions">
+              <a class="btn btn-primary btn-3" href="{{ route('admin.course-languages.index') }}">
+                <i class="ti ti-arrow-left me-2" style="font-size: 24px"></i>
+               Back
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form action="{{ route('admin.course-languages.update', $course_language) }}" method="post">
+            @method('PUT')
+            @csrf
+            <div class="mb-3">
+              <label class="form-label">Name</label>
+              <input
+                class="form-control"
+                name="name"
+                type="text"
+                placeholder="Enter language name"
+                value="{{ $course_language->name }}"
+              >
+              <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            </div>
+            <div class="mb-3">
+              <button class="btn btn-primary">
+                <i class="ti ti-device-floppy me-2" style="font-size: 24px;"></i>
+                Update
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
