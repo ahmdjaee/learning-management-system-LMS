@@ -26,6 +26,7 @@ $(".delete-confirm").on("click", function (e) {
             $(".delete-confirm").html(
                 '<i class="ti ti-rotate-clockwise-2 me-1 rotate-animation" style="font-size: 20px "></i> Loading'
             );
+            $(".delete-confirm").prop("disabled", true);
         },
         success: function (data) {
             window.location.reload();

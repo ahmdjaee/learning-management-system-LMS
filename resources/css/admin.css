@@ -1,14 +1,14 @@
-@import url('@tabler/icons-webfont/dist/tabler-icons.min.css');
+@import url("@tabler/icons-webfont/dist/tabler-icons.min.css");
 
 @keyframes spin {
     from {
-      transform: rotate(0deg); /* Starting state: no rotation */
+        transform: rotate(0deg); /* Starting state: no rotation */
     }
     to {
-      transform: rotate(360deg); /* Ending state: full rotation */
+        transform: rotate(360deg); /* Ending state: full rotation */
     }
-  }
-  
-  .rotate-animation {
+}
+
+.rotate-animation {
     animation: spin 1s infinite linear; /* Applies the 'spin' animation */
-  }
+}

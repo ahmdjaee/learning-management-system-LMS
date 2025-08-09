@@ -15,7 +15,7 @@
       <a href=".">
         <img
           class="navbar-brand-image"
-          src="./static/logo.svg"
+          src="{{ asset('admin/assets/static/logo.svg') }}"
           alt="Tabler"
           width="110"
           height="32"
@@ -351,7 +351,7 @@
           aria-label="Open user menu"
         >
           <span class="avatar avatar-sm"
-            style="background-image: url(./static/avatars/000m.jpg)"></span>
+            style="background-image: url({{ asset('admin/assets/static/avatars/000m.jpg') }})"></span>
           <div class="d-none d-xl-block ps-2">
             <div>Paweł Kuna</div>
             <div class="mt-1 small text-secondary">UI Designer</div>
@@ -476,7 +476,9 @@
                 <a class="dropdown-item" href="{{ route('admin.course-languages.index') }}">
                   Course Languages
                 </a>
-                
+                <a class="dropdown-item" href="{{ route('admin.course-levels.index') }}">
+                  Course Levels
+                </a>
               </div>
             </div>
           </div>

@@ -27,6 +27,7 @@
                 type="text"
                 placeholder="Enter language name"
                 value="{{ $course_language->name }}"
+                autofocus
               >
               <x-input-error class="mt-2" :messages="$errors->get('name')" />
             </div>

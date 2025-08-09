@@ -5,10 +5,10 @@
     <div class="container-xl">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Create Course Language</h3>
+          <h3 class="card-title">Create Course Level</h3>
           <div class="card-actions">
             <div class="card-actions">
-              <a class="btn btn-primary btn-3" href="{{ route('admin.course-languages.index') }}">
+              <a class="btn btn-primary btn-3" href="{{ route('admin.course-levels.index') }}">
                 <i class="ti ti-arrow-left me-2" style="font-size: 24px"></i>
                Back
               </a>
@@ -16,7 +16,7 @@
           </div>
         </div>
         <div class="card-body">
-          <form action="{{ route('admin.course-languages.store') }}" method="post">
+          <form action="{{ route('admin.course-levels.store') }}" method="post">
             @csrf
             <div class="mb-3">
               <label class="form-label">Name</label>
@@ -24,7 +24,7 @@
                 class="form-control"
                 name="name"
                 type="text"
-                placeholder="Enter language name"
+                placeholder="Enter level name"
                 autofocus
               >
               <x-input-error class="mt-2" :messages="$errors->get('name')" />

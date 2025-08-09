@@ -5,11 +5,11 @@
     <div class="container-xl">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Course Language</h3>
+          <h3 class="card-title">Course Level</h3>
           <div class="card-actions">
             <div class="card-actions">
-              <a class="btn btn-primary btn-3" href="{{ route('admin.course-languages.create') }}">
-                <i class="ti ti-plus me-2" style="font-size: 24px"></i>
+              <a class="btn btn-primary btn-3" href="{{ route('admin.course-levels.create') }}">
+                <i class="ti ti-plus me-2" style="font-size: 24px;"></i>
                 Add new
               </a>
             </div>
@@ -26,17 +26,21 @@
                 </tr>
               </thead>
               <tbody>
-                @forelse ($languages as $language)
+                @forelse ($levels as $level)
                   <tr>
-                    <td>{{ $language->name }}</td>
+                    <td>{{ $level->name }}</td>
                     <td>
-                      {{ $language->slug }}
+                      {{ $level->slug }}
                     </td>
                     <td class="text-end">
-                      <a href="{{ route('admin.course-languages.edit', $language->id)  }}" class="btn btn-sm btn-primary">
+                      <a class="btn btn-sm btn-primary"
+                        href="{{ route('admin.course-levels.edit', $level->id) }}"
+                      >
                         <i class="ti ti-edit"></i>
                       </a>
-                      <a href="{{ route('admin.course-languages.destroy', $language->id) }}" class="btn btn-sm btn-danger delete-item">
+                      <a class="btn btn-sm btn-danger delete-item"
+                        href="{{ route('admin.course-levels.destroy', $level->id) }}"
+                      >
                         <i class="ti ti-trash-x"></i>
                       </a>
                     </td>
@@ -65,12 +69,9 @@
           </div>
         </div>
         <div class="card-footer">
-          {{ $languages->links() }}
+          {{ $levels->links() }}
         </div>
       </div>
     </div>
   </div>
-
-
- 
 @endsection

@@ -91,13 +91,13 @@
             <path d="M12 17h.01" />
           </svg>
           <h3>Are you sure?</h3>
-          <div class="text-secondary">Do you really want to remove 84 files? What you've done cannot
+          <div class="text-secondary">Do you really want to remove this data? What you've done cannot
             be undone.</div>
         </div>
         <div class="modal-footer">
           <div class="w-100">
             <div class="row">
-              <div class="col"><button class="btn w-100" type="button">
+              <div class="col"><button class="btn w-100" type="button"  data-bs-dismiss="modal">
                   Cancel
                 </button></div>
               <div class="col"><button class="btn btn-danger w-100 delete-confirm"
