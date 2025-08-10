@@ -39,3 +39,8 @@ $(".delete-confirm").on("click", function (e) {
         },
     });
 });
+
+$(".show-modal-icon").on("click", function (e) {
+    e.preventDefault();
+    $("#iconModal").modal("show");
+});

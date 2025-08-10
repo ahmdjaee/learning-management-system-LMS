@@ -32,7 +32,7 @@
               <x-input-error class="mt-2" :messages="$errors->get('name')" />
             </div>
             <div class="mb-3">
-              <button class="btn btn-primary">
+              <button class="btn btn-primary" type="submit">
                 <i class="ti ti-device-floppy me-2" style="font-size: 24px;"></i>
                 Update
               </button>

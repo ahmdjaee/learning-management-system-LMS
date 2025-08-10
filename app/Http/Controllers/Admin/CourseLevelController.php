@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\CourseLevel;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Str;
 
 class CourseLevelController extends Controller

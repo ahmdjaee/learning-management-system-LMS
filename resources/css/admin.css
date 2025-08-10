@@ -12,3 +12,11 @@
 .rotate-animation {
     animation: spin 1s infinite linear; /* Applies the 'spin' animation */
 }
+/* 
+input.form-control[name="icon"]::placeholder {
+    color: black;
+} */
+
+input.form-control[name="icon"] {
+    caret-color: transparent; /* sembunyikan kursor teks */
+}

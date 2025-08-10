@@ -351,7 +351,8 @@
           aria-label="Open user menu"
         >
           <span class="avatar avatar-sm"
-            style="background-image: url({{ asset('admin/assets/static/avatars/000m.jpg') }})"></span>
+            style="background-image: url({{ asset('admin/assets/static/avatars/000m.jpg') }})"
+          ></span>
           <div class="d-none d-xl-block ps-2">
             <div>Paweł Kuna</div>
             <div class="mt-1 small text-secondary">UI Designer</div>
@@ -478,6 +479,9 @@
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.course-levels.index') }}">
                   Course Levels
+                </a>
+                <a class="dropdown-item" href="{{ route('admin.course-categories.index') }}">
+                  Course Categories
                 </a>
               </div>
             </div>

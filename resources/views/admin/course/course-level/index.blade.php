@@ -33,16 +33,24 @@
                       {{ $level->slug }}
                     </td>
                     <td class="text-end">
-                      <a class="btn btn-sm btn-primary"
-                        href="{{ route('admin.course-levels.edit', $level->id) }}"
-                      >
-                        <i class="ti ti-edit"></i>
-                      </a>
-                      <a class="btn btn-sm btn-danger delete-item"
-                        href="{{ route('admin.course-levels.destroy', $level->id) }}"
-                      >
-                        <i class="ti ti-trash-x"></i>
-                      </a>
+                      <a
+                      class="btn  btn-light "
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      href="{{ route('admin.course-levels.edit', $level->id) }}"
+                      title="Edit"
+                    >
+                      <i class="ti ti-edit"></i>
+                    </a>
+                    <a
+                      class="btn  btn-light text-danger delete-item"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      href="{{ route('admin.course-levels.destroy', $level->id) }}"
+                      title="Delete"
+                    >
+                      <i class="ti ti-trash-x"></i>
+                    </a>
                     </td>
                   </tr>
                 @empty

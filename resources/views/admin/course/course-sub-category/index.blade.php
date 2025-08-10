@@ -5,11 +5,11 @@
     <div class="container-xl">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Course Language</h3>
+          <h3 class="card-title">Course Sub Category of: ({{ $category->name }})</h3>
           <div class="card-actions">
             <div class="card-actions">
-              <a class="btn btn-primary btn-3" href="{{ route('admin.course-languages.create') }}">
-                <i class="ti ti-plus me-2" style="font-size: 24px"></i>
+              <a class="btn btn-primary btn-3" href="{{ route('admin.course-sub-categories.create', $category->id) }}">
+                <i class="ti ti-plus me-2" style="font-size: 24px;"></i>
                 Add new
               </a>
             </div>
@@ -20,24 +20,61 @@
             <table class="table table-vcenter card-table">
               <thead>
                 <tr>
+                  <th>Image</th>
+                  <th>Icon</th>
                   <th>Name</th>
                   <th>Slug</th>
+                  <th>Show At Trending</th>
+                  <th>Status</th>
                   <th class="text-end">Action</th>
                 </tr>
               </thead>
-              <tbody>
-                @forelse ($languages as $language)
+              {{-- <tbody>
+
+                @forelse ($categories as $category)
                   <tr>
-                    <td>{{ $language->name }}</td>
                     <td>
-                      {{ $language->slug }}
+                      <img
+                        class="object-cover"
+                        src="{{ asset($category->image) }}"
+                        srcset=""
+                        alt=""
+                        height="50"
+                        width="50"
+                      >
+                    </td>
+                    <td><i class="ti ti-{{ $category->icon }}" style="font-size: 24px"></i></td>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->slug }}</td>
+                    <td>
+                      @if ($category->show_at_trending)
+                        <span class="badge bg-green-lt">Yes</span>
+                      @else
+                        <span class="badge bg-red-lt">No</span>
+                      @endif
+                    </td>
+                    <td>
+                      @if ($category->status)
+                        <span class="badge bg-green-lt">Yes</span>
+                      @else
+                        <span class="badge bg-red-lt">No</span>
+                      @endif
                     </td>
                     <td class="text-end">
                       <a
                         class="btn  btn-light "
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
-                        href="{{ route('admin.course-languages.edit', $language->id) }}"
+                        href="{{ route('admin.course-sub-categories.index', $category->id) }}"
+                        title="Add Sub Category"
+                      >
+                        <i class="ti ti-list"></i>
+                      </a>
+                      <a
+                        class="btn  btn-light "
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        href="{{ route('admin.course-sub-categories.edit', $category->id) }}"
                         title="Edit"
                       >
                         <i class="ti ti-edit"></i>
@@ -46,7 +83,7 @@
                         class="btn  btn-light text-danger delete-item"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
-                        href="{{ route('admin.course-languages.destroy', $language->id) }}"
+                        href="{{ route('admin.course-sub-categories.destroy', $category->id) }}"
                         title="Delete"
                       >
                         <i class="ti ti-trash-x"></i>
@@ -72,17 +109,14 @@
                     </td>
                   </tr>
                 @endforelse
-              </tbody>
+              </tbody> --}}
             </table>
           </div>
         </div>
         <div class="card-footer">
-          {{ $languages->links() }}
+          {{-- {{ $categories->links() }} --}}
         </div>
       </div>
     </div>
   </div>
-
-
- 
 @endsection

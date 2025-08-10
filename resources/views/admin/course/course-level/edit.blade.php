@@ -10,7 +10,7 @@
             <div class="card-actions">
               <a class="btn btn-primary btn-3" href="{{ route('admin.course-levels.index') }}">
                 <i class="ti ti-arrow-left me-2" style="font-size: 24px"></i>
-               Back
+                Back
               </a>
             </div>
           </div>
@@ -25,8 +25,8 @@
                 class="form-control"
                 name="name"
                 type="text"
-                placeholder="Enter level name"
                 value="{{ $course_level->name }}"
+                placeholder="Enter level name"
                 autofocus
               >
               <x-input-error class="mt-2" :messages="$errors->get('name')" />
