@@ -11,10 +11,10 @@
     <div class="container-xl">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Update Course Category</h3>
+          <h3 class="card-title">Update Course Sub Category</h3>
           <div class="card-actions">
             <div class="card-actions">
-              <a class="btn btn-primary btn-3" href="{{ route('admin.course-categories.index') }}">
+              <a class="btn btn-primary btn-3" href="{{ route('admin.course-sub-categories.index', $category->id) }}">
                 <i class="ti ti-arrow-left me-2" style="font-size: 24px"></i>
                 Back
               </a>
@@ -24,7 +24,10 @@
         <div class="card-body">
 
           <form
-            action="{{ route('admin.course-categories.update', $category->id) }}"
+            action="{{ route('admin.course-sub-categories.update', [
+              'course_category' => $category->id,
+              'course_sub_category'=> $subCategory->id
+            ]) }}"
             enctype="multipart/form-data"
             method="post"
           >
@@ -33,14 +36,14 @@
 
             <div class="row">
               <div class="col-md-12">
-                <x-input-file-block name="image" :value="asset($category->image)" />
+                <x-input-file-block name="image" :value="asset($subCategory->image)" />
               </div>
               <div class="col-md-12">
                 <x-input-icon-block
                   name="icon"
                   required
                   label="Icon"
-                  :value="$category->icon"
+                  :value="$subCategory->icon"
                 />
               </div>
               <div class="col-md-12">
@@ -49,7 +52,7 @@
                   placeholder="Enter category name"
                   label="Name"
                   required
-                  :value="$category->name"
+                  :value="$subCategory->name"
                 />
               </div>
               <div class="col-md-3">
@@ -57,7 +60,7 @@
                   name="show_at_trending"
                   formCheckLabel=""
                   label="Show At Trending"
-                  :checked="$category->show_at_trending"
+                  :checked="$subCategory->show_at_trending"
                 />
               </div>
               <div class="col-md-3">
@@ -65,7 +68,7 @@
                   name="status"
                   formCheckLabel="Active / Inactive"
                   label="Status"
-                  :checked="$category->status"
+                  :checked="$subCategory->status"
                 />
               </div>
             </div>

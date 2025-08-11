@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CourseCategoryStoreRequest;
-use App\Http\Requests\CourseCategoryUpdateRequest;
+use App\Http\Requests\Admin\CourseCategoryStoreRequest;
+use App\Http\Requests\Admin\CourseCategoryUpdateRequest;
 use App\Models\CourseCategory;
 use App\Traits\FileUpload;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class CourseCategoryController extends Controller
      */
     public function index()
     {
-        $categories = CourseCategory::latest()->paginate(15);
+        $categories = CourseCategory::latest()->whereNull('parent_id')->paginate(15);
         return view('admin.course.course-category.index', compact('categories'));
     }
 
@@ -98,6 +98,9 @@ class CourseCategoryController extends Controller
      */
     public function destroy(CourseCategory $course_category)
     {
+        if(CourseCategory::where('parent_id', $course_category->id)->exists()){
+            return response(['message' => 'Cannot delete a category with sub categories!'], 422);
+        }
         try {
             $this->deleteFile($course_category->image);
 

@@ -20,3 +20,7 @@ input.form-control[name="icon"]::placeholder {
 input.form-control[name="icon"] {
     caret-color: transparent; /* sembunyikan kursor teks */
 }
+
+td a i {
+    font-size: 16px;
+}

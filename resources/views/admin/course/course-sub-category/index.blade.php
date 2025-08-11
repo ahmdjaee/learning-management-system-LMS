@@ -8,7 +8,15 @@
           <h3 class="card-title">Course Sub Category of: ({{ $category->name }})</h3>
           <div class="card-actions">
             <div class="card-actions">
-              <a class="btn btn-primary btn-3" href="{{ route('admin.course-sub-categories.create', $category->id) }}">
+              <a class="btn btn-3"
+                href="{{ route('admin.course-categories.index') }}"
+              >
+                <i class="ti ti-arrow-left me-2" style="font-size: 24px;"></i>
+                Back
+              </a>
+              <a class="btn btn-primary btn-3"
+                href="{{ route('admin.course-sub-categories.create', $category->id) }}"
+              >
                 <i class="ti ti-plus me-2" style="font-size: 24px;"></i>
                 Add new
               </a>
@@ -29,32 +37,32 @@
                   <th class="text-end">Action</th>
                 </tr>
               </thead>
-              {{-- <tbody>
+              <tbody>
 
-                @forelse ($categories as $category)
+                @forelse ($subCategories as $subCategory)
                   <tr>
                     <td>
                       <img
                         class="object-cover"
-                        src="{{ asset($category->image) }}"
+                        src="{{ asset($subCategory->image) }}"
                         srcset=""
                         alt=""
                         height="50"
                         width="50"
                       >
                     </td>
-                    <td><i class="ti ti-{{ $category->icon }}" style="font-size: 24px"></i></td>
-                    <td>{{ $category->name }}</td>
-                    <td>{{ $category->slug }}</td>
+                    <td><i class="ti ti-{{ $subCategory->icon }}" style="font-size: 24px"></i></td>
+                    <td>{{ $subCategory->name }}</td>
+                    <td>{{ $subCategory->slug }}</td>
                     <td>
-                      @if ($category->show_at_trending)
+                      @if ($subCategory->show_at_trending)
                         <span class="badge bg-green-lt">Yes</span>
                       @else
                         <span class="badge bg-red-lt">No</span>
                       @endif
                     </td>
                     <td>
-                      @if ($category->status)
+                      @if ($subCategory->status)
                         <span class="badge bg-green-lt">Yes</span>
                       @else
                         <span class="badge bg-red-lt">No</span>
@@ -65,16 +73,10 @@
                         class="btn  btn-light "
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
-                        href="{{ route('admin.course-sub-categories.index', $category->id) }}"
-                        title="Add Sub Category"
-                      >
-                        <i class="ti ti-list"></i>
-                      </a>
-                      <a
-                        class="btn  btn-light "
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top"
-                        href="{{ route('admin.course-sub-categories.edit', $category->id) }}"
+                        href="{{ route('admin.course-sub-categories.edit', [
+                            'course_category' => $category->id,
+                            'course_sub_category' => $subCategory->id,
+                        ]) }}"
                         title="Edit"
                       >
                         <i class="ti ti-edit"></i>
@@ -83,7 +85,10 @@
                         class="btn  btn-light text-danger delete-item"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
-                        href="{{ route('admin.course-sub-categories.destroy', $category->id) }}"
+                        href="{{ route('admin.course-sub-categories.destroy', [
+                            'course_category' => $category->id,
+                            'course_sub_category' => $subCategory->id,
+                        ]) }}"
                         title="Delete"
                       >
                         <i class="ti ti-trash-x"></i>
@@ -109,7 +114,7 @@
                     </td>
                   </tr>
                 @endforelse
-              </tbody> --}}
+              </tbody>
             </table>
           </div>
         </div>

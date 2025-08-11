@@ -18,6 +18,8 @@
   <!-- CSS files -->
   <link href="{{ asset('admin/assets/dist/css/tabler.min.css?1692870487') }}" rel="stylesheet" />
   <link href="{{ asset('admin/assets/dist/css/demo.min.css?1692870487') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+
   @stack('top-section')
   <style>
     @import url('https://rsms.me/inter/inter.css');
@@ -48,7 +50,7 @@
       @include('admin.layouts.footer')
     </div>
   </div>
-  
+
   <!-- Modals -->
   @stack('bottom-section')
   <div
@@ -93,13 +95,18 @@
             <path d="M12 17h.01" />
           </svg>
           <h3>Are you sure?</h3>
-          <div class="text-secondary">Do you really want to remove this data? What you've done cannot
+          <div class="text-secondary">Do you really want to remove this data? What you've done
+            cannot
             be undone.</div>
         </div>
         <div class="modal-footer">
           <div class="w-100">
             <div class="row">
-              <div class="col"><button class="btn w-100" type="button"  data-bs-dismiss="modal">
+              <div class="col"><button
+                  class="btn w-100"
+                  data-bs-dismiss="modal"
+                  type="button"
+                >
                   Cancel
                 </button></div>
               <div class="col"><button class="btn btn-danger w-100 delete-confirm"
@@ -116,6 +123,7 @@
   <!-- Tabler Core -->
   <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
   <script src="{{ asset('admin/assets/dist/js/demo.min.js?1692870487') }}" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   @stack('bottom-script')
 </body>
 

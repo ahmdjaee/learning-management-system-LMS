@@ -32,25 +32,26 @@
                     <td>
                       {{ $level->slug }}
                     </td>
-                    <td class="text-end">
+                    <td class="text-end ">
+                      {{-- <button class="btn ">Blue badge</button> --}}
                       <a
-                      class="btn  btn-light "
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      href="{{ route('admin.course-levels.edit', $level->id) }}"
-                      title="Edit"
-                    >
-                      <i class="ti ti-edit"></i>
-                    </a>
-                    <a
-                      class="btn  btn-light text-danger delete-item"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      href="{{ route('admin.course-levels.destroy', $level->id) }}"
-                      title="Delete"
-                    >
-                      <i class="ti ti-trash-x"></i>
-                    </a>
+                        class="btn btn-light "
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        href="{{ route('admin.course-levels.edit', $level->id) }}"
+                        title="Edit"
+                      >
+                        <i class="ti ti-edit" ></i>
+                      </a>
+                      <a
+                        class="btn btn-light text-danger delete-item"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        href="{{ route('admin.course-levels.destroy', $level->id) }}"
+                        title="Delete"
+                      >
+                        <i class="ti ti-trash-x" ></i>
+                      </a>
                     </td>
                   </tr>
                 @empty

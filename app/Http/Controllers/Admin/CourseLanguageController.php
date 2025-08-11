@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CourseLanguage;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
-use Str;
+use Illuminate\Support\Str;
 
 class CourseLanguageController extends Controller
 {

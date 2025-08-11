@@ -1,10 +1,9 @@
 import $ from "jquery";
-import { Notyf } from "notyf";
 
 window.$ = $;
 window.jQuery = $;
 
-const notyf = new Notyf();
+var notyf = new Notyf();
 var csrfToken = $('meta[name="csrf_token"]').attr("content");
 var deleteUrl = "";
 
@@ -33,9 +32,13 @@ $(".delete-confirm").on("click", function (e) {
         },
         complete: function (data) {
             $(".delete-confirm").html("Delete");
+            $(".delete-confirm").prop("disabled", false);
         },
         error: function (xhr) {
-            notyf.error(xhr?.responseJSON?.message);
+            notyf.error({
+                duration : 5000,    
+                message : xhr?.responseJSON?.message
+            });
         },
     });
 });
