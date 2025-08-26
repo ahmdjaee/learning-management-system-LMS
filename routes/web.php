@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Frontend\CourseContentController;
+use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
 use App\Http\Controllers\Frontend\ProfileController;
@@ -39,11 +41,25 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
 Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'], 'prefix' => 'instructor', 'as' => 'instructor.'], function () {
     Route::get('/dashboard', [InstructorDashboardController::class, 'index'])->name('dashboard');
 
-     // Profile Routes
-     Route::get('/profile', [ProfileController::class, 'instructorIndex'])->name('profile.index');
-     Route::post('/profile/update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
-     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
-     Route::post('/profile/update-social', [ProfileController::class, 'updateSocial'])->name('profile.update-social'); 
+    // Profile Routes
+    Route::get('/profile', [ProfileController::class, 'instructorIndex'])->name('profile.index');
+    Route::post('/profile/update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
+    Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
+    Route::post('/profile/update-social', [ProfileController::class, 'updateSocial'])->name('profile.update-social');
+
+    Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
+    Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
+    Route::post('/courses/create', [CourseController::class, 'storeBasicInfo'])->name('courses.store-basic-info');
+    Route::get('/courses/{id}/edit', [CourseController::class, 'edit'])->name('courses.edit');
+    Route::post('/courses/update', [CourseController::class, 'update'])->name('courses.update');
+
+    Route::get('/course-content/{course}/create-chapter', [CourseContentController::class, 'createChapterModal'])->name('course-content.create-chapter');
+    Route::post('/course-content/{course}/create-chapter', [CourseContentController::class, 'storeChapter'])->name('course-content.store-chapter');
+
+    /** Laravel File Manager Routes */
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });
 
 

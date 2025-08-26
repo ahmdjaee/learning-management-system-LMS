@@ -234,7 +234,7 @@
                             <span>
                                 <img src="{{ asset('frontend/assets/images/user_icon_black.png') }}" alt="user" class="img-fluid">
                             </span>
-                            {{ auth()->user()->email ?? '' }}
+                            {{ auth()->user()->name ?? '' }}
                         </a>
                     </li>
                     <li>

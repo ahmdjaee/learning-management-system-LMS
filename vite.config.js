@@ -12,6 +12,9 @@ export default defineConfig({
                 "resources/js/app.js",
                 "resources/js/admin/admin.js",
                 "resources/js/admin/login.js",
+                
+                // FRONTEND JS
+                "resources/js/frontend/course.js",
             ],
             refresh: true,
         }),

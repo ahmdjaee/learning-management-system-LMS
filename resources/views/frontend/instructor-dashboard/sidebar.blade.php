@@ -32,6 +32,18 @@
         </a>
       </li>
       <li>
+        <a href="{{ route('instructor.courses.index') }}">
+          <div class="img">
+            <img
+              class="img-fluid w-100"
+              src="{{ asset('frontend/assets/images/dash_icon_1.png') }}"
+              alt="icon"
+            >
+          </div>
+          Courses
+        </a>
+      </li>
+      <li>
         <a href="{{ route('instructor.profile.index') }}">
           <div class="img">
             <img
@@ -47,7 +59,7 @@
       <li>
         <a href="#"
           onclick="event.preventDefault();
-                                            $('#logout').submit();"
+                   $('#logout').submit();"
         >
           <div class="img">
             <img
