@@ -106,7 +106,7 @@ $(".more-info-form").on("submit", function (e) {
 });
 
 // show hide path input depending on source
-$(".storage").on("change", function (e) {
+$(document).on("change", ".storage", function (e) {
     let value = $(this).val();
     $(".source-input").val("");
     if (value === "upload") {
@@ -125,6 +125,29 @@ $(".dynamic-modal-btn").on("click", function (e) {
     const courseId = $(this).data('id');
     $.ajax({
         url: baseUrl + "/instructor/course-content/:id/create-chapter".replace(':id', courseId),
+        beforeSend: function (response) {
+            $(".dynamic-modal-content").html(loader);
+        },
+        success: function (data) {
+            $(".dynamic-modal-content").html(data);
+        },
+        error: function (xhr, status, error) {},
+
+        complete: function (response) {},
+    });
+});
+
+$(".add-lesson").on("click", function (e) {
+    e.preventDefault();
+    $("#dynamicModal").modal("show");
+    const courseId = $(this).data('course-id');
+    const chapterId = $(this).data('chapter-id');
+    $.ajax({
+        url: baseUrl + "/instructor/course-content/create-lesson",
+        data: {
+            chapter_id : chapterId,
+            course_id : courseId,
+        },
         beforeSend: function (response) {
             $(".dynamic-modal-content").html(loader);
         },

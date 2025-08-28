@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->text('slug')->nullable();
+            $table->text('description')->nullable();
             $table->foreignId('instructor_id')->constrained('users');
             $table->foreignId('course_id')->constrained('courses');
             $table->foreignId('chapter_id')->constrained('course_chapters')->onDelete('cascade');
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->enum('storage', ['upload', 'youtube', 'vimeo', 'eksternal_link']);
             $table->string('volume')->nullable();
             $table->string('duration');
-            $table->enum('file_type' , ['video', 'audio', 'doc', 'file']);
+            $table->enum('file_type' , ['video', 'audio', 'doc', 'file', 'pdf']);
             $table->boolean('downloadable', )->default(0);
             $table->integer('order');
             $table->boolean('is_preview')->default(0);
