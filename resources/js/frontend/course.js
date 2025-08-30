@@ -159,3 +159,28 @@ $(".add-lesson").on("click", function (e) {
         complete: function (response) {},
     });
 });
+
+$(".edit-lesson").on("click", function (e) {
+    e.preventDefault();
+    $("#dynamicModal").modal("show");
+    const courseId = $(this).data('course-id');
+    const chapterId = $(this).data('chapter-id');
+    const lessonId = $(this).data('lesson-id');
+    $.ajax({
+        url: baseUrl + "/instructor/course-content/edit-lesson",
+        data: {
+            chapter_id : chapterId,
+            course_id : courseId,
+            lesson_id : lessonId,
+        },
+        beforeSend: function (response) {
+            $(".dynamic-modal-content").html(loader);
+        },
+        success: function (data) {
+            $(".dynamic-modal-content").html(data);
+        },
+        error: function (xhr, status, error) {},
+
+        complete: function (response) {},
+    });
+});
