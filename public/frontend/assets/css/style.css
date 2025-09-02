@@ -15319,6 +15319,7 @@ footer {
 }
 
 .dashboard_add_courses .nav-pills .nav-item .nav-link {
+    cursor: pointer;
     background: var(--colorLightBg);
     color: var(--colorBlack);
     padding: 10px 20px !important;

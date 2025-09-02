@@ -36,7 +36,7 @@
   <link href="{{ asset('frontend/assets/css/responsive.css') }}" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet">
 
-  @vite(['resources/css/frontend.css']);
+  @vite(['resources/css/frontend.css', 'resources/js/frontend/frontend.js']);
 
   <!--dynamic js-->
   @stack('header_scripts')
@@ -119,7 +119,7 @@
   <!--Scroll Button js-->
   <script src="{{ asset('frontend/assets/js/scroll_button.js') }}"></script>
   <!--pointer js-->
-  <script src="{{ asset('frontend/assets/js/pointer.js') }}"></script>
+  {{-- <script src="{{ asset('frontend/assets/js/pointer.js') }}"></script> --}}
   <!--range slider js-->
   <script src="{{ asset('frontend/assets/js/range_slider.js') }}"></script>
   <!--barfiller js-->
@@ -140,6 +140,8 @@
 
   <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!--main/custom js-->
   <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
@@ -147,6 +149,9 @@
   @stack('scripts')
 
   <script>
+    $(function() {
+      $('.select_2').select2();
+    });
     const notyf = new Notyf({
       duration: 3000
     });

@@ -90,7 +90,7 @@
                           data-lesson-id="{{ $lesson->id }}"
                           href="#"
                         ><i class="far fa-edit"></i></a>
-                        <a class="del" href="#"><i class="fas fa-trash-alt"></i></a>
+                        <a class="del delete-item" href="{{ route('instructor.course-content.destroy-lesson', $lesson->id) }}"><i class="fas fa-trash-alt"></i></a>
                         <a class="arrow" href="#"><i class="fas fa-arrows-alt"></i></a>
                       </div>
                     </li>

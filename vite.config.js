@@ -15,6 +15,7 @@ export default defineConfig({
                 
                 // FRONTEND JS
                 "resources/js/frontend/course.js",
+                "resources/js/frontend/frontend.js",
             ],
             refresh: true,
         }),

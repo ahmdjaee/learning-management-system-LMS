@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\CourseChapter;
 use App\Models\CourseChapterLesson;
+use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Str;
 
 class CourseContentController extends Controller
@@ -76,7 +79,7 @@ class CourseContentController extends Controller
         $lesson->file_path = $request->filled('file') ? $request->file : $request->url;
         $lesson->file_type = $request->file_type;
         $lesson->duration = $request->duration;
-        $lesson->is_preview = $request->is_preview ? 1 : 0;
+        $lesson->is_preview = $request->preview ? 1 : 0;
         $lesson->downloadable = $request->downloadable ? 1 : 0;
         $lesson->description = $request->description;
         $lesson->instructor_id = auth()->id();
@@ -139,7 +142,7 @@ class CourseContentController extends Controller
         $lesson->file_path = $request->filled('file') ? $request->file : $request->url;
         $lesson->file_type = $request->file_type;
         $lesson->duration = $request->duration;
-        $lesson->is_preview = $request->is_preview ? 1 : 0;
+        $lesson->is_preview = $request->preview ? 1 : 0;
         $lesson->downloadable = $request->downloadable ? 1 : 0;
         $lesson->description = $request->description;
         $lesson->instructor_id = auth()->id();
@@ -150,5 +153,18 @@ class CourseContentController extends Controller
         notyf()->success("Updated successfully");
 
         return redirect()->back();
+    }
+
+    public function destroyLesson(int $id): Response
+    {
+        try {
+            $lesson = CourseChapterLesson::findOrFail($id);
+            $lesson->delete();
+            notyf()->success('Deleted Successfully');
+            return response(['message' => 'Deleted Successfully'], 200);
+        } catch (\Throwable $th) {
+            logger("Course Chapter Lesson Delete Error - " . $th);
+            return response(['message' => 'Something went wrong!'], 500);
+        }
     }
 }
