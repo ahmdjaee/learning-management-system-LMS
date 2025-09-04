@@ -68,8 +68,8 @@
                     <li><a class="dropdown-item" href="#">Add Quiz</a></li>
                   </ul>
                 </div>
-                <a class="edit" href="#"><i class="far fa-edit"></i></a>
-                <a class="del" href="#"><i class="fas fa-trash-alt"></i></a>
+                <a class="edit edit-chapter" data-chapter-id="{{ $chapter->id }}" href="#"><i class="far fa-edit"></i></a>
+                <a class="del delete-item" href="{{ route('instructor.course-content.destroy-chapter', $chapter->id) }}"><i class="fas fa-trash-alt"></i></a>
               </div>
             </h2>
             <div

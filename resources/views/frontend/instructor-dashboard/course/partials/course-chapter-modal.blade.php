@@ -1,11 +1,13 @@
  <form
    class="modal-content"
-   action="{{ route('instructor.course-content.store-chapter' , $id) }}"
+   action="{{  @$editMode == true 
+   ? route('instructor.course-content.update-chapter', @$chapter?->id)
+   : route('instructor.course-content.store-chapter', $id) }}"
    method="post"
  >
    @csrf
    <div class="modal-header">
-     <h5 class="modal-title" id="exampleModalLabel">Create Chapter</h5>
+     <h5 class="modal-title" id="exampleModalLabel">Chapter</h5>
      <button
        class="btn-close"
        data-bs-dismiss="modal"
@@ -21,10 +23,11 @@
          name="title"
          type="text"
          required
+         value="{{ @$chapter?->title }}"
        >
      </div>
    </div>
    <div class="modal-footer">
-     <button class="btn btn-primary ms-auto" type="submit">Save changes</button>
+     <button class="btn btn-primary ms-auto" type="submit">Save</button>
    </div>
  </form>

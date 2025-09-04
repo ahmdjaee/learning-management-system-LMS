@@ -4,7 +4,7 @@ $(function () {
     // dynamic delete pop up
     $(".delete-item").on("click", function (e) {
         e.preventDefault();
-        console.log("first");
+        
         let url = $(this).attr("href");
 
         Swal.fire({
@@ -17,11 +17,6 @@ $(function () {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                // Swal.fire({
-                //     title: "Deleted!",
-                //     text: "Your file has been deleted.",
-                //     icon: "success",
-                // });
                 $.ajax({
                     url: url,
                     method: "DELETE",

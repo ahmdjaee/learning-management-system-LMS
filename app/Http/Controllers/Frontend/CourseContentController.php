@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\CourseChapter;
 use App\Models\CourseChapterLesson;
-use Exception;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -30,8 +28,6 @@ class CourseContentController extends Controller
             'title' => ['required', 'string', 'max:255'],
         ]);
 
-
-
         $chapter = new CourseChapter();
 
         $chapter->title = $request->title;
@@ -40,11 +36,52 @@ class CourseContentController extends Controller
         $chapter->order = CourseChapter::where('course_id', $courseId)->count() + 1;
         $chapter->save();
 
+        notyf()->success("Created successfully");
+
         return redirect()->back();
 
     }
 
+    public function editChapterModal(string $id): string
+    {
+        $editMode = true;
+        $chapter = CourseChapter::where(['id' => $id, 'instructor_id' => auth()->id()])->firstOrFail();
 
+        return view(
+            'frontend.instructor-dashboard.course.partials.course-chapter-modal',
+            compact('chapter', 'editMode')
+        )->render();
+    }
+
+    public function updateChapterModal(Request $request, string $id): RedirectResponse
+    {
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+        ]);
+
+        $chapter = CourseChapter::findOrFail($id);
+
+        $chapter->title = $request->title;
+        $chapter->save();
+
+        notyf()->success("Updated successfully");
+
+        return redirect()->back();
+    }
+
+    public function destroyChapter(string $id): Response
+    {
+        try {
+            $chapter = CourseChapter::findOrFail($id);
+            $chapter->delete();
+            notyf()->success('Deleted Successfully');
+            return response(['message' => 'Deleted Successfully'], 200);
+        } catch (\Throwable $th) {
+            logger("Course Chapter Delete Error - " . $th);
+            return response(['message' => 'Something went wrong!'], 500);
+        }
+
+    }
     public function createLesson(Request $request): string
     {
         $courseId = $request->course_id;
