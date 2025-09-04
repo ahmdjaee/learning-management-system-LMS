@@ -34,6 +34,8 @@
   <link href="{{ asset('frontend/assets/css/spacing.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/assets/css/responsive.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend/assets/css/jquery-ui.min.css') }}" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet">
 
   @vite(['resources/css/frontend.css', 'resources/js/frontend/frontend.js']);
@@ -137,6 +139,9 @@
   <script src="{{ asset('frontend/assets/js/video_player_youtube.js') }}"></script>
   <!--wow js-->
   <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
+
+  <!--Jquery UI-->
+  <script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}"></script>
 
   <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>

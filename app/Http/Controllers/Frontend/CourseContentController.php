@@ -204,4 +204,18 @@ class CourseContentController extends Controller
             return response(['message' => 'Something went wrong!'], 500);
         }
     }
+
+    public function sortLesson(Request $request, string $id)
+    {
+        $orderIds = $request->order_ids;
+
+        foreach ($orderIds as $key => $orderId) {
+            $lesson = CourseChapterLesson::where(['id' => $orderId, 'chapter_id' => $id])->first();
+            $lesson->order = $key + 1;
+            $lesson->save();
+        }
+
+        return response(['message' => 'Updated Successfully'], 200);
+
+    }
 }

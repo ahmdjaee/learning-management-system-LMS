@@ -1,4 +1,5 @@
 const baseUrl = $("meta[name=base_url]").attr("content");
+const csrfToken = $("meta[name=csrf_token]").attr("content");
 const basicInfoUrl = baseUrl + "/instructor/courses/create";
 const updateUrl = baseUrl + "/instructor/courses/update";
 
@@ -122,9 +123,14 @@ $(".dynamic-modal-btn").on("click", function (e) {
     e.preventDefault();
     $("#dynamicModal").modal("show");
 
-    const courseId = $(this).data('id');
+    const courseId = $(this).data("id");
     $.ajax({
-        url: baseUrl + "/instructor/course-content/:id/create-chapter".replace(':id', courseId),
+        url:
+            baseUrl +
+            "/instructor/course-content/:id/create-chapter".replace(
+                ":id",
+                courseId
+            ),
         beforeSend: function (response) {
             $(".dynamic-modal-content").html(loader);
         },
@@ -141,10 +147,15 @@ $(".edit-chapter").on("click", function (e) {
     e.preventDefault();
     $("#dynamicModal").modal("show");
 
-    const chapterId= $(this).data('chapter-id');
+    const chapterId = $(this).data("chapter-id");
 
     $.ajax({
-        url: baseUrl + "/instructor/course-content/:id/edit-chapter".replace(':id', chapterId),
+        url:
+            baseUrl +
+            "/instructor/course-content/:id/edit-chapter".replace(
+                ":id",
+                chapterId
+            ),
         beforeSend: function (response) {
             $(".dynamic-modal-content").html(loader);
         },
@@ -160,13 +171,13 @@ $(".edit-chapter").on("click", function (e) {
 $(".add-lesson").on("click", function (e) {
     e.preventDefault();
     $("#dynamicModal").modal("show");
-    const courseId = $(this).data('course-id');
-    const chapterId = $(this).data('chapter-id');
+    const courseId = $(this).data("course-id");
+    const chapterId = $(this).data("chapter-id");
     $.ajax({
         url: baseUrl + "/instructor/course-content/create-lesson",
         data: {
-            chapter_id : chapterId,
-            course_id : courseId,
+            chapter_id: chapterId,
+            course_id: courseId,
         },
         beforeSend: function (response) {
             $(".dynamic-modal-content").html(loader);
@@ -183,15 +194,15 @@ $(".add-lesson").on("click", function (e) {
 $(".edit-lesson").on("click", function (e) {
     e.preventDefault();
     $("#dynamicModal").modal("show");
-    const courseId = $(this).data('course-id');
-    const chapterId = $(this).data('chapter-id');
-    const lessonId = $(this).data('lesson-id');
+    const courseId = $(this).data("course-id");
+    const chapterId = $(this).data("chapter-id");
+    const lessonId = $(this).data("lesson-id");
     $.ajax({
         url: baseUrl + "/instructor/course-content/edit-lesson",
         data: {
-            chapter_id : chapterId,
-            course_id : courseId,
-            lesson_id : lessonId,
+            chapter_id: chapterId,
+            course_id: courseId,
+            lesson_id: lessonId,
         },
         beforeSend: function (response) {
             $(".dynamic-modal-content").html(loader);
@@ -204,3 +215,39 @@ $(".edit-lesson").on("click", function (e) {
         complete: function (response) {},
     });
 });
+
+if ($(".sortable-list").length) {
+    $(".sortable-list").sortable({
+        item: "li",
+        containtment: "parent",
+        cursor: "grab",
+        handle: ".dragger",
+        update: function (event, ui) {
+            let orderIds = $(this).sortable("toArray", {
+                attribute: "data-lesson-id",
+            });
+
+            let chapterId = ui.item.data("chapter-id");
+           
+            $.ajax({
+                url: baseUrl + `/instructor/course-chapter/${chapterId}/sort-lesson`,
+                method: "POST",
+                data: {
+                    _token: csrfToken,
+                    order_ids: orderIds
+                },
+                beforeSend: function () {
+                    
+                },
+                success: function (res) {
+                    notyf.success(res.message)
+                },
+                error: function (xhr) { 
+                    const message = xhr.responseJSON.message;
+                    notyf.error(message);
+                 },
+
+            });
+        },
+    });
+}
