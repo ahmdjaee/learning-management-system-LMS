@@ -53,7 +53,7 @@
          </div>
        </div>
        <div class="col-6">
-         <div class="add_course_basic_info_imput upload-source">
+         <div class="add_course_basic_info_imput upload-source {{ @$lesson?->storage != 'upload' ? 'd-none' : "" }}">
            <label for="#">Path</label>
            <div class="input-group">
              <span class="input-group-btn">
@@ -75,7 +75,7 @@
              >
            </div>
          </div>
-         <div class="add_course_basic_info_imput eksternal-source d-none">
+         <div class="add_course_basic_info_imput eksternal-source {{ @$lesson?->storage == 'upload' ? 'd-none' : "" }}">
            <label for="#">Path</label>
            <input
              class="form-control"

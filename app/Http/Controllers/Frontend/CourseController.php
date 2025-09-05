@@ -41,7 +41,7 @@ class CourseController extends Controller
         $course->seo_description = $request->seo_description;
         $course->thumbnail = $thumbnailPath;
         $course->demo_video_storage = $request->demo_video_storage;
-        $course->demo_video_source = $request->demo_video_source;
+        $course->demo_video_source =  $request->filled('file') ? $request->file : $request->url;
         $course->price = $request->price;
         $course->discount = $request->discount;
         $course->description = $request->description;
@@ -75,12 +75,14 @@ class CourseController extends Controller
                 return view('frontend.instructor-dashboard.course.more-info', compact('categories', 'levels', 'languages', 'course'));
             case '3':
                 $courseId = $request->id;
-                $chapters = CourseChapter::where(['course_id'=> $courseId, 'instructor_id' => auth()->id() ])->orderBy('order')->get();
+                $chapters = CourseChapter::where(['course_id' => $courseId, 'instructor_id' => auth()->id()])->orderBy('order')->get();
 
                 return view('frontend.instructor-dashboard.course.course-content', compact('courseId', 'chapters'));
-            default:
-                # code...
-                break;
+            case '4':
+                $course = Course::findOrFail($request->id);
+
+                return view('frontend.instructor-dashboard.course.finish', compact('course', ));
+
         }
     }
 
@@ -162,9 +164,22 @@ class CourseController extends Controller
                     'message' => 'Updated successfully',
                     'redirect' => route('instructor.courses.edit', ['id' => $request->id, 'step' => $request->next_step])
                 ]);
-            default:
-                # code...
-                break;
+            case '4':
+                $request->validate([
+                    'message' => ['nullable', 'max:1000', 'string'],
+                    'status' => ['required', 'in:active,inactive,draft'],
+                ]);
+
+                $course = Course::findOrFail($request->id);
+                $course->message_for_reviewer = $request->message_for_reviewer;
+                $course->status = $request->status;
+                $course->save();
+
+                return response([
+                    'status' => 'success',
+                    'message' => 'Updated successfully',
+                    'redirect' => route('instructor.courses.index')
+                ]);
         }
     }
 }

@@ -87,6 +87,7 @@
                                   class="img-fluid w-100"
                                   src="{{ asset($course->thumbnail) }}"
                                   alt="img"
+                                  style="aspect-ratio: 16/9;"
                                 >
                               </div>
                             </td>
