@@ -218,4 +218,22 @@ class CourseContentController extends Controller
         return response(['message' => 'Updated Successfully'], 200);
 
     }
+
+    public function sortChapter(string $id) {
+        $chapters = CourseChapter::where('course_id', $id)->orderBy('order')->get();
+
+        return view('frontend.instructor-dashboard.course.partials.course-chapter-sort-modal', compact('chapters', 'id'))->render();
+    }
+
+    public function updateSortChapter(Request $request,  string $id){
+        $orderIds = $request->order_ids;
+
+        foreach ($orderIds as $key => $orderId) {
+            $chapter = CourseChapter::where(['id' => $orderId, 'course_id' => $id])->first();
+            $chapter->order = $key + 1;
+            $chapter->save();
+        }
+
+        return response(['message' => 'Updated Successfully'], 200);
+    }
 }

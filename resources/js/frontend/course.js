@@ -228,26 +228,45 @@ if ($(".sortable-list").length) {
             });
 
             let chapterId = ui.item.data("chapter-id");
-           
+
             $.ajax({
-                url: baseUrl + `/instructor/course-chapter/${chapterId}/sort-lesson`,
+                url:
+                    baseUrl +
+                    `/instructor/course-chapter/${chapterId}/sort-lesson`,
                 method: "POST",
                 data: {
                     _token: csrfToken,
-                    order_ids: orderIds
+                    order_ids: orderIds,
                 },
-                beforeSend: function () {
-                    
-                },
+                beforeSend: function () {},
                 success: function (res) {
-                    notyf.success(res.message)
+                    notyf.success(res.message);
                 },
-                error: function (xhr) { 
+                error: function (xhr) {
                     const message = xhr.responseJSON.message;
                     notyf.error(message);
-                 },
-
+                },
             });
         },
     });
 }
+
+$(".short-chapter-btn").on("click", function () {
+    $("#dynamicModal").modal("show");
+    const courseId = $(this).data("course-id");
+
+    $.ajax({
+        url: baseUrl + `/instructor/course-content/${courseId}/sort-chapter`,
+        beforeSend: function (response) {
+            $(".dynamic-modal-content").html(loader);
+        },
+        success: function (data) {
+            $(".dynamic-modal-content").html(data);
+        },
+        error: function (xhr, status, error) {
+            notyf.error(error);
+        },
+
+        complete: function (response) {},
+    });
+});

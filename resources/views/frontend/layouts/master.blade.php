@@ -94,8 +94,9 @@
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
     tabindex="-1"
+    data-bs-backdrop="static"
   >
-    <div class="modal-dialog modal-lg modal-dialog-centered dynamic-modal-content">
+    <div class="modal-dialog modal-lg modal-dialog-centered dynamic-modal-content" >
 
     </div>
   </div>

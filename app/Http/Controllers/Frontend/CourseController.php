@@ -75,7 +75,7 @@ class CourseController extends Controller
                 return view('frontend.instructor-dashboard.course.more-info', compact('categories', 'levels', 'languages', 'course'));
             case '3':
                 $courseId = $request->id;
-                $chapters = CourseChapter::where(['course_id'=> $courseId, 'instructor_id' => auth()->id() ])->get();
+                $chapters = CourseChapter::where(['course_id'=> $courseId, 'instructor_id' => auth()->id() ])->orderBy('order')->get();
 
                 return view('frontend.instructor-dashboard.course.course-content', compact('courseId', 'chapters'));
             default:
