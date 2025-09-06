@@ -34,7 +34,7 @@
     }
   </style>
   @vite(['resources/css/admin.css', 'resources/js/admin/admin.js', ])
-  @stack('header_scripts')
+  @stack('header-scripts')
 </head>
 
 <body>
@@ -122,11 +122,16 @@
     </div>
   </div>
   <!-- Libs JS -->
+  <!-- File  Core -->
+ <script src="/vendor/laravel-filemanager/js/stand-alone-button.js" defer></script>
+
+
   <!-- Tabler Core -->
   <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
-  <script src="{{ asset('admin/assets/dist/js/demo.min.js?1692870487') }}" defer></script>
+  <script src="{{ asset('admin/assets/dist/js/demo.min.js?1692870487') }}"></script>
+  
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-  @stack('bottom-script')
+  @stack('bottom-scripts')
 </body>
 
 </html>

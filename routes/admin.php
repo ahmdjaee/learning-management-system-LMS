@@ -82,7 +82,6 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::delete('/{course_category}/sub-categories/{course_sub_category}', [CourseSubCategoryController::class, 'destroy'])->name('course-sub-categories.destroy');
 
     /** Course Module Routes */
-
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
     Route::put('/courses/{course}/update-approval', [CourseController::class, 'updateApproval'])->name('courses.update-approval');
     Route::get('/courses/create', [CourseController::class, 'create'])->name('courses.create');
@@ -107,5 +106,8 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::get('/course-content/{courseid}/sort-chapter', [CourseContentController::class, 'sortChapter'])->name('course-content.sort-chapter');
     Route::post('/course-content/{courseid}/sort-chapter', [CourseContentController::class, 'updateSortChapter'])->name('course-content.update-sort-chapter');
 
-
+    /** Laravel File Manager Routes */
+    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
+        \UniSharp\LaravelFilemanager\Lfm::routes();
+    });
 });

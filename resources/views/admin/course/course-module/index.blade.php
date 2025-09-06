@@ -8,7 +8,7 @@
           <h3 class="card-title">Course Course</h3>
           <div class="card-actions">
             <div class="card-actions">
-              <a class="btn btn-primary btn-3" {{-- href="{{ route('admin.course-courses.create') }}" --}}>
+              <a class="btn btn-primary btn-3"  href="{{ route('admin.courses.create') }}" >
                 <i class="ti ti-plus me-2" style="font-size: 24px;"></i>
                 Add new
               </a>

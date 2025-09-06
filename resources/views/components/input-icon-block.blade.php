@@ -48,7 +48,7 @@
   </div>
 @endpush
 
-@push('bottom-script')
+@push('bottom-scripts')
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       let modalEl = document.getElementById("iconModal")

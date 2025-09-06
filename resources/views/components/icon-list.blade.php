@@ -12,7 +12,7 @@
   </div>
 </div>
   
-@push('bottom-script')
+@push('bottom-scripts')
   <script>
     document.addEventListener('DOMContentLoaded', function (){
      document.querySelector('.demo-icons-list-wrap').innerHTML = `<div class="demo-icons-list">

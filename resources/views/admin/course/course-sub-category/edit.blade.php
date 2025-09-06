@@ -85,7 +85,7 @@
   </div>
 @endsection
 
-@push('bottom-script')
+@push('bottom-scripts')
   <script src="{{ asset('admin/assets/dist/libs/dropzone/dist/dropzone-min.js?1692870487') }}" defer>
   </script>
   <script>

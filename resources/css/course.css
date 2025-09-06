@@ -1,0 +1,139 @@
+
+/* Course Module CSS */
+
+/*=================================
+    DASHBOARD ADD COURSE START
+=================================*/
+.add_course_basic_info_imput input,
+textarea, .select_js {
+    width: 100%;
+    padding: 12px 20px;
+    outline: none;
+    resize: none;
+    border: 1px solid rgba(30, 30, 47, 0.10);
+    font-weight: 400;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+.add_course_basic_info_imput input::placeholder,
+textarea::placeholder {
+    color: #787882;
+}
+
+.dashboard_add_courses {
+    /* padding: 30px; */
+}
+
+.dashboard_add_courses .nav-pills {
+    gap: 10px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba(30, 30, 47, 0.10);
+    padding-bottom: 10px;
+}
+
+.dashboard_add_courses .nav-pills .nav-item .nav-link {
+    cursor: pointer;
+    background: white;
+    color: var(--colorBlack);
+    padding: 10px 20px !important;
+    border-radius: 8px !important;
+    transition: all linear .3s;
+    font-size: 15px;
+    font-weight: 500;
+    -webkit-border-radius: 8px !important;
+    -moz-border-radius: 8px !important;
+    -ms-border-radius: 8px !important;
+    -o-border-radius: 8px !important;
+    -webkit-transition: all linear .3s;
+    -moz-transition: all linear .3s;
+    -ms-transition: all linear .3s;
+    -o-transition: all linear .3s;
+}
+
+.dashboard_add_courses .nav-pills .nav-item .nav-link:hover {
+    color: var(--tblr-primary);
+}
+
+.dashboard_add_courses .nav-pills .nav-item .nav-link.active {
+    background: var(--tblr-primary);
+    color: white;
+}
+
+.add_course_basic_info_imput,
+.add_course_more_info_input {
+    margin-bottom: 20px;
+}
+
+.add_course_basic_info_imput label,
+.add_course_more_info_input label {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--colorBlack);
+    margin-bottom: 3px;
+}
+
+.add_course_basic_info_imput label b {
+    text-transform: capitalize;
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--paraColor);
+}
+
+.add_course_basic_info_imput input,
+.add_course_more_info_input input {
+    font-size: 16px;
+}
+
+.add_course_basic_info_imput p,
+.add_course_more_info_input p {
+    margin-top: 5px;
+}
+
+.add_course_basic_info_imput input[type=file] {
+    padding: 0;
+}
+
+.add_course_basic_info_imput input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: var(--tblr-primary);
+    height: 49px;
+    padding: 0px 20px;
+    color: white;
+    cursor: pointer;
+    transition: background .3s ease-in-out;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    -ms-transition: background .3s ease-in-out;
+    -o-transition: background .3s ease-in-out;
+}
+
+.add_course_basic_info_imput input[type=file]::file-selector-button:hover {
+    background: #1245bd;
+}
+
+.add_course_basic_info_imput .nice-select {
+    border-radius: 6px;
+    border: solid 1px rgba(30, 30, 47, 0.10) !important;
+    height: 50px;
+    line-height: 48px;
+    margin-bottom: 20px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+}
+
+.add_course_basic_info_imput .nice-select .current {
+    font-size: 16px;
+    color: var(--colorBlack);
+}
+
+.add_course_basic_info_imput .nice-select:after {
+    right: 18px;
+}
