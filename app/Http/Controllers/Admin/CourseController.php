@@ -80,23 +80,23 @@ class CourseController extends Controller
         switch ($request->step) {
             case '1':
                 $course = Course::findOrFail($request->id);
-                return view('frontend.instructor-dashboard.course.edit', compact('course'));
+                return view('admin.course.course-module.edit', compact('course'));
             case '2':
                 $categories = CourseCategory::with('subCategories')->where('status', 1)->get();
                 $levels = CourseLevel::all();
                 $languages = CourseLanguage::all();
                 $course = Course::findOrFail($request->id);
 
-                return view('frontend.instructor-dashboard.course.more-info', compact('categories', 'levels', 'languages', 'course'));
+                return view('admin.course.course-module.more-info', compact('categories', 'levels', 'languages', 'course'));
             case '3':
                 $courseId = $request->id;
-                $chapters = CourseChapter::where(['course_id' => $courseId, 'instructor_id' => auth()->id()])->orderBy('order')->get();
+                $chapters = CourseChapter::where(['course_id' => $courseId])->orderBy('order')->get();
 
-                return view('frontend.instructor-dashboard.course.course-content', compact('courseId', 'chapters'));
+                return view('admin.course.course-module.course-content', compact('courseId', 'chapters'));
             case '4':
                 $course = Course::findOrFail($request->id);
 
-                return view('frontend.instructor-dashboard.course.finish', compact('course', ));
+                return view('admin.course.course-module.finish', compact('course', ));
 
         }
     }
@@ -134,7 +134,7 @@ class CourseController extends Controller
                 $course->price = $request->price;
                 $course->discount = $request->discount;
                 $course->description = $request->description;
-                $course->instructor_id = Auth::guard('web')->user()->id;
+                // $course->instructor_id = Auth::guard('web')->user()->id;
                 $course->save();
 
                 // save course id on session
@@ -143,7 +143,7 @@ class CourseController extends Controller
                 return response([
                     'status' => 'success',
                     'message' => 'Updated successfully',
-                    'redirect' => route('instructor.courses.edit', ['id' => $course->id, 'step' => $request->next_step])
+                    'redirect' => route('admin.courses.edit', ['id' => $course->id, 'step' => $request->next_step])
                 ]);
             case '2':
                 $request->validate([
@@ -169,7 +169,7 @@ class CourseController extends Controller
                 return response([
                     'status' => 'success',
                     'message' => 'Updated successfully',
-                    'redirect' => route('instructor.courses.edit', ['id' => $course->id, 'step' => $request->next_step])
+                    'redirect' => route('admin.courses.edit', ['id' => $course->id, 'step' => $request->next_step])
                 ]);
             case '3':
                 $course = Course::findOrFail($request->id);
@@ -177,7 +177,7 @@ class CourseController extends Controller
                 return response([
                     'status' => 'success',
                     'message' => 'Updated successfully',
-                    'redirect' => route('instructor.courses.edit', ['id' => $request->id, 'step' => $request->next_step])
+                    'redirect' => route('admin.courses.edit', ['id' => $request->id, 'step' => $request->next_step])
                 ]);
             case '4':
                 $request->validate([
@@ -193,7 +193,7 @@ class CourseController extends Controller
                 return response([
                     'status' => 'success',
                     'message' => 'Updated successfully',
-                    'redirect' => route('instructor.courses.index')
+                    'redirect' => route('admin.courses.index')
                 ]);
         }
     }

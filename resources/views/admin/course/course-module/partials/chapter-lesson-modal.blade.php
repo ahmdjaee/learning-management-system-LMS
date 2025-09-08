@@ -1,9 +1,8 @@
  <form
    class="modal-content "
    action="{{ @$editMode == true
-    ? route('instructor.course-content.update-lesson', $lesson->id) 
-    : route('instructor.course-content.store-lesson') 
-   }}"
+       ? route('admin.course-content.update-lesson', $lesson->id)
+       : route('admin.course-content.store-lesson') }}"
    method="post"
  >
    @csrf
@@ -53,7 +52,9 @@
          </div>
        </div>
        <div class="col-6">
-         <div class="add_course_basic_info_imput upload-source {{ @$lesson?->storage != 'upload' ? 'd-none' : "" }}">
+         <div
+           class="add_course_basic_info_imput upload-source {{ @$lesson?->storage != 'upload' ? 'd-none' : '' }}"
+         >
            <label for="#">Path</label>
            <div class="input-group">
              <span class="input-group-btn">
@@ -75,7 +76,9 @@
              >
            </div>
          </div>
-         <div class="add_course_basic_info_imput eksternal-source {{ @$lesson?->storage == 'upload' ? 'd-none' : "" }}">
+         <div
+           class="add_course_basic_info_imput eksternal-source {{ @$lesson?->storage == 'upload' ? 'd-none' : '' }}"
+         >
            <label for="#">Path</label>
            <input
              class="form-control"
@@ -96,7 +99,8 @@
            >
              <option value=""> Please Select </option>
              @foreach (config('course.file_types') as $key => $value)
-               <option value="{{ $key }}" @selected(@$lesson?->file_type == $key)>{{ $value }}
+               <option value="{{ $key }}" @selected(@$lesson?->file_type == $key)>
+                 {{ $value }}
                </option>
              @endforeach
            </select>
@@ -167,5 +171,7 @@
  </form>
 
  <script>
-   $('#lfm').filemanager('file');
+   $('#lfm').filemanager('file', {
+     prefix: '/admin/laravel-filemanager'
+   });
  </script>

@@ -5,7 +5,7 @@ const basicInfoUrl = baseUrl + "/admin/courses/create";
 const updateUrl = baseUrl + "/admin/courses/update";
 
 var notyf = new Notyf({
-    duration: '5000'
+    duration: "5000",
 });
 
 const loader = `
@@ -32,14 +32,13 @@ function updateApproveStatus(id, status) {
     });
 }
 
-/** on dom load */
-$(function () {
+document.addEventListener("DOMContentLoaded", function (e) {
     var el;
     window.TomSelect &&
         new TomSelect((el = document.querySelector(".tom-select")), {
             copyClassesToDropdown: false,
             dropdownParent: "body",
-            controlInput: "<input>",
+            controlInput: "<input style='width: fit-content;'>",
             render: {
                 item: function (data, escape) {
                     if (data.customProperties) {
@@ -67,7 +66,10 @@ $(function () {
                 },
             },
         });
+});
 
+/** on dom load */
+$(function () {
     $(".course-tab").on("click", function (e) {
         e.preventDefault();
         let step = $(this).data("step");
@@ -162,25 +164,29 @@ $(function () {
         });
     });
 
-    let value = $(this).val();
-    $(".source-input").val("");
-    if (value === "upload") {
-        $(".upload-source").removeClass("d-none");
-        $(".eksternal-source").addClass("d-none");
-    } else {
-        $(".upload-source").addClass("d-none");
-        $(".eksternal-source").removeClass("d-none");
-    }
+    // show hide path input depending on source
+    $(document).on("change", ".storage", function (e) {
+        let value = $(this).val();
+        $(".source-input").val("");
+        if (value === "upload") {
+            $(".upload-source").removeClass("d-none");
+            $(".eksternal-source").addClass("d-none");
+        } else {
+            $(".upload-source").addClass("d-none");
+            $(".eksternal-source").removeClass("d-none");
+        }
+    });
 
     $(".dynamic-modal-btn").on("click", function (e) {
         e.preventDefault();
+        console.log("first");
         $("#dynamicModal").modal("show");
 
         const courseId = $(this).data("id");
         $.ajax({
             url:
                 baseUrl +
-                "/instructor/course-content/:id/create-chapter".replace(
+                "/admin/course-content/:id/create-chapter".replace(
                     ":id",
                     courseId
                 ),
@@ -205,7 +211,7 @@ $(function () {
         $.ajax({
             url:
                 baseUrl +
-                "/instructor/course-content/:id/edit-chapter".replace(
+                "/admin/course-content/:id/edit-chapter".replace(
                     ":id",
                     chapterId
                 ),
@@ -227,7 +233,7 @@ $(function () {
         const courseId = $(this).data("course-id");
         const chapterId = $(this).data("chapter-id");
         $.ajax({
-            url: baseUrl + "/instructor/course-content/create-lesson",
+            url: baseUrl + "/admin/course-content/create-lesson",
             data: {
                 chapter_id: chapterId,
                 course_id: courseId,
@@ -251,7 +257,7 @@ $(function () {
         const chapterId = $(this).data("chapter-id");
         const lessonId = $(this).data("lesson-id");
         $.ajax({
-            url: baseUrl + "/instructor/course-content/edit-lesson",
+            url: baseUrl + "/admin/course-content/edit-lesson",
             data: {
                 chapter_id: chapterId,
                 course_id: courseId,
@@ -285,7 +291,7 @@ $(function () {
                 $.ajax({
                     url:
                         baseUrl +
-                        `/instructor/course-chapter/${chapterId}/sort-lesson`,
+                        `/admin/course-chapter/${chapterId}/sort-lesson`,
                     method: "POST",
                     data: {
                         _token: csrfToken,
@@ -305,12 +311,12 @@ $(function () {
     }
 
     $(".short-chapter-btn").on("click", function () {
+
         $("#dynamicModal").modal("show");
         const courseId = $(this).data("course-id");
 
         $.ajax({
-            url:
-                baseUrl + `/instructor/course-content/${courseId}/sort-chapter`,
+            url: baseUrl + `/admin/course-content/${courseId}/sort-chapter`,
             beforeSend: function (response) {
                 $(".dynamic-modal-content").html(loader);
             },
@@ -320,7 +326,6 @@ $(function () {
             error: function (xhr, status, error) {
                 notyf.error(error);
             },
-
             complete: function (response) {},
         });
     });

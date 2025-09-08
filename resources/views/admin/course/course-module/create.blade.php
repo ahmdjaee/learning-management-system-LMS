@@ -43,17 +43,17 @@
                 >
                 <div class="row">
                   <div class="col-xl-12 mb-4">
-                    <label for="#" class="form-label">Instructors *</label>
+                    <label class="form-label" for="#">Instructors *</label>
                     <select
                       class="form-select tom-select"
-                      type="text"
                       name="instructor"
+                      type="text"
                       placeholder="Select instructors"
                     >
                       <option value=""></option>
                       @foreach ($instructors as $instructor)
                         <option value="{{ $instructor->id }}">
-                          {{ $instructor->name }}
+                          {{ "{$instructor->name} - {$instructor->email}" }}
                         </option>
                       @endforeach
                     </select>

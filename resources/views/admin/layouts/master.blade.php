@@ -19,6 +19,8 @@
   <!-- CSS files -->
   <link href="{{ asset('admin/assets/dist/css/tabler.min.css?1692870487') }}" rel="stylesheet" />
   <link href="{{ asset('admin/assets/dist/css/demo.min.css?1692870487') }}" rel="stylesheet" />
+  <link href="{{ asset('frontend/assets/css/jquery-ui.min.css') }}" rel="stylesheet">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 
   @stack('top-section')
@@ -121,6 +123,19 @@
       </div>
     </div>
   </div>
+
+  <div
+    class="modal fade "
+    id="dynamicModal"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    tabindex="-1"
+    data-bs-backdrop="static"
+  >
+    <div class="modal-dialog modal-lg modal-dialog-centered dynamic-modal-content" >
+
+    </div>
+  </div>
   <!-- Libs JS -->
   <!-- File  Core -->
  <script src="/vendor/laravel-filemanager/js/stand-alone-button.js" defer></script>
@@ -130,6 +145,9 @@
   <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
   <script src="{{ asset('admin/assets/dist/js/demo.min.js?1692870487') }}"></script>
   
+  <!--Jquery UI-->
+  <script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}" defer></script>
+
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   @stack('bottom-scripts')
 </body>

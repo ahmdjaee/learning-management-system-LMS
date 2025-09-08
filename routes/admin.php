@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\InstructorRequestController;
 use App\Http\Controllers\Admin\CourseCategoryController;
+use App\Http\Controllers\Admin\CourseContentController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use Illuminate\Support\Facades\Route;

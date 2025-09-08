@@ -1,8 +1,8 @@
  <form
    class="modal-content"
    action="{{  @$editMode == true 
-   ? route('instructor.course-content.update-chapter', @$chapter?->id)
-   : route('instructor.course-content.store-chapter', $id) }}"
+   ? route('admin.course-content.update-chapter', @$chapter?->id)
+   : route('admin.course-content.store-chapter', $id) }}"
    method="post"
  >
    @csrf

@@ -25,7 +25,7 @@
                  href="javascript:;"
                  style="cursor: grab;"
                >
-                 <i class="fas fa-arrows-alt"></i>
+                 <i class="ti ti-arrows-move"></i>
                </a>
              </div>
            </li>
@@ -58,7 +58,7 @@
 
          $.ajax({
            url: baseUrl +
-             `/instructor/course-content/${courseId}/sort-chapter`,
+             `/admin/course-content/${courseId}/sort-chapter`,
            method: "POST",
            data: {
              _token: csrfToken,

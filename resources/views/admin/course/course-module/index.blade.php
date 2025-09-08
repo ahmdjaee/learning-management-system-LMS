@@ -61,7 +61,7 @@
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         title="Edit"
-                        {{-- href="{{ route('admin.course-courses.edit', $course->id) }}" --}}
+                        href="{{route('admin.courses.edit', ['id' => $course->id, 'step' => 1]) }}"
                       >
                         <i class="ti ti-edit"></i>
                       </a>
@@ -107,6 +107,6 @@
   </div>
 @endsection
 
-@push('header_scripts')
+@push('header-scripts')
   @vite(['resources/js/admin/course.js'])
 @endpush
