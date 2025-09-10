@@ -51,7 +51,7 @@
         MAIN MENU 3 START
     ============================-->
     <nav class="navbar navbar-expand-lg main_menu main_menu_3">
-        <a class="navbar-brand" href="index_3.html">
+        <a class="navbar-brand" href="{{ url('/') }}">
             <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="EduCore" class="img-fluid">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -199,7 +199,7 @@
                 </div>
                 <ul>
                     <li>
-                        <a class="menu_signin" href="#">
+                        <a class="menu_signin" href="{{ route('cart.index') }}">
                             <span>
                                 <img src="{{ asset('frontend/assets/images/cart_icon_black.png') }}" alt="user" class="img-fluid">
                             </span>
@@ -239,8 +239,8 @@
     ==============================-->
     <div class="mobile_menu_area">
         <div class="mobile_menu_area_top">
-            <a class="mobile_menu_logo" href="index.html">
-                <img src="images/logo.png" alt="EduCore">
+            <a class="mobile_menu_logo" href="{{ url('/') }}">
+                <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="EduCore">
             </a>
             <div class="mobile_menu_icon d-block d-lg-none" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
@@ -254,7 +254,7 @@
             <div class="offcanvas-body">
 
                 <ul class="mobile_menu_header d-flex flex-wrap">
-                    <li><a href="cart_view.html"><i class="far fa-shopping-basket"></i> <span>2</span></a>
+                    <li><a href="{{ route('cart.index') }}"><i class="far fa-shopping-basket"></i> <span>2</span></a>
                     </li>
                     <li><a href="dashboard.html"><i class="far fa-user"></i></a></li>
                 </ul>
@@ -346,7 +346,7 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_1.png" alt="Category" class="img-fluid">
+                                            <img src="{{asset('frontend/assets/images/menu_category_icon_1.png')}}" alt="Category" class="img-fluid">
                                         </span>
                                         Development
                                     </a>
@@ -360,7 +360,7 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_2.png" alt="Category" class="img-fluid">
+                                            <img src="{{asset('frontend/assets/images/menu_category_icon_2.png')}}" alt="Category" class="img-fluid">
                                         </span>
                                         Business
                                     </a>
@@ -374,7 +374,7 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_3.png" alt="Category" class="img-fluid">
+                                            <img src="{{asset('frontend/assets/images/menu_category_icon_3.png')}}" alt="Category" class="img-fluid">
                                         </span>
                                         Marketing
                                     </a>
@@ -388,7 +388,7 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_4.png" alt="Category" class="img-fluid">
+                                            <img src="{{asset('frontend/assets/images/menu_category_icon_4.png')}}" alt="Category" class="img-fluid">
                                         </span>
                                         Lifestyle
                                     </a>
@@ -402,7 +402,7 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_5.png" alt="Category" class="img-fluid">
+                                            <img src="{{asset('frontend/assets/images/menu_category_icon_5.png')}}" alt="Category" class="img-fluid">
                                         </span>
                                         Health & Fitness
                                     </a>
@@ -416,7 +416,7 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_6.png" alt="Category" class="img-fluid">
+                                            <img src="{{asset('frontend/assets/images/menu_category_icon_6.png')}}" alt="Category" class="img-fluid">
                                         </span>
                                         Design
                                     </a>
@@ -430,7 +430,7 @@
                                 <li class="mobile_dropdown">
                                     <a href="#">
                                         <span>
-                                            <img src="images/menu_category_icon_7.png" alt="Category" class="img-fluid">
+                                            <img src="{{asset('frontend/assets/images/menu_category_icon_7.png')}}" alt="Category" class="img-fluid">
                                         </span>
                                         Academics
                                     </a>

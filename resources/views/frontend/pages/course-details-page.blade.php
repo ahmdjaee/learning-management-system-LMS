@@ -478,7 +478,7 @@
                             @else
                                 ${{ $course->price }}
                             @endif
-                            </h3>
+                        </h3>
                         <div class="wsus__courses_sidebar_list_info">
                             <ul>
                                 <li>

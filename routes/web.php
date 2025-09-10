@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CourseContentController;
 use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\CoursePageController;
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/courses', [CoursePageController::class, 'index'])->name('courses.index');
 Route::get('/courses/{slug}', [CoursePageController::class, 'show'])->name('courses.show');
+
+/** Cart Routes */
+Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
+Route::post('/add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove-from-cart');
 
 /**
  * -------------------------------------------------
@@ -76,7 +82,7 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
 
 
 
-    
+
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();

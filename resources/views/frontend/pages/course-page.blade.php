@@ -419,12 +419,16 @@
                                     </a>
                                 </div>
                                 <div class="wsus__single_courses_3_footer">
-                                    <a class="common_btn" href="#">Enroll <i class="far fa-arrow-right"></i></a>
+                                    <a class="common_btn add-to-cart" data-course-id="{{ $course->id }}" href="#">Add To Cart   <i class="far fa-arrow-right"></i></a>
                                     <p>
-                                        @if ($course->discount > 0)
-                                        <del>${{ $course->discount }}</del>                                         
+                                        @if ($course->price == 0)
+                                            FREE
+                                        @elseif ($course->discount > 0)
+                                            <del>${{$course->price}}</del>
+                                            ${{ $course->discount }}
+                                        @else
+                                            ${{ $course->price }}
                                         @endif
-                                        ${{ $course->price }}
                                     </p>
                                 </div>
                             </div>
