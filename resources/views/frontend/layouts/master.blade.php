@@ -8,6 +8,8 @@
   />
   <meta name="base_url" content="{{ url('/') }}">
   <meta name="csrf_token" content="{{ csrf_token() }}">
+  @stack('meta')
+
   <title>EduCore - Online Courses & Education HTML Template</title>
   <link
     type="image/png"

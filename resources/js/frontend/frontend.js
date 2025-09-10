@@ -1,6 +1,8 @@
 var csrfToken = $('meta[name="csrf_token"]').attr("content");
 
 $(function () {
+      ezShare.execute();
+      
     // dynamic delete pop up
     $(".delete-item").on("click", function (e) {
         e.preventDefault();

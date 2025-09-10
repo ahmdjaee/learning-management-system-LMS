@@ -11,7 +11,7 @@
     <div class="add_course_basic_info">
       <form
         class="basic-info-update-form course-form"
-        action="{{ route('instructor.courses.store-basic-info') }}"
+        action="{{ route('instructor.courses.update') }}"
         enctype="multipart/form-data"
         method="post"
       >
