@@ -15,6 +15,13 @@ if (!function_exists('convertMinutesToHours')) {
     }
 }
 
+/** calculate cart total */
+if(!function_exists('cartCount')) {
+    function cartCount() {
+        return Cart::where('user_id', auth('web')?->id())->count();
+    }
+}
+    
 /**
  * Calculate cart total
  */
@@ -23,7 +30,7 @@ if (!function_exists('cartTotal')) {
     {
         $total = 0;
 
-        $cart = Cart::where('user_id', auth('web')->id())->get();
+        $cart = Cart::where('user_id', auth('web')?->id())->get();
 
         foreach ($cart as $item) {
             if ($item->course->discount > 0) {

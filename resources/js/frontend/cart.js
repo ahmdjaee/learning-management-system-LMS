@@ -14,6 +14,7 @@ function addToCart(courseId) {
             $('.add-to-cart').text('Adding...');
         },
         success: function (res) {
+            $('.cart-count').html(res.cart_count);
             notyf.success(res?.message)
         },
 

@@ -38,7 +38,9 @@ class CartController extends Controller
 
         $cart->save();
 
-        return response(['message' => 'Added successfully'], 200);
+        $cartCount = cartCount();
+
+        return response(['message' => 'Added successfully', 'cart_count' => $cartCount], 200);
 
     }
 

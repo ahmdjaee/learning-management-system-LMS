@@ -87,7 +87,7 @@
                 <div class="col-xxl-7 col-md-5 col-lg-6 wow fadeInUp"
                     style="visibility: visible; animation-name: fadeInUp;">
                     <div class="continue_shopping">
-                        <a href="#" class="common_btn">continue shopping</a>
+                        <a href="{{ route('courses.index') }}" class="common_btn">continue shopping</a>
                     </div>
                 </div>
                 <div class="col-xxl-4 col-md-7 col-lg-6 wow fadeInUp"
@@ -95,7 +95,7 @@
                     <div class="total_price">
                         <div class="subtotal_area">
                             <h5>Total<span>${{ cartTotal() }}</span></h5>
-                            <a href="checkout.html" class="common_btn">proceed checkout</a>
+                            <a href="{{ route('checkout.index') }}" class="common_btn">proceed checkout</a>
                         </div>
                     </div>
                 </div>

@@ -203,7 +203,7 @@
                             <span>
                                 <img src="{{ asset('frontend/assets/images/cart_icon_black.png') }}" alt="user" class="img-fluid">
                             </span>
-                            <b>06</b>
+                            <b class="cart-count">{{ cartCount() }}</b>
                         </a>
                     </li>
                     <li>
