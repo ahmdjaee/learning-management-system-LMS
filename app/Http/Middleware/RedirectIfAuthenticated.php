@@ -56,18 +56,18 @@ class RedirectIfAuthenticated
             'web' => 'dashboard'
         ];
 
-        if(isset($routes[$guard]) && Route::has($routes[$guard])) {
-            $routesName = $routes[$guard];
-            return route($routesName);
-        }
+        // if(isset($routes[$guard]) && Route::has($routes[$guard])) {
+        //     $routesName = $routes[$guard];
+        //     return route($routesName);
+        // }
 
         // Alternative code
-        // if (array_key_exists($guard, $routes)) {
-        //     $routeName = $routes[$guard];
-        //     if (Route::has($routeName)) {
-        //         return route($routeName);
-        //     }
-        // }
+        if (array_key_exists($guard, $routes)) {
+            $routeName = $routes[$guard];
+            if (Route::has($routeName)) {
+                return route($routeName);
+            }
+        }
         
 
         return '/';

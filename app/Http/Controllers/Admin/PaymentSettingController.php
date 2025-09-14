@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\PaymentSetting;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\View\View;
 
 class PaymentSettingController extends Controller
@@ -23,7 +24,7 @@ class PaymentSettingController extends Controller
             'paypal_client_id' => ['required'],
             'paypal_client_secret' => ['required'],
             'paypal_currency' => ['required'],
-            'paypal_rate' => ['required'],
+            'paypal_rate' => ['required', 'numeric'],
             'paypal_app_id' => ['required'],
         ]);
 
@@ -31,11 +32,10 @@ class PaymentSettingController extends Controller
             PaymentSetting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 
+        Cache::forget('gatewaySettings');
+
         notyf()->success('Updated Successfully');
 
         return redirect()->back();
     }
-
-    
-
 }

@@ -71,8 +71,8 @@
                         name="paypal_mode"
                         autofocus
                       >
-                        <option value="sandbox">Sandbox</option>
-                        <option value="live">Live</option>
+                        <option value="sandbox" @selected(config('gateway_settings.paypal_mode') == 'sandbox')>Sandbox</option>
+                        <option value="live" @selected(config('gateway_settings.paypal_mode') == 'live')>Live</option>
                       </select>
                       <x-input-error class="mt-2" :messages="$errors->get('paypal_mode')" />
                     </div>
@@ -84,7 +84,8 @@
                         name="paypal_currency"
                       >
                         @foreach (config('gateaway_currencies.paypal_currencies') as $value)
-                          <option value="{{ $value['code'] }}">{{ $value['code'] }}</option>
+                          <option value="{{ $value['code'] }}" @selected(config('gateway_settings.paypal_currency') == $value['code'])>
+                            {{ $value['code'] }}</option>
                         @endforeach
                       </select>
                       <x-input-error class="mt-2" :messages="$errors->get('paypal_currency')" />
@@ -94,7 +95,8 @@
                       <input
                         class="form-control"
                         name="paypal_rate"
-                        type="text"
+                        type="number"
+                        value="{{ config('gateway_settings.paypal_rate') }}"
                         placeholder="Enter paypal rate"
                       >
                       <x-input-error class="mt-2" :messages="$errors->get('paypal_rate')" />
@@ -108,6 +110,7 @@
                         class="form-control"
                         name="paypal_client_id"
                         type="text"
+                        value="{{ config('gateway_settings.paypal_client_id') }}"
                         placeholder="Enter paypal client id"
                       >
                       <x-input-error class="mt-2" :messages="$errors->get('paypal_client_id')" />
@@ -118,6 +121,7 @@
                         class="form-control"
                         name="paypal_client_secret"
                         type="text"
+                        value="{{ config('gateway_settings.paypal_client_secret') }}"
                         placeholder="Enter paypal client secret"
                       >
                       <x-input-error class="mt-2" :messages="$errors->get('paypal_client_secret')" />
@@ -128,6 +132,7 @@
                         class="form-control"
                         name="paypal_app_id"
                         type="text"
+                        value="{{ config('gateway_settings.paypal_app_id') }}"
                         placeholder="Enter paypal app id"
                       >
                       <x-input-error class="mt-2" :messages="$errors->get('paypal_app_id')" />
@@ -146,9 +151,81 @@
                 id="tabs-stripe-4"
                 role="tabpanel"
               >
-                <h4>Stripe tab</h4>
-                <div>Fringilla egestas nunc quis tellus diam rhoncus ultricies tristique enim at diam,
-                  sem nunc amet, pellentesque id egestas velit sed</div>
+                <form action="{{ route('admin.paypal-setting.update') }}" method="post">
+                  @csrf
+                  <div class=" row ">
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label">Stripe Status</label>
+                      <select
+                        class="form-select"
+                        id=""
+                        name="stripe_status"
+                        autofocus
+                      >
+                        <option value="sandbox" @selected(config('gateway_settings.stripe_status') == 'sandbox')>Sandbox</option>
+                        <option value="live" @selected(config('gateway_settings.stripe_status') == 'live')>Live</option>
+                      </select>
+                      <x-input-error class="mt-2" :messages="$errors->get('stripe_status')" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label">Currency</label>
+                      <select
+                        class="form-select tom-select"
+                        id=""
+                        name="stripe_currency"
+                      >
+                        @foreach (config('gateaway_currencies.stripe_currencies') as $value)
+                          <option value="{{ $value }}" @selected(config('gateway_settings.stripe_currency') == $value)>
+                            {{ $value }}
+                          </option>
+                        @endforeach
+                      </select>
+                      <x-input-error class="mt-2" :messages="$errors->get('stripe_currency')" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label">Rate (USD)</label>
+                      <input
+                        class="form-control"
+                        name="stripe_rate"
+                        type="number"
+                        value="{{ config('gateway_settings.stripe_rate') }}"
+                        placeholder="Enter stripe rate"
+                      >
+                      <x-input-error class="mt-2" :messages="$errors->get('paypal_rate')" />
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Cliend Id</label>
+                      <input
+                        class="form-control"
+                        name="stripe_publishable_key"
+                        type="text"
+                        value="{{ config('gateway_settings.stripe_publishable_key') }}"
+                        placeholder="Enter stripe publishable key"
+                      >
+                      <x-input-error class="mt-2" :messages="$errors->get('stripe_publishable_key')" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Client Secret</label>
+                      <input
+                        class="form-control"
+                        name="stripe_secret"
+                        type="text"
+                        value="{{ config('gateway_settings.stripe_secret') }}"
+                        placeholder="Enter stripe secret"
+                      >
+                      <x-input-error class="mt-2" :messages="$errors->get('stripe_secret')" />
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <button class="btn btn-primary" type="submit">
+                      <i class="ti ti-device-floppy me-2" style="font-size: 24px;"></i>
+                      Save
+                    </button>
+                  </div>
+                </form>
               </div>
               <div
                 class="tab-pane"
@@ -167,10 +244,10 @@
   </div>
 @endsection
 
-
 @push('header-scripts')
   <link href="{{ asset('admin/assets/dist/css/tabler-vendors.min.css?1692870487') }}"
-    rel="stylesheet" />
+    rel="stylesheet"
+  />
 @endpush
 
 @push('bottom-scripts')

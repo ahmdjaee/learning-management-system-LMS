@@ -36,8 +36,8 @@ $(".delete-confirm").on("click", function (e) {
         },
         error: function (xhr) {
             notyf.error({
-                duration : 5000,    
-                message : xhr?.responseJSON?.message
+                duration: 5000,
+                message: xhr?.responseJSON?.message,
             });
         },
     });
@@ -49,37 +49,15 @@ $(".show-modal-icon").on("click", function (e) {
 });
 
 document.addEventListener("DOMContentLoaded", function (e) {
-    var el;
+    var elements = document.querySelectorAll(".tom-select");
     window.TomSelect &&
-        new TomSelect((el = document.querySelector(".tom-select")), {
-            copyClassesToDropdown: false,
-            dropdownParent: "body",
-            controlInput: "<input style='width: fit-content; '>",
-            render: {
-                item: function (data, escape) {
-                    if (data.customProperties) {
-                        return (
-                            '<div><span class="dropdown-item-indicator">' +
-                            data.customProperties +
-                            "</span>" +
-                            escape(data.text) +
-                            "</div>"
-                        );
-                    }
-                    return "<div>" + escape(data.text) + "</div>";
+        elements.forEach(function (el) {
+            new TomSelect(el, {
+                create: true,
+                sortField: {
+                    field: "text",
+                    direction: "asc",
                 },
-                option: function (data, escape) {
-                    if (data.customProperties) {
-                        return (
-                            '<div><span class="dropdown-item-indicator">' +
-                            data.customProperties +
-                            "</span>" +
-                            escape(data.text) +
-                            "</div>"
-                        );
-                    }
-                    return "<div>" + escape(data.text) + "</div>";
-                },
-            },
+            });
         });
 });

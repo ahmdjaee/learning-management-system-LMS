@@ -19,9 +19,32 @@ class PaymentController extends Controller
         return view('frontend.pages.order-failed');
     }
 
+      public function paypalConfig(): array
+    {
+        return [
+            'mode' => config('gateway_settings.paypal_mode'), // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
+            'sandbox' => [
+                'client_id' => config('gateway_settings.paypal_client_id'),
+                'client_secret' => config('gateway_settings.paypal_client_secret'),
+                'app_id' => 'APP-80W284485P519543T',
+            ],
+            'live' => [
+                'client_id' => config('gateway_settings.paypal_client_id'),
+                'client_secret' => config('gateway_settings.paypal_client_secret'),
+                'app_id' => config('gateway_settings.paypal_app_id'),
+            ],
+
+            'payment_action' =>"Sale", // Can only be 'Sale', 'Authorization' or 'Order'
+            'currency' => config('gateway_settings.paypal_currency'),
+            'notify_url' => '', // Change this accordingly for your application.
+            'locale' => "en_US", // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
+            'validate_ssl' => true, // Validate SSL when creating api client.
+        ];
+    }
+
     public function payWithPaypal()
     {
-        $provider = new PayPalClient();
+        $provider = new PayPalClient($this->paypalConfig());
         $provider->getAccessToken();
 
         $payableAmount = cartTotal();
@@ -54,7 +77,7 @@ class PaymentController extends Controller
 
     public function paypalSuccess(Request $request)
     {
-        $provider = new PayPalClient();
+        $provider = new PayPalClient($this->paypalConfig());
         $provider->getAccessToken();
 
         $response = $provider->capturePaymentOrder($request->token);

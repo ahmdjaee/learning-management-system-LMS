@@ -10,6 +10,8 @@ use App\Http\Controllers\Frontend\InstructorDashboardController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use App\Models\PaymentSetting;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /**
