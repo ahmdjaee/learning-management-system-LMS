@@ -110,7 +110,8 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /** Payyment setting routes */
     Route::get('/payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
-    Route::post('/payment-setting', [PaymentSettingController::class, 'paypalSetting'])->name('paypal-setting.update');
+    Route::post('/paypal-setting', [PaymentSettingController::class, 'paypalSetting'])->name('paypal-setting.update');
+    Route::post('/stripe-setting', [PaymentSettingController::class, 'stripeSetting'])->name('stripe-setting.update');
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

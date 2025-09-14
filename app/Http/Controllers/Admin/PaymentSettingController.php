@@ -38,4 +38,26 @@ class PaymentSettingController extends Controller
 
         return redirect()->back();
     }
+
+     public function stripeSetting(Request $request): RedirectResponse
+    {
+
+        $data = $request->validate([
+            'stripe_status' => ['required', 'in:active,inactive'],
+            'stripe_currency' => ['required'],
+            'stripe_rate' => ['required'],
+            'stripe_publishable_key' => ['required'],
+            'stripe_secret' => ['required'],
+        ]);
+
+        foreach ($data as $key => $value) {
+            PaymentSetting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        Cache::forget('gatewaySettings');
+
+        notyf()->success('Updated Successfully');
+
+        return redirect()->back();
+    }
 }

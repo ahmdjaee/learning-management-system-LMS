@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Service\OrderService;
 use Illuminate\Http\Request;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
+use Stripe\Checkout\Session as StripeSession;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
@@ -19,7 +21,7 @@ class PaymentController extends Controller
         return view('frontend.pages.order-failed');
     }
 
-      public function paypalConfig(): array
+    public function paypalConfig(): array
     {
         return [
             'mode' => config('gateway_settings.paypal_mode'), // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
@@ -34,7 +36,7 @@ class PaymentController extends Controller
                 'app_id' => config('gateway_settings.paypal_app_id'),
             ],
 
-            'payment_action' =>"Sale", // Can only be 'Sale', 'Authorization' or 'Order'
+            'payment_action' => "Sale", // Can only be 'Sale', 'Authorization' or 'Order'
             'currency' => config('gateway_settings.paypal_currency'),
             'notify_url' => '', // Change this accordingly for your application.
             'locale' => "en_US", // force gateway language  i.e. it_IT, es_ES, en_US ... (for express checkout only)
@@ -108,5 +110,81 @@ class PaymentController extends Controller
 
         return redirect()->route('order.failed');
 
+    }
+
+    public function paypalFailed()
+    {
+        return redirect()->route('order.failed');
+    }
+
+
+    /**
+     * Summary of payWithStripe
+     * @param \Illuminate\Http\Request $request
+     */
+    public function payWithStripe(Request $request)
+    {
+        Stripe::setApiKey(config('gateway_settings.stripe_secret'));
+
+        $payableAmount = (cartTotal() * 100);
+        $quantityCount = cartCount();
+
+        // dd($payableAmount);
+        $response = StripeSession::create([
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => config('gateway_settings.stripe_currency'),
+                        'product_data' => [
+                            'name' => 'Course'
+                        ],
+                        'unit_amount' => $payableAmount
+                    ],
+                    'quantity' => 1
+                ]
+            ],
+            'mode' => 'payment',
+            'success_url' => route('stripe.success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => route('stripe.cancel')
+        ]);
+
+        return redirect()->away($response->url);
+    }
+
+    public function stripeSuccess(Request $request)
+    {
+        Stripe::setApiKey(config('gateway_settings.stripe_secret'));
+
+        $response = StripeSession::retrieve($request->session_id);
+
+        if (isset($response->payment_status) == 'paid') {
+            $transactionId = $response->payment_intent;
+            $paidAmount = $response->amount_total / 100;
+            $currencyCode = $response->currency;
+
+            try {
+                OrderService::storeOrder(
+                    $transactionId,
+                    auth('web')->id(),
+                    'approved',
+                    $paidAmount,
+                    $paidAmount,
+                    $currencyCode,
+                    'stripe'
+                );
+
+                return redirect()->route('order.success');
+            } catch (\Throwable $th) {
+                throw $th;
+            }
+        }
+
+        return redirect()->route('order.failed');
+
+    }
+
+    public function stripeFailed()
+    {
+        return redirect()->route('order.failed');
     }
 }

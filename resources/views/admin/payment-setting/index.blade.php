@@ -151,7 +151,7 @@
                 id="tabs-stripe-4"
                 role="tabpanel"
               >
-                <form action="{{ route('admin.paypal-setting.update') }}" method="post">
+                <form action="{{ route('admin.stripe-setting.update') }}" method="post">
                   @csrf
                   <div class=" row ">
                     <div class="col-md-4 mb-3">
@@ -162,8 +162,8 @@
                         name="stripe_status"
                         autofocus
                       >
-                        <option value="sandbox" @selected(config('gateway_settings.stripe_status') == 'sandbox')>Sandbox</option>
-                        <option value="live" @selected(config('gateway_settings.stripe_status') == 'live')>Live</option>
+                        <option value="active" @selected(config('gateway_settings.stripe_status') == 'active')>Active</option>
+                        <option value="inactive" @selected(config('gateway_settings.stripe_status') == 'inactive')>Inactive</option>
                       </select>
                       <x-input-error class="mt-2" :messages="$errors->get('stripe_status')" />
                     </div>
@@ -197,7 +197,7 @@
                   </div>
                   <div class="row">
                     <div class="col-md-6 mb-3">
-                      <label class="form-label">Cliend Id</label>
+                      <label class="form-label">Publishable key</label>
                       <input
                         class="form-control"
                         name="stripe_publishable_key"
@@ -254,4 +254,20 @@
   <script
     src="{{ asset('admin/assets/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487') }}"
   ></script>
+
+  <script type="module">
+    $('.nav-link').click(function() {
+
+      var activetab = $(this).attr('href');
+
+      localStorage.setItem('activetab', activetab);
+    });
+
+    $(function() { //short hand for $(document).ready()
+      var activetab = localStorage.getItem('activetab');
+
+      var link = document.querySelector(`a[href="${activetab}"]`);
+      link && link.click();
+    });
+  </script>
 @endpush
