@@ -9,6 +9,16 @@ use Srmklive\PayPal\Services\PayPal as PayPalClient;
 
 class PaymentController extends Controller
 {
+    public function orderSuccess()
+    {
+        return view('frontend.pages.order-success');
+    }
+
+    public function orderFailed()
+    {
+        return view('frontend.pages.order-failed');
+    }
+
     public function payWithPaypal()
     {
         $provider = new PayPalClient();
@@ -66,9 +76,14 @@ class PaymentController extends Controller
                     $currencyCode,
                     'paypal'
                 );
+
+                return redirect()->route('order.success');
             } catch (\Throwable $th) {
                 throw $th;
             }
         }
+
+        return redirect()->route('order.failed');
+
     }
 }

@@ -27,7 +27,7 @@
                             <div class="col-12">
                                 <div class="wsus__single_courses_3">
                                     <div class="wsus__single_courses_3_img">
-                                        <img src="images/courses_3_img_1.jpg" alt="Courses" class="img-fluid">
+                                        <img src="{{asset('frontend/assets/images/courses_3_img_1.jpg')}}" alt="Courses" class="img-fluid">
                                         <ul>
                                             <li>
                                                 <a href="#">
@@ -83,7 +83,7 @@
                             <div class="col-12">
                                 <div class="wsus__single_courses_3">
                                     <div class="wsus__single_courses_3_img">
-                                        <img src="images/courses_3_img_2.jpg" alt="Courses" class="img-fluid">
+                                        <img src="{{asset('frontend/assets/images/courses_3_img_2.jpg')}}" alt="Courses" class="img-fluid">
                                         <ul>
                                             <li>
                                                 <a href="#">
@@ -141,7 +141,7 @@
                             <div class="col-12">
                                 <div class="wsus__single_courses_3">
                                     <div class="wsus__single_courses_3_img">
-                                        <img src="images/courses_3_img_3.jpg" alt="Courses" class="img-fluid">
+                                        <img src="{{asset('frontend/assets/images/courses_3_img_3.jpg')}}" alt="Courses" class="img-fluid">
                                         <ul>
                                             <li>
                                                 <a href="#">
@@ -229,7 +229,7 @@
                             <div class="col-12">
                                 <div class="wsus__single_courses_3">
                                     <div class="wsus__single_courses_3_img">
-                                        <img src="images/courses_3_img_1.jpg" alt="Courses" class="img-fluid">
+                                        <img src="{{asset('frontend/assets/images/courses_3_img_1.jpg')}}" alt="Courses" class="img-fluid">
                                         <ul>
                                             <li>
                                                 <a href="#">
@@ -285,7 +285,7 @@
                             <div class="col-12">
                                 <div class="wsus__single_courses_3">
                                     <div class="wsus__single_courses_3_img">
-                                        <img src="images/courses_3_img_2.jpg" alt="Courses" class="img-fluid">
+                                        <img src="{{asset('frontend/assets/images/courses_3_img_2.jpg')}}" alt="Courses" class="img-fluid">
                                         <ul>
                                             <li>
                                                 <a href="#">
@@ -343,7 +343,7 @@
                             <div class="col-12">
                                 <div class="wsus__single_courses_3">
                                     <div class="wsus__single_courses_3_img">
-                                        <img src="images/courses_3_img_3.jpg" alt="Courses" class="img-fluid">
+                                        <img src="{{asset('frontend/assets/images/courses_3_img_3.jpg')}}" alt="Courses" class="img-fluid">
                                         <ul>
                                             <li>
                                                 <a href="#">

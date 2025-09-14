@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\PaymentSetting;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
+class PaymentSettingController extends Controller
+{
+    public function index(): View
+    {
+        return view('admin.payment-setting.index');
+    }
+
+    public function paypalSetting(Request $request): RedirectResponse
+    {
+
+        $data = $request->validate([
+            'paypal_mode' => ['required', 'in:live,sandbox'],
+            'paypal_client_id' => ['required'],
+            'paypal_client_secret' => ['required'],
+            'paypal_currency' => ['required'],
+            'paypal_rate' => ['required'],
+            'paypal_app_id' => ['required'],
+        ]);
+
+        foreach ($data as $key => $value) {
+            PaymentSetting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        notyf()->success('Updated Successfully');
+
+        return redirect()->back();
+    }
+
+    
+
+}

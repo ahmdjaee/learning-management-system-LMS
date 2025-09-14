@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\CourseContentController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
+use App\Http\Controllers\Admin\PaymentSettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
@@ -106,6 +107,10 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     Route::get('/course-content/{courseid}/sort-chapter', [CourseContentController::class, 'sortChapter'])->name('course-content.sort-chapter');
     Route::post('/course-content/{courseid}/sort-chapter', [CourseContentController::class, 'updateSortChapter'])->name('course-content.update-sort-chapter');
+
+    /** Payyment setting routes */
+    Route::get('/payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
+    Route::post('/payment-setting', [PaymentSettingController::class, 'paypalSetting'])->name('paypal-setting.update');
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
