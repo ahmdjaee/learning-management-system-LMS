@@ -292,7 +292,7 @@ textarea::placeholder {
 }
 
 .add_course_content_action_btn .dropdown-toggle {
-    var(--tblr-primary-fg)-space: nowrap;
+    white-space: nowrap;
     background: var(--tblr-primary) !important;
     border: none;
     padding: 3px 10px;
@@ -353,8 +353,6 @@ textarea::placeholder {
 .add_course_content .item_list .add_course_content_action_btn {
     top: 13px;
 }
-
-
 
 .item_list {
     display: flex;

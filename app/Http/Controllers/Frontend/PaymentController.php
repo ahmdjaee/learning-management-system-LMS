@@ -49,7 +49,7 @@ class PaymentController extends Controller
         $provider = new PayPalClient($this->paypalConfig());
         $provider->getAccessToken();
 
-        $payableAmount = cartTotal();
+        $payableAmount = cartTotal() * config('gateway_settings.paypal_rate');
 
         $response = $provider->createOrder([
             'intent' => 'CAPTURE',
@@ -88,6 +88,7 @@ class PaymentController extends Controller
             $capture = $response['purchase_units'][0]["payments"]["captures"];
 
             $transactionId = $capture[0]['id'];
+            $mainAmount = cartTotal();
             $paidAmount = $capture[0]['amount']['value'];
             $currencyCode = $capture[0]['amount']['currency_code'];
 
@@ -96,7 +97,7 @@ class PaymentController extends Controller
                     $transactionId,
                     auth('web')->id(),
                     'approved',
-                    $paidAmount,
+                    $mainAmount,
                     $paidAmount,
                     $currencyCode,
                     'paypal'
@@ -112,7 +113,7 @@ class PaymentController extends Controller
 
     }
 
-    public function paypalFailed()
+    public function paypalCancel()
     {
         return redirect()->route('order.failed');
     }
@@ -126,7 +127,7 @@ class PaymentController extends Controller
     {
         Stripe::setApiKey(config('gateway_settings.stripe_secret'));
 
-        $payableAmount = (cartTotal() * 100);
+        $payableAmount = (cartTotal() * 100) * config('gateway_settings.stripe_rate');
         $quantityCount = cartCount();
 
         // dd($payableAmount);
@@ -159,6 +160,7 @@ class PaymentController extends Controller
 
         if (isset($response->payment_status) == 'paid') {
             $transactionId = $response->payment_intent;
+            $mainAmount = cartTotal();
             $paidAmount = $response->amount_total / 100;
             $currencyCode = $response->currency;
 
@@ -167,7 +169,7 @@ class PaymentController extends Controller
                     $transactionId,
                     auth('web')->id(),
                     'approved',
-                    $paidAmount,
+                    $mainAmount,
                     $paidAmount,
                     $currencyCode,
                     'stripe'
@@ -183,7 +185,7 @@ class PaymentController extends Controller
 
     }
 
-    public function stripeFailed()
+    public function stripeCancel()
     {
         return redirect()->route('order.failed');
     }

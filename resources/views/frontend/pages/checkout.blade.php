@@ -46,6 +46,11 @@
                                     <img src="{{asset('frontend/assets/images/payment_4.png')}}" alt="stripe" class="img-fluid w-100">
                                 </a>
                             </div>
+                            <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
+                                <a href="{{ route('razorpay.payment') }}" class="payment_mathod">
+                                    <img src="{{asset('frontend/assets/images/razorpay.png')}}" alt="razorpay" class="img-fluid w-100">
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

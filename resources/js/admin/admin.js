@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
     window.TomSelect &&
         elements.forEach(function (el) {
             new TomSelect(el, {
-                create: true,
                 sortField: {
                     field: "text",
                     direction: "asc",

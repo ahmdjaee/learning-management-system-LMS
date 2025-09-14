@@ -5,7 +5,7 @@
     <div class="container-xl">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Create Course Level</h3>
+          <h3 class="card-title">Payment Settings</h3>
           <div class="card-actions">
             <div class="card-actions">
               <a class="btn btn-primary btn-3" href="{{ route('admin.course-levels.index') }}">
@@ -18,7 +18,7 @@
         <div class="card-body">
           <div class="card-header pt-0 px-0">
             <ul
-              class="nav nav-tabs card-header-tabs nav-fill"
+              class="nav nav-tabs card-header-tabs nav-fill payment-tab"
               data-bs-toggle="tabs"
               role="tablist"
             >
@@ -79,7 +79,7 @@
                     <div class="col-md-4 mb-3">
                       <label class="form-label">Currency</label>
                       <select
-                        class="form-select tom-select"
+                        class="tom-select"
                         id=""
                         name="paypal_currency"
                       >
@@ -170,7 +170,7 @@
                     <div class="col-md-4 mb-3">
                       <label class="form-label">Currency</label>
                       <select
-                        class="form-select tom-select"
+                        class="tom-select"
                         id=""
                         name="stripe_currency"
                       >
@@ -191,7 +191,7 @@
                         value="{{ config('gateway_settings.stripe_rate') }}"
                         placeholder="Enter stripe rate"
                       >
-                      <x-input-error class="mt-2" :messages="$errors->get('paypal_rate')" />
+                      <x-input-error class="mt-2" :messages="$errors->get('stripe_rate')" />
                     </div>
 
                   </div>
@@ -232,9 +232,81 @@
                 id="tabs-razorpay-4"
                 role="tabpanel"
               >
-                <h4>Razorpay tab</h4>
-                <div>Fringilla egestas nunc quis tellus diam rhoncus ultricies tristique enim at diam,
-                  sem nunc amet, pellentesque id egestas velit sed</div>
+                  <form action="{{ route('admin.razorpay-setting.update') }}" method="post">
+                  @csrf
+                  <div class=" row ">
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label">Razorpay Status</label>
+                      <select
+                        class="form-select"
+                        id=""
+                        name="razorpay_status"
+                        autofocus
+                      >
+                        <option value="active" @selected(config('gateway_settings.razorpay_status') == 'active')>Active</option>
+                        <option value="inactive" @selected(config('gateway_settings.razorpay_status') == 'inactive')>Inactive</option>
+                      </select>
+                      <x-input-error class="mt-2" :messages="$errors->get('razorpay_status')" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label">Currency</label>
+                      <select
+                        class="tom-select"
+                        id=""
+                        name="razorpay_currency"
+                      >
+                        @foreach (config('gateaway_currencies.razorpay_currencies') as $value)
+                          <option value="{{ $value }}" @selected(config('gateway_settings.razorpay_currency') == $value)>
+                            {{ $value }}
+                          </option>
+                        @endforeach
+                      </select>
+                      <x-input-error class="mt-2" :messages="$errors->get('razorpay_currency')" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label">Rate (USD)</label>
+                      <input
+                        class="form-control"
+                        name="razorpay_rate"
+                        type="number"
+                        value="{{ config('gateway_settings.razorpay_rate') }}"
+                        placeholder="Enter razorpay rate"
+                      >
+                      <x-input-error class="mt-2" :messages="$errors->get('razorpay_rate')" />
+                    </div>
+
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Key</label>
+                      <input
+                        class="form-control"
+                        name="razorpay_key"
+                        type="text"
+                        value="{{ config('gateway_settings.razorpay_key') }}"
+                        placeholder="Enter razorpay key"
+                      >
+                      <x-input-error class="mt-2" :messages="$errors->get('razorpay_key')" />
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <label class="form-label">Client Secret</label>
+                      <input
+                        class="form-control"
+                        name="razorpay_secret"
+                        type="text"
+                        value="{{ config('gateway_settings.razorpay_secret') }}"
+                        placeholder="Enter razorpay secret"
+                      >
+                      <x-input-error class="mt-2" :messages="$errors->get('razorpay_secret')" />
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <button class="btn btn-primary" type="submit">
+                      <i class="ti ti-device-floppy me-2" style="font-size: 24px;"></i>
+                      Save
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -245,7 +317,7 @@
 @endsection
 
 @push('header-scripts')
-  <link href="{{ asset('admin/assets/dist/css/tabler-vendors.min.css?1692870487') }}"
+  <link href="{{ asset('admin/assets/dist/css/tom-select.css') }}"
     rel="stylesheet"
   />
 @endpush
@@ -266,7 +338,7 @@
     $(function() { //short hand for $(document).ready()
       var activetab = localStorage.getItem('activetab');
 
-      var link = document.querySelector(`a[href="${activetab}"]`);
+      var link = document.querySelector(`.payment-tab a[href="${activetab}"]`);
       link && link.click();
     });
   </script>

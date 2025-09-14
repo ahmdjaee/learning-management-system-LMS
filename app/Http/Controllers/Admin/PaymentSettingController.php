@@ -39,7 +39,7 @@ class PaymentSettingController extends Controller
         return redirect()->back();
     }
 
-     public function stripeSetting(Request $request): RedirectResponse
+    public function stripeSetting(Request $request): RedirectResponse
     {
 
         $data = $request->validate([
@@ -48,6 +48,27 @@ class PaymentSettingController extends Controller
             'stripe_rate' => ['required'],
             'stripe_publishable_key' => ['required'],
             'stripe_secret' => ['required'],
+        ]);
+
+        foreach ($data as $key => $value) {
+            PaymentSetting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        Cache::forget('gatewaySettings');
+
+        notyf()->success('Updated Successfully');
+
+        return redirect()->back();
+    }
+
+    public function razorpaySetting(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'razorpay_status' => ['required', 'in:active,inactive'],
+            'razorpay_currency' => ['required'],
+            'razorpay_rate' => ['required'],
+            'razorpay_key' => ['required'],
+            'razorpay_secret' => ['required'],
         ]);
 
         foreach ($data as $key => $value) {
