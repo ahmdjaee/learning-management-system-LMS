@@ -20,7 +20,7 @@
   <link href="{{ asset('admin/assets/dist/css/tabler.min.css?1692870487') }}" rel="stylesheet" />
   <link href="{{ asset('admin/assets/dist/css/demo.min.css?1692870487') }}" rel="stylesheet" />
   <link href="{{ asset('frontend/assets/css/jquery-ui.min.css') }}" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet">
 
   @stack('top-section')
   <style>
@@ -34,7 +34,7 @@
       font-feature-settings: "cv03", "cv04", "cv11";
     }
   </style>
-  @vite(['resources/css/admin.css', 'resources/js/admin/admin.js', ])
+  @vite(['resources/css/admin.css', 'resources/js/admin/admin.js'])
   @stack('header-scripts')
 </head>
 
@@ -126,24 +126,23 @@
   <div
     class="modal fade "
     id="dynamicModal"
+    data-bs-backdrop="static"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
     tabindex="-1"
-    data-bs-backdrop="static"
   >
-    <div class="modal-dialog modal-lg modal-dialog-centered dynamic-modal-content" >
+    <div class="modal-dialog modal-lg modal-dialog-centered dynamic-modal-content">
 
     </div>
   </div>
   <!-- Libs JS -->
   <!-- File  Core -->
- <script src="/vendor/laravel-filemanager/js/stand-alone-button.js" defer></script>
-
+  <script src="/vendor/laravel-filemanager/js/stand-alone-button.js" defer></script>
 
   <!-- Tabler Core -->
   <script src="{{ asset('admin/assets/dist/js/tabler.min.js?1692870487') }}" defer></script>
   <script src="{{ asset('admin/assets/dist/js/demo.min.js?1692870487') }}"></script>
-  
+
   <!--Jquery UI-->
   <script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}" defer></script>
 
