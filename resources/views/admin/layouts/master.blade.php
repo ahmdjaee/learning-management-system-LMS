@@ -20,6 +20,7 @@
   <link href="{{ asset('admin/assets/dist/css/tabler.min.css?1692870487') }}" rel="stylesheet" />
   <link href="{{ asset('admin/assets/dist/css/demo.min.css?1692870487') }}" rel="stylesheet" />
   <link href="{{ asset('frontend/assets/css/jquery-ui.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('admin/assets/dist/css/tom-select.css') }}" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet">
 
   @stack('top-section')
@@ -147,6 +148,10 @@
   <script src="{{ asset('frontend/assets/js/jquery-ui.min.js') }}" defer></script>
 
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+
+  <script
+    src="{{ asset('admin/assets/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487') }}"
+  ></script>
   @stack('bottom-scripts')
 </body>
 

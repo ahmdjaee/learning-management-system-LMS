@@ -38,13 +38,6 @@
 @endsection
 
 @push('header-scripts')
-  <link href="{{ asset('admin/assets/dist/css/tabler-vendors.min.css?1692870487') }}"
-    rel="stylesheet" />
   @vite(['resources/js/admin/course.js'])
   @vite(['resources/css/course.css'])
-@endpush
-@push('bottom-scripts')
-  <script
-    src="{{ asset('admin/assets/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487') }}"
-  ></script>
 @endpush

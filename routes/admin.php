@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
+use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
@@ -109,15 +110,19 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::get('/course-content/{courseid}/sort-chapter', [CourseContentController::class, 'sortChapter'])->name('course-content.sort-chapter');
     Route::post('/course-content/{courseid}/sort-chapter', [CourseContentController::class, 'updateSortChapter'])->name('course-content.update-sort-chapter');
 
-    /** Payyment setting routes */
+    /** Order Routes */
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+
+    /** Payment setting routes */
     Route::get('/payment-setting', [PaymentSettingController::class, 'index'])->name('payment-setting.index');
     Route::post('/paypal-setting', [PaymentSettingController::class, 'paypalSetting'])->name('paypal-setting.update');
     Route::post('/stripe-setting', [PaymentSettingController::class, 'stripeSetting'])->name('stripe-setting.update');
     Route::post('/razorpay-setting', [PaymentSettingController::class, 'razorpaySetting'])->name('razorpay-setting.update');
 
-    /** Order Routes */
-    Route::get('/orders', [OrderController::class , 'index'])->name('orders.index');
-    Route::get('/orders/{order}', [OrderController::class , 'show'])->name('orders.show');
+    /** Site settings routes */
+    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('/general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

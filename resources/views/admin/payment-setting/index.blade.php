@@ -316,17 +316,7 @@
   </div>
 @endsection
 
-@push('header-scripts')
-  <link href="{{ asset('admin/assets/dist/css/tom-select.css') }}"
-    rel="stylesheet"
-  />
-@endpush
-
 @push('bottom-scripts')
-  <script
-    src="{{ asset('admin/assets/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487') }}"
-  ></script>
-
   <script type="module">
     $('.nav-link').click(function() {
 

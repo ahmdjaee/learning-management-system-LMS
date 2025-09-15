@@ -25,3 +25,7 @@ td a i {
     font-size: 16px;
 }
 
+.nav-link-icon i {
+  height: 100%;
+  font-size: 1.2rem
+}

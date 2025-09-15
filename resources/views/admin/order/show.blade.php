@@ -1,5 +1,19 @@
 @extends('admin.layouts.master')
 
+@push('header-scripts')
+  <style>
+    @media print {
+      body {
+        visibility: hidden;
+      }
+
+      .page-wrapper {
+        visibility: visible;
+      }
+    }
+  </style>
+@endpush
+
 @section('content')
   <!-- Page header -->
   <div class="page-header d-print-none">
@@ -81,7 +95,7 @@
                 <th>Course</th>
                 <th class="text-center" style="width: 1%">Qnt</th>
                 {{-- <th class="text-end" style="width: 1%">Unit</th> --}}
-                <th class="text-end" style="width: 18%">Amount</th>
+                <th class="text-end" style="width: %">Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -95,7 +109,7 @@
                   <td class="text-center">
                     1
                   </td>
-                  <td class="text-end">{{$item->price}}</td>
+                  <td class="text-end">{{ $item->price }}</td>
                   {{-- <td class="text-end">$1.800,00</td> --}}
                 </tr>
               @endforeach
@@ -105,7 +119,7 @@
               </tr>
               <tr>
                 <td class="strong text-end" colspan="3">Paid Amount</td>
-                <td class="text-end">{{$order->paid_amount}} {{$order->currency}}</td>
+                <td class="text-end">{{ $order->paid_amount }} {{ $order->currency }}</td>
               </tr>
             </tbody>
           </table>

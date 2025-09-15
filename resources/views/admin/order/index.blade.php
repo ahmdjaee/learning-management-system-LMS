@@ -53,7 +53,7 @@
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         href="{{ route('admin.orders.show', $order->id) }}"
-                        title="Edit"
+                        title="Show"
                       >
                         <i class="ti ti-eye" ></i>
                       </a>

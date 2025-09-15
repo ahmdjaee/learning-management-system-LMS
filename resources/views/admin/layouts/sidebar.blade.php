@@ -374,27 +374,7 @@
           <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-              <svg
-                class="icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-              </svg>
+             <i class="ti ti-home"></i>
             </span>
             <span class="nav-link-title">
               Home
@@ -405,27 +385,7 @@
           <a class="nav-link" href="{{ route('admin.instructor-request.index') }}">
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-              <svg
-                class="icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-              </svg>
+              <i class="ti ti-target"></i>
             </span>
             <span class="nav-link-title">
               Instructor request
@@ -443,38 +403,16 @@
           >
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
-              <svg
-                class="icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path d="M12 3l8 4.5l0 9l-8 4.5l-8 -4.5l0 -9l8 -4.5" />
-                <path d="M12 12l8 -4.5" />
-                <path d="M12 12l0 9" />
-                <path d="M12 12l-8 -4.5" />
-                <path d="M16 5.25l-8 4.5" />
-              </svg>
+             <i class="ti ti-book"></i>
             </span>
             <span class="nav-link-title">
-              Course Manegement
+              Course Management
             </span>
           </a>
           <div class="dropdown-menu">
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
-                 <a class="dropdown-item" href="{{ route('admin.courses.index') }}">
+                <a class="dropdown-item" href="{{ route('admin.courses.index') }}">
                   Courses
                 </a>
                 <a class="dropdown-item" href="{{ route('admin.course-languages.index') }}">
@@ -494,27 +432,7 @@
           <a class="nav-link" href="{{ route('admin.payment-setting.index') }}">
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-              <svg
-                class="icon"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                stroke-width="2"
-                stroke="currentColor"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path
-                  stroke="none"
-                  d="M0 0h24v24H0z"
-                  fill="none"
-                />
-                <path d="M5 12l-2 0l9 -9l9 9l-2 0" />
-                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
-                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
-              </svg>
+             <i class="ti ti-moneybag-edit"></i>
             </span>
             <span class="nav-link-title">
               Payment Setting
@@ -525,10 +443,21 @@
           <a class="nav-link" href="{{ route('admin.orders.index') }}">
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-            <i class="ti ti-transaction-dollar"></i>
+              <i class="ti ti-transaction-dollar"></i>
             </span>
             <span class="nav-link-title">
               Orders
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.settings.index') }}">
+            <span
+              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+              <i class="ti ti-settings"></i>
+            </span>
+            <span class="nav-link-title">
+              Settings
             </span>
           </a>
         </li>
