@@ -19,42 +19,44 @@
       <p>{{ auth()->user()->role }}</p>
     </div>
     <ul class="wsus__dashboard_sidebar_menu">
-      <li>
-        <a class="active" href="{{ route('instructor.dashboard') }}">
-          <div class="img">
-            <img
-              class="img-fluid w-100"
-              src="{{ asset('frontend/assets/images/dash_icon_8.png') }}"
-              alt="icon"
-            >
-          </div>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a href="{{ route('instructor.courses.index') }}">
-          <div class="img">
-            <img
-              class="img-fluid w-100"
-              src="{{ asset('frontend/assets/images/dash_icon_1.png') }}"
-              alt="icon"
-            >
-          </div>
-          Courses
-        </a>
-      </li>
-      <li>
-        <a href="{{ route('instructor.profile.index') }}">
-          <div class="img">
-            <img
-              class="img-fluid w-100"
-              src="{{ asset('frontend/assets/images/dash_icon_1.png') }}"
-              alt="icon"
-            >
-          </div>
-          Profile
-        </a>
-      </li>
+      @php
+        $links = [
+            [
+                'route' => 'instructor.dashboard',
+                'label' => 'Dashboard',
+            ],
+
+            [
+                'route' => 'instructor.profile.index',
+                'label' => 'Profile',
+            ],
+            [
+                'route' => 'instructor.courses.index',
+                'label' => 'Courses',
+            ],
+            [
+                'route' => 'instructor.orders.index',
+                'label' => 'Orders',
+            ],
+        ];
+      @endphp
+
+      @foreach ($links as $key => $link)
+        <li>
+          <a class="{{ request()->routeIs($link['route']) ? 'active' : '' }}"
+            href="{{ route($link['route']) }}"
+          >
+            <div class="img">
+              <img
+                class="img-fluid w-100"
+                src="{{ asset('frontend/assets/images/dash_icon_' . $key . '.png') }}"
+                alt="icon"
+              >
+            </div>
+            {{ $link['label'] }}
+          </a>
+        </li>
+      @endforeach
 
       <li>
         <a href="#"

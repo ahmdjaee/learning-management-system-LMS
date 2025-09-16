@@ -16,12 +16,13 @@ if (!function_exists('convertMinutesToHours')) {
 }
 
 /** calculate cart total */
-if(!function_exists('cartCount')) {
-    function cartCount() {
+if (!function_exists('cartCount')) {
+    function cartCount()
+    {
         return Cart::where('user_id', auth('web')?->id())->count();
     }
 }
-    
+
 /**
  * Calculate cart total
  */
@@ -41,6 +42,16 @@ if (!function_exists('cartTotal')) {
         }
 
         return $total;
+    }
+}
+
+/**
+ * Calculate commission rate
+ */
+if (!function_exists('calcCommission')) {
+    function calcCommission($amount, $rate)
+    {
+        return $amount == 0 ? 0 : ($amount * $rate) / 100;
     }
 }
 

@@ -39,7 +39,8 @@ class OrderService
                 $orderItem = new OrderItem();
                 $orderItem->order_id = $order->id;
                 $orderItem->course_id = $item->course_id;
-                $orderItem->price = $item->course->price;
+                $orderItem->commission_rate = config('settings.commission_rate');
+                $orderItem->price = $item->course->discount > 0 ? $item->course->discount : $item->course->price;
                 $orderItem->save();
 
                 /** store enrollment */
@@ -48,6 +49,11 @@ class OrderService
                 $enrollment->course_id = $item->course_id;
                 $enrollment->instructor_id = $item->course->instructor_id;
                 $enrollment->save();
+
+                /** add commission to instructor wallet */
+                $instructor = $item->course->instructor;
+                $instructor->wallet += calcCommission($item->course->discount > 0 ? $item->course->discount : $item->course->price, config('settings.commission_rate'));
+                $instructor->save();
 
             }
 

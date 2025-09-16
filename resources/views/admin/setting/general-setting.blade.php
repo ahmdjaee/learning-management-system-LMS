@@ -5,8 +5,7 @@
     <form action="{{ route('admin.general-settings.update') }}" method="post">
       @csrf
       <div class="card-body">
-        <h2 class="mb-4">My Account</h2>
-        <h3 class="card-title mt-4">Business Profile</h3>
+        <h2 class="mb-4">General Settings</h2>
         <div class="row g-3">
           <div class="col-md-6">
             <div class="form-label">Site name</div>
@@ -78,9 +77,9 @@
       </div>
       <div class="card-footer bg-transparent mt-auto">
         <div class="btn-list justify-content-end">
-          <a class="btn" href="#">
-            Cancel
-          </a>
+          <button class="btn" type="reset">
+            Reset
+          </button>
           <button class="btn btn-primary" type="submit">
             Submit
           </button>

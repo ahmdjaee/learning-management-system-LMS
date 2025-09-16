@@ -12,7 +12,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <h1 class="navbar-brand navbar-brand-autodark">
-      <a href=".">
+      <a href="/">
         <img
           class="navbar-brand-image"
           src="{{ asset('admin/assets/static/logo.svg') }}"

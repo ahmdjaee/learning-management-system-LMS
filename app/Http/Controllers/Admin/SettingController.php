@@ -11,21 +11,52 @@ use Illuminate\View\View;
 
 class SettingController extends Controller
 {
-    public function index() : View {
+
+    /**-----------------------------------------------
+     * General settings
+     *-------------------------------------------------*/
+    public function index(): View
+    {
         return view('admin.setting.general-setting');
     }
 
-    public function updateGeneralSettings(Request $request) : RedirectResponse   {
+    public function updateGeneralSetting(Request $request): RedirectResponse
+    {
         $data = $request->validate([
-            'site_name'=> ['required'],
-            'phone'=> ['nullable'],
-            'email'=> ['nullable', 'email'],
-            'location'=> ['nullable'],
+            'site_name' => ['required'],
+            'phone' => ['nullable'],
+            'email' => ['nullable', 'email'],
+            'location' => ['nullable'],
             'default_currency' => ['required'],
             'currency_icon' => ['required'],
         ]);
 
-         foreach ($data as $key => $value) {
+        foreach ($data as $key => $value) {
+            Setting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        Cache::forget('settings');
+
+        notyf()->success('Updated Successfully');
+
+        return redirect()->back();
+    }
+
+    /**-----------------------------------------------
+     * Commission settings
+     *-------------------------------------------------*/
+    public function commissionSetting(): View
+    {
+        return view('admin.setting.commission-settings');
+    }
+
+    public function updateCommissionSetting(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'commission_rate' => ['required', 'numeric'],
+        ]);
+
+        foreach ($data as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);
         }
 

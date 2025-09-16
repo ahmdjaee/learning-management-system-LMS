@@ -16,4 +16,14 @@ class OrderItem extends Model
     {
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
+
+    /**
+     * Get the order that owns the OrderItem
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function order(): BelongsTo
+    {
+        return $this->belongsTo(Order::class, 'order_id', 'id');
+    }
 }

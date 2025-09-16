@@ -121,8 +121,11 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::post('/razorpay-setting', [PaymentSettingController::class, 'razorpaySetting'])->name('razorpay-setting.update');
 
     /** Site settings routes */
-    Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
-    Route::post('/general-settings', [SettingController::class, 'updateGeneralSettings'])->name('general-settings.update');
+    Route::get('/general-settings', [SettingController::class, 'index'])->name('settings.index');
+    Route::post('/general-settings', [SettingController::class, 'updateGeneralSetting'])->name('general-settings.update');
+
+    Route::get('/commission-settings', [SettingController::class, 'commissionSetting'])->name('commission-settings');
+    Route::post('/commission-settings', [SettingController::class, 'updateCommissionSetting'])->name('commission-settings.update');
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

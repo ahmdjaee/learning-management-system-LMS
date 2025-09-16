@@ -4,11 +4,15 @@ $(function () {
 
 
     // Preloader js
-    $(window).on('load', function() {
-        // Hide preloader once the page is fully loaded
-        $('#preloader').fadeOut('slow', function() {
-            $('#main-content').fadeIn('slow');
-        });
+    // $(window).on('load', function() {
+    //     // Hide preloader once the page is fully loaded
+    //     $('#preloader').fadeOut('slow', function() {
+    //         $('#main-content').fadeIn('slow');
+    //     });
+    // });
+
+    $('#preloader').fadeOut('slow', function() {
+        $('#main-content').fadeIn('slow');
     });
     
     // Fallback in case the load event doesn't trigger (after 10 seconds)
@@ -460,7 +464,7 @@ $(function () {
 
 
     // Cursore pointer
-    init_pointer({});
+    // init_pointer({});
 
 
     // Top courses slider
