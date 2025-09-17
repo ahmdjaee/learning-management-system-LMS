@@ -31,6 +31,11 @@
               >
               <x-input-error class="mt-2" :messages="$errors->get('name')" />
             </div>
+              <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea name="description" rows="5" class="form-control" placeholder="Enter description">{!! $payout_gateway->description !!}</textarea>
+              <x-input-error class="mt-2" :messages="$errors->get('description')" />
+            </div>
             <div class="mb-3">
               <label class="form-label">Status</label>
               <select class="form-select" name="status">

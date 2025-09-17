@@ -5,7 +5,7 @@
     <div class="container-xl">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Create Course Level</h3>
+          <h3 class="card-title">Create Payout Gateway </h3>
           <div class="card-actions">
             <div class="card-actions">
               <a class="btn btn-primary btn-3" href="{{ route('admin.payout-gateway.index') }}">
@@ -24,10 +24,15 @@
                 class="form-control"
                 name="name"
                 type="text"
-                placeholder="Enter level name"
+                placeholder="Enter  name"
                 autofocus
               >
               <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Description</label>
+              <textarea name="description" rows="5" class="form-control" placeholder="Enter description"></textarea>
+              <x-input-error class="mt-2" :messages="$errors->get('description')" />
             </div>
             <div class="mb-3">
               <label class="form-label">Status</label>

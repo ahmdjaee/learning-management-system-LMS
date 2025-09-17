@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ProfileUpdateRequest;
 use App\Http\Requests\Frontend\SocialUpdateRequest;
 use App\Http\Requests\Frontend\UpdatePasswordRequest;
+use App\Models\PayoutGateway;
 use App\Traits\FileUpload;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
@@ -21,7 +22,9 @@ class ProfileController extends Controller
 
     public function instructorIndex(): View
     {
-        return view('frontend.instructor-dashboard.profile.index');
+        $gateways = PayoutGateway::where('status', 1)->get();
+
+        return view('frontend.instructor-dashboard.profile.index', compact('gateways'));
     }
 
     public function profileUpdate(ProfileUpdateRequest $request, ): RedirectResponse

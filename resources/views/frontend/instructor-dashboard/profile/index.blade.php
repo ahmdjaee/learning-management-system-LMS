@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-  <!--===========================
-                                  BREADCRUMB START
-                              ============================-->
+  {{-- <!--===========================
+        BREADCRUMB START
+    ============================--> --}}
   <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
     <div class="wsus__breadcrumb_overlay">
       <div class="container">
@@ -21,13 +21,13 @@
       </div>
     </div>
   </section>
-  <!--===========================
-                                  BREADCRUMB END
-                              ============================-->
+  {{-- <!--===========================
+        BREADCRUMB END
+    ============================--> --}}
 
-  <!--===========================
-                                  DASHBOARD OVERVIEW START
-                              ============================-->
+  {{-- <!--===========================
+      DASHBOARD OVERVIEW START
+  ============================--> --}}
   <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
@@ -167,6 +167,62 @@
           <div class="wsus__dashboard_contant">
             <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
               <div class="wsus__dashboard_heading">
+                <h5>Payout Settings</h5>
+                <p>Put your payout information here.</p>
+              </div>
+            </div>
+
+            <form
+              class="wsus__dashboard_profile_update"
+              action="{{ route('instructor.profile.update-password') }}"
+              method="post"
+            >
+              @csrf
+              <div class="row">
+                <div class="col-xl-12">
+                  <div class="wsus__dashboard_profile_update_info">
+                    <label>Gateway</label>
+                    <select
+                      class="select_js gateway-select"
+                      id=""
+                      name="gateway"
+                    >
+                      <option value="">Select gateway</option>
+                      @foreach ($gateways as $gateway)
+                        <option data-description="{{ $gateway->description }}"
+                          value="{{ $gateway->name }}"
+                        >
+                          {{ $gateway->name }}</option>
+                      @endforeach
+                    </select>
+                    <x-input-error class="mt-2" :messages="$errors->get('gateway')" />
+                  </div>
+                </div>
+                <div class="col-xl-12">
+                  <div class="wsus__dashboard_profile_update_info">
+                    <label>Information</label>
+                    <textarea
+                      class="gateway-information"
+                      id=""
+                      name="information"
+                      rows="5"
+                    ></textarea>
+                    <x-input-error class="mt-2" :messages="$errors->get('information')" />
+
+                  </div>
+                </div>
+                <div class="col-xl-12">
+                  <div class="wsus__dashboard_profile_update_btn">
+                    <button class="common_btn" type="submit">Update Payout</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="wsus__dashboard_contant">
+            <div class="wsus__dashboard_contant_top d-flex flex-wrap justify-content-between">
+              <div class="wsus__dashboard_heading">
                 <h5>Update Your Password</h5>
                 <p>Fill the field to update your password.</p>
               </div>
@@ -300,7 +356,18 @@
       </div>
     </div>
   </section>
-  <!--===========================
-                                  DASHBOARD OVERVIEW END
-                              ============================-->
+  {{-- <!--===========================
+          DASHBOARD OVERVIEW END
+      ============================--> --}}
 @endsection
+
+@push('scripts')
+  <script>
+    $('.gateway-select').on('change', function() {
+      const selectedOption = $('.gateway-select option:selected');
+      const description = selectedOption.data('description') ?? '';
+
+      $('.gateway-information').attr('placeholder', description);
+    });
+  </script>
+@endpush
