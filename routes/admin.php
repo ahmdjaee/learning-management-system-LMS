@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\WithdrawRequestController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(["middleware" => "guest:admin", "prefix" => "admin", "as" => "admin."], function () {
@@ -128,7 +129,11 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::get('/commission-settings', [SettingController::class, 'commissionSetting'])->name('commission-settings');
     Route::post('/commission-settings', [SettingController::class, 'updateCommissionSetting'])->name('commission-settings.update');
 
+    /** Payout gateway routes */
     Route::resource('/payout-gateway', PayoutGatewayController::class);
+
+    /** Withdraw request routes */
+    Route::get('/withdraw-request', [WithdrawRequestController::class, 'index'])->name('withdraw-request.index');
 
 
     /** Laravel File Manager Routes */

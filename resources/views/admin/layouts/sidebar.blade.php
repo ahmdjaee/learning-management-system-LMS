@@ -462,6 +462,17 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
+            <span
+              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+              <i class="ti ti-switch-horizontal"></i>
+            </span>
+            <span class="nav-link-title">
+              Withdraw Request
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('admin.settings.index') }}">
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
