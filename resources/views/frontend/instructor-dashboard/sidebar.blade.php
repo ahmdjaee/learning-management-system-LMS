@@ -38,6 +38,10 @@
                 'route' => 'instructor.orders.index',
                 'label' => 'Orders',
             ],
+            [
+                'route' => 'instructor.withdrawals.index',
+                'label' => 'Withdrawals',
+            ],
         ];
       @endphp
 

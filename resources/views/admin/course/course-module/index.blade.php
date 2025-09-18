@@ -5,7 +5,7 @@
     <div class="container-xl">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Course Course</h3>
+          <h3 class="card-title">Course</h3>
           <div class="card-actions">
             <div class="card-actions">
               <a class="btn btn-primary btn-3"  href="{{ route('admin.courses.create') }}" >

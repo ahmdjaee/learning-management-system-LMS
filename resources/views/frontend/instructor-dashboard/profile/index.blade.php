@@ -174,7 +174,7 @@
 
             <form
               class="wsus__dashboard_profile_update"
-              action="{{ route('instructor.profile.update-password') }}"
+              action="{{ route('instructor.profile.update-gateway-info') }}"
               method="post"
             >
               @csrf
@@ -191,6 +191,7 @@
                       @foreach ($gateways as $gateway)
                         <option data-description="{{ $gateway->description }}"
                           value="{{ $gateway->name }}"
+                           @selected(auth()->user()?->gatewayInfo?->gateway === $gateway->name)
                         >
                           {{ $gateway->name }}</option>
                       @endforeach
@@ -206,9 +207,8 @@
                       id=""
                       name="information"
                       rows="5"
-                    ></textarea>
+                    >{!! auth()->user()?->gatewayInfo?->information !!}</textarea>
                     <x-input-error class="mt-2" :messages="$errors->get('information')" />
-
                   </div>
                 </div>
                 <div class="col-xl-12">

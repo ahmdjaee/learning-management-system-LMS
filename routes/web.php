@@ -11,6 +11,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use App\Http\Controllers\Frontend\WithdrawController;
 use App\Models\PaymentSetting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
@@ -81,6 +82,8 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
     Route::post('/profile/update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
     Route::post('/profile/update-social', [ProfileController::class, 'updateSocial'])->name('profile.update-social');
+    Route::post('profile/update-gateway-info', [ProfileController::class, 'updateGatewayInfo'])->name('profile.update-gateway-info');
+
 
     // Course Routes
     Route::get('/courses', [CourseController::class, 'index'])->name('courses.index');
@@ -108,6 +111,11 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
 
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
+    /** Withdrawal routes */
+        Route::get('/withdrawals', [WithdrawController::class, 'index'])->name('withdrawals.index');
+        Route::get('/withdrawals/request-payout', [WithdrawController::class, 'createRequestPayout'])->name('withdrawals.request-payout');
+        Route::post('/withdrawals/request-payout', [WithdrawController::class, 'storeRequestPayout'])->name('withdrawals.request-payout.store');
 
 
     /** Laravel File Manager Routes */

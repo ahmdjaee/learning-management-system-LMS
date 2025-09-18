@@ -1,19 +1,19 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-  <!--===========================
-                                                BREADCRUMB START
-                                            ============================-->
+  {{-- <!--===========================
+      BREADCRUMB START
+  ============================--> --}}
   <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
     <div class="wsus__breadcrumb_overlay">
       <div class="container">
         <div class="row">
           <div class="col-12 wow fadeInUp">
             <div class="wsus__breadcrumb_text">
-              <h1>Order</h1>
+              <h1>Withdrawals</h1>
               <ul>
                 <li><a href="{{ url('/') }}">Home</a></li>
-                <li>Order</li>
+                <li>Withdrawals</li>
               </ul>
             </div>
           </div>
@@ -21,13 +21,13 @@
       </div>
     </div>
   </section>
-  <!--===========================
-                                                BREADCRUMB END
-                                            ============================-->
+  {{-- <!--===========================
+      BREADCRUMB END
+  ============================--> --}}
 
-  <!--===========================
-                                                DASHBOARD OVERVIEW START
-                                            ============================-->
+  {{-- <!--===========================
+      DASHBOARD OVERVIEW START
+  ============================--> --}}
   <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
@@ -36,8 +36,9 @@
           <div class="wsus__dashboard_contant">
             <div class="wsus__dashboard_contant_top">
               <div class="wsus__dashboard_heading relative">
-                <h5>Orders</h5>
-                <p>This is a list of the courses you have ordered.</p>
+                <h5>Withdrawals</h5>
+                <p>Manage your payout here.</p>
+                <a class="common_btn" href="{{ route('instructor.withdrawals.request-payout') }}">+ Request Payout</a>
               </div>
             </div>
 
@@ -60,7 +61,7 @@
                 <div class="col-12">
                   <div class="table-responsive">
                     <table class="table">
-                      <tbody>
+                      <thead>
                         <tr>
                           <th class="image">
                             COURSE NAME
@@ -78,7 +79,9 @@
                             EARNING
                           </th>
                         </tr>
-                        @forelse ($orderItems as $item)
+                      </thead>
+                      <tbody>
+                        {{-- @forelse ($orderItems as $item)
                           <tr>
                             <td class="details">
                               <a class="title" href="#">
@@ -100,8 +103,10 @@
                             </td>
                           </tr>
                         @empty
-                          No Orders Found
-                        @endforelse
+                          <tr>
+                            <td colspan="12">No Data Found</td>
+                          </tr>
+                        @endforelse --}}
                       </tbody>
                     </table>
                   </div>
@@ -113,7 +118,7 @@
       </div>
     </div>
   </section>
-  <!--===========================
-                                                DASHBOARD OVERVIEW END
-                                            ============================-->
+  {{-- <!--===========================
+      DASHBOARD OVERVIEW END
+  ============================--> --}}
 @endsection

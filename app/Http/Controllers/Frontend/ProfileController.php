@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\ProfileUpdateRequest;
 use App\Http\Requests\Frontend\SocialUpdateRequest;
 use App\Http\Requests\Frontend\UpdatePasswordRequest;
+use App\Models\InstructorPayoutInformation;
 use App\Models\PayoutGateway;
 use App\Traits\FileUpload;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
@@ -72,6 +74,26 @@ class ProfileController extends Controller
         $user->save();
 
         notyf()->success('Your social links has been updated.');
+
+        return redirect()->back();
+    }
+
+    public function updateGatewayInfo(Request $request)
+    {
+        $request->validate([
+            'gateway' => ['required', 'string', 'max:255'],
+            'information' => ['required', 'string', 'max:2000'],
+        ]);
+
+        InstructorPayoutInformation::updateOrCreate(
+            ['instructor_id' => auth('web')->id()],
+            [
+                'gateway' => $request->gateway,
+                'information' => $request->information
+            ]
+        );
+
+        notyf()->success('Updated Successfully');
 
         return redirect()->back();
     }
