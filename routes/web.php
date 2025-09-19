@@ -5,6 +5,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CourseContentController;
 use App\Http\Controllers\Frontend\CourseController;
 use App\Http\Controllers\Frontend\CoursePageController;
+use App\Http\Controllers\Frontend\EnrolledCourseController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\InstructorDashboardController;
 use App\Http\Controllers\Frontend\OrderController;
@@ -66,6 +67,9 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::post('/profile/update', [ProfileController::class, 'profileUpdate'])->name('profile.update');
     Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update-password');
     Route::post('/profile/update-social', [ProfileController::class, 'updateSocial'])->name('profile.update-social');
+
+    /** Enrolled courses routes */
+    Route::get('/enrolled-courses',[EnrolledCourseController::class, 'index'])->name('enrolled-courses.index');
 });
 
 
@@ -113,10 +117,9 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:instructor'],
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 
     /** Withdrawal routes */
-        Route::get('/withdrawals', [WithdrawController::class, 'index'])->name('withdrawals.index');
-        Route::get('/withdrawals/request-payout', [WithdrawController::class, 'createRequestPayout'])->name('withdrawals.request-payout');
-        Route::post('/withdrawals/request-payout', [WithdrawController::class, 'storeRequestPayout'])->name('withdrawals.request-payout.store');
-
+    Route::get('/withdrawals', [WithdrawController::class, 'index'])->name('withdrawals.index');
+    Route::get('/withdrawals/request-payout', [WithdrawController::class, 'createRequestPayout'])->name('withdrawals.request-payout');
+    Route::post('/withdrawals/request-payout', [WithdrawController::class, 'storeRequestPayout'])->name('withdrawals.request-payout.store');
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
