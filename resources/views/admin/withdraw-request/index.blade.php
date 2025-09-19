@@ -22,7 +22,7 @@
                 @forelse ($withdraws as $withdraw)
                   <tr>
                     <td>{{ $withdraw->instructor->name }}</td>
-                    <td>{{config('settings.currency_icon')}}{{ $withdraw->amount }}</td>
+                    <td>{{ config('settings.currency_icon') }}{{ $withdraw->amount }}</td>
                     <td>
                       @if ($withdraw->status == 'approved')
                         <span class="badge bg-green text-green-fg"> Approved</span>
@@ -37,10 +37,10 @@
                         class="btn btn-light "
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
-                        {{-- href="{{ route('admin.withdraw-request.edit', $withdraw->id) }}" --}}
-                        title="Edit"
+                        href="{{ route('admin.withdraw-request.show', $withdraw->id) }}"
+                        title="Show"
                       >
-                        <i class="ti ti-edit"></i>
+                        <i class="ti ti-eye"></i>
                       </a>
                     </td>
                   </tr>

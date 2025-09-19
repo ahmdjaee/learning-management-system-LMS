@@ -134,6 +134,8 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /** Withdraw request routes */
     Route::get('/withdraw-request', [WithdrawRequestController::class, 'index'])->name('withdraw-request.index');
+    Route::get('/withdraw-request/{withdraw}/detail', [WithdrawRequestController::class, 'show'])->name('withdraw-request.show');
+    Route::post('/withdraw-request/{withdraw}', [WithdrawRequestController::class, 'updateStatus'])->name('withdraw-request.update');
 
 
     /** Laravel File Manager Routes */
