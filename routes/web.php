@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
 
     /** Enrolled courses routes */
     Route::get('/enrolled-courses',[EnrolledCourseController::class, 'index'])->name('enrolled-courses.index');
+    Route::get('/enrolled-courses/player/{slug}',[EnrolledCourseController::class, 'player'])->name('enrolled-courses.player.index');
 });
 
 

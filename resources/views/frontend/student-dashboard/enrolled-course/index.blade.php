@@ -76,7 +76,7 @@
                                 <i class="far fa-star" aria-hidden="true"></i>
                                 <span>(5.0)</span>
                               </p>
-                              <a class="title" href="#">
+                              <a class="title" href="{{ route('student.enrolled-courses.player.index', $enrollment->course->slug)}}">
                                 {{ $enrollment->course->title }}
                               </a>
                               <div class="text-muted">
@@ -84,7 +84,7 @@
                               </div>
                             </td>
                             <td>
-                              <a class="common_btn" href="#">
+                              <a class="common_btn" href="{{ route('student.enrolled-courses.player.index', $enrollment->course->slug)}}">
                                 Watch Course
                               </a>
                             </td>
