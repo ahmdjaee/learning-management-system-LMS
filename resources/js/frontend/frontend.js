@@ -1,14 +1,14 @@
-import './cart.js'
+import "./cart.js";
 
 var csrfToken = $('meta[name="csrf_token"]').attr("content");
 
 $(function () {
-      ezShare.execute();
-
+    ezShare.execute();
+    
     // dynamic delete pop up
     $(".delete-item").on("click", function (e) {
         e.preventDefault();
-        
+
         let url = $(this).attr("href");
 
         Swal.fire({
@@ -25,7 +25,7 @@ $(function () {
                     url: url,
                     method: "DELETE",
                     headers: {
-                        'X-CSRF-TOKEN' : csrfToken
+                        "X-CSRF-TOKEN": csrfToken,
                     },
                     beforeSend: function (param) {},
                     success: function (response) {

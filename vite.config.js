@@ -5,11 +5,13 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
+                // CSS
                 "resources/css/app.css",
                 "resources/css/frontend.css",
                 "resources/css/admin.css",
                 "resources/css/course.css",
 
+                // ADMIN JS
                 "resources/js/app.js",
                 "resources/js/admin/admin.js",
                 "resources/js/admin/login.js",
@@ -18,6 +20,7 @@ export default defineConfig({
                 // FRONTEND JS
                 "resources/js/frontend/course.js",
                 "resources/js/frontend/frontend.js",
+                "resources/js/frontend/player.js",
             ],
             refresh: true,
         }),

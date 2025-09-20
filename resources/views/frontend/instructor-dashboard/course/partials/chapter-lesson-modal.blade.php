@@ -71,6 +71,9 @@
                name="file"
                type="text"
                value="{{ @$lesson?->file_path }}"
+               oninput="
+                document.querySelector('input[name=url]').value = '';
+               "
                readonly
              >
            </div>
@@ -81,6 +84,9 @@
              class="form-control"
              name="url"
              type="url"
+             oninput="
+             document.querySelector('input[name=file]').value = '';
+             "
              value="{{ @$lesson?->file_path }}"
            >
          </div>

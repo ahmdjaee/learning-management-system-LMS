@@ -112,6 +112,8 @@ class CourseContentController extends Controller
         }
         $request->validate($rules);
 
+        $course = Course::findOrFail($request->course_id);
+
         $lesson = new CourseChapterLesson();
         $lesson->title = $request->title;
         $lesson->slug = Str::slug($request->title);
@@ -122,7 +124,7 @@ class CourseContentController extends Controller
         $lesson->is_preview = $request->preview ? 1 : 0;
         $lesson->downloadable = $request->downloadable ? 1 : 0;
         $lesson->description = $request->description;
-        $lesson->instructor_id = auth()->id();
+        $lesson->instructor_id = $course->instructor_id;
         $lesson->course_id = $request->course_id;
         $lesson->chapter_id = $request->chapter_id;
         $lesson->order = CourseChapterLesson::where('chapter_id', $request->chapter_id)->count() + 1;
@@ -140,12 +142,15 @@ class CourseContentController extends Controller
         $courseId = $request->course_id;
         $chapterId = $request->chapter_id;
         $lessonId = $request->lesson_id;
+
+        $course = Course::findOrFail($courseId);
+
         $lesson = CourseChapterLesson::where(
             [
                 'chapter_id' => $chapterId,
                 'course_id' => $courseId,
                 'id' => $lessonId,
-                'instructor_id' => auth()->id(),
+                // 'instructor_id' => $course->instructor_id,
             ]
         )->first();
 
@@ -185,7 +190,7 @@ class CourseContentController extends Controller
         $lesson->is_preview = $request->preview ? 1 : 0;
         $lesson->downloadable = $request->downloadable ? 1 : 0;
         $lesson->description = $request->description;
-        $lesson->instructor_id = auth()->id();
+        // $lesson->instructor_id = auth()->id();
         $lesson->course_id = $request->course_id;
         $lesson->chapter_id = $request->chapter_id;
         $lesson->save();

@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-  <!--===========================
-                                      BREADCRUMB START
-                                  ============================-->
+  {{-- <!--===========================
+    BREADCRUMB START
+  ============================--> --}}
   <section class="wsus__breadcrumb" style="background: url(images/breadcrumb_bg.jpg);">
     <div class="wsus__breadcrumb_overlay">
       <div class="container">
@@ -21,13 +21,13 @@
       </div>
     </div>
   </section>
-  <!--===========================
-                                      BREADCRUMB END
-                                  ============================-->
+  {{-- <!--===========================
+    BREADCRUMB END
+  ============================--> --}}
 
-  <!--===========================
-                                      DASHBOARD OVERVIEW START
-                                  ============================-->
+  {{-- <!--===========================
+    DASHBOARD OVERVIEW START
+  ============================--> --}}
   <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
@@ -128,7 +128,7 @@
       </div>
     </div>
   </section>
-  <!--===========================
-                                      DASHBOARD OVERVIEW END
-                                  ============================-->
+  {{-- <!--===========================
+    DASHBOARD OVERVIEW END
+  ============================--> --}}
 @endsection

@@ -93,12 +93,12 @@
   <div
     class="modal fade "
     id="dynamicModal"
+    data-bs-backdrop="static"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
     tabindex="-1"
-    data-bs-backdrop="static"
   >
-    <div class="modal-dialog modal-lg modal-dialog-centered dynamic-modal-content" >
+    <div class="modal-dialog modal-lg modal-dialog-centered dynamic-modal-content">
 
     </div>
   </div>
@@ -149,7 +149,8 @@
   <script src="/vendor/laravel-filemanager/js/stand-alone-button.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+  <script src="https://cdn.jsdelivr.net/gh/shakilahmed0369/ez-share/dist/ez-share.min.js"></script>
+  
   <!--main/custom js-->
   <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
