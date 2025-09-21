@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\CourseChapterLesson;
 use App\Models\Enrollment;
+use App\Models\WatchHistory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,9 @@ class EnrolledCourseController extends Controller
             return abort(404);
         }
 
-        return view('frontend.student-dashboard.enrolled-course.player', compact('course'));
+        $lastWatchHistory = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id,])->orderByDesc('updated_at')->first();
+
+        return view('frontend.student-dashboard.enrolled-course.player', compact('course', 'lastWatchHistory'));
     }
 
     public function getLessonContent(Request $request)
@@ -38,5 +41,20 @@ class EnrolledCourseController extends Controller
         ])->firstOrFail();
 
         return response()->json($data);
+    }
+
+    public function updateWatchHistory(Request $request)
+    {
+        WatchHistory::updateOrCreate(
+            [
+                'user_id' => auth()->id(),
+                'lesson_id' => $request->lesson_id,
+            ],
+            [
+                'course_id' => $request->course_id,
+                'chapter_id' => $request->chapter_id,
+                'updated_at' => now()
+            ]
+        );
     }
 }

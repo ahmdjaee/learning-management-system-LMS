@@ -72,7 +72,7 @@
                 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/webm"/>
             </video> -->
 
-    <div id="video-holder"></div>
+      <div id="video-holder" style="aspect-ratio: 16/9; position: relative;"></div>
 
       <div class="video_tabs_area">
         <ul
@@ -1654,18 +1654,19 @@
             >
               <div class="accordion-body">
                 @foreach ($chapter->lessons as $lesson)
-                  <div
-                    class="form-check lesson"
-                    data-course-id="{{ $course->id }}"
-                    data-chapter-id="{{ $chapter->id }}"
-                    data-lesson-id="{{ $lesson->id }}"
-                  >
+                  <div class="form-check ">
                     <input
-                      class="form-check-input"
+                      class="form-check-input make-completion"
                       type="checkbox"
                       value=""
                     >
-                    <label class="form-check-label">
+                    <label
+                      class="form-check-label lesson"
+                      style="width: 100%"
+                      data-course-id="{{ $course->id }}"
+                      data-chapter-id="{{ $chapter->id }}"
+                      data-lesson-id="{{ $lesson->id }}"
+                    >
                       {{ $lesson->title }}
                       <span>
                         <img
@@ -1742,6 +1743,27 @@
   <!--main/custom js-->
   <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
+  <script>
+    $(function() {
+      let lessons = $('.lesson');
+
+      $.each(lessons, function(indexInArray, lesson) {
+        let chapterId = $(lesson).data('chapter-id');
+        let courseId = $(lesson).data('course-id');
+        let lessonId = $(lesson).data('lesson-id');
+
+        if (
+          chapterId == {{ $lastWatchHistory->chapter_id }} &&
+          courseId == {{ $lastWatchHistory->course_id }} &&
+          lessonId == {{ $lastWatchHistory->lesson_id }}
+        ) {
+          $(lesson).click();
+
+          $(lesson).closest('.accordion-collapse').addClass('show');
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

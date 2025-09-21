@@ -67,9 +67,21 @@
 
 /* Vimeo style */
 #video-holder {
-    iframe {
-        aspect-ratio: 16/9 !important;
-        width: auto !important;
-        height: auto !important;
+    #vimeo-player {
+        height: 100%;
+
+        iframe{
+            height: 100%;
+            width: 100%;
+        }
     }
+}
+
+.video-js {
+    height: 100% !important;
+    width: 100% !important;
+}
+.form-check-label.lesson.active {
+    color: var(--colorPrimary);
+    font-weight: 600;
 }

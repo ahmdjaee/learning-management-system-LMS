@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::get('/enrolled-courses/player/{slug}',[EnrolledCourseController::class, 'player'])->name('enrolled-courses.player.index');
 
     Route::get('/get-lesson-content',[EnrolledCourseController::class, 'getLessonContent'])->name('get-lesson-content');
+    Route::post('/update-watch-history',[EnrolledCourseController::class, 'updateWatchHistory'])->name('update-watch-history');
 });
 
 
