@@ -2,74 +2,7 @@ import "/node_modules/@vimeo/player/dist/player.min.js";
 
 const baseUrl = $("meta[name=base_url]").attr("content");
 const csrfToken = $("meta[name=csrf_token]").attr("content");
-
-// function playerHtml(storage_type, source) {
-//     switch (storage_type) {
-//         case "youtube":
-//             return `
-//                 <video
-//                     class="video-js vjs-default-skin"
-//                     id="vid1"
-//                     data-setup='{ "techOrder": ["youtube"], "sources": [{ "type": "video/youtube", "src": "${source}"}] }'
-//                     controls
-//                     autoplay
-//                     width="640"
-//                     height="264"
-//                 >
-//                 </video>
-//             `;
-//         case "vimeo":
-
-//             const options = {
-//                 url: source,
-//                 loop: true,
-//             };
-
-//             const player = new Vimeo.Player("video-holder", options);
-
-//             player.setVolume(0);
-
-//             player.on("play", function () {
-//                 console.log("played the video!");
-//             });
-//         default:
-//             break;
-//     }
-// }
-// $(function () {
-//     $(".lesson").on("click", function () {
-//         const courseId = $(this).data("course-id");
-//         const chapterId = $(this).data("chapter-id");
-//         const lessonId = $(this).data("lesson-id");
-
-//         $.ajax({
-//             url: `${baseUrl}/student/get-lesson-content`,
-//             method: "GET",
-//             data: {
-//                 course_id: courseId,
-//                 chapter_id: chapterId,
-//                 lesson_id: lessonId,
-//             },
-//             success: function (response) {
-//                 const htmlString = playerHtml(
-//                     response.storage,
-//                     response.file_path
-//                 );
-//                 $("#video-holder").html(htmlString);
-
-//                 if (videojs.getPlayers()["vid1"]) {
-//                     videojs.getPlayers()["vid1"].dispose();
-//                 }
-
-//                 if ($("#vid1").length > 0) {
-//                     videojs("vid1").ready(function () {
-//                         this.play();
-//                     });
-//                 }
-//             },
-//         });
-//     });
-// });
+var notyf = new Notyf();
 
 function loadingState() {
     return `
@@ -207,7 +140,7 @@ $(".make-completion").on("click", function () {
     const lessonId = $(this).data("lesson-id");
 
     $.ajax({
-        url: `${baseUrl}/student/get-lesson-content`,
+        url: `${baseUrl}/student/update-lesson-completion`,
         method: "POST",
         data: {
             _token: csrfToken,
@@ -216,7 +149,9 @@ $(".make-completion").on("click", function () {
             lesson_id: lessonId,
         },
         beforeSend: function () {},
-        success: function (response) {},
+        success: function (response) {
+            notyf.success(response.message);
+        },
     });
 });
 

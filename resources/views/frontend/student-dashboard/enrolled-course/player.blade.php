@@ -36,6 +36,8 @@
   <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/assets/css/responsive.css') }}" rel="stylesheet">
 
+  <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet">
+
   @vite(['resources/js/frontend/player.js', 'resources/css/frontend.css'])
 
 </head>
@@ -1658,7 +1660,10 @@
                     <input
                       class="form-check-input make-completion"
                       type="checkbox"
-                      value=""
+                      data-course-id="{{ $course->id }}"
+                      data-chapter-id="{{ $chapter->id }}"
+                      data-lesson-id="{{ $lesson->id }}"
+                      @checked(in_array($lesson->id, $watchedLessonIds))
                     >
                     <label
                       class="form-check-label lesson"
@@ -1739,6 +1744,8 @@
   <script src="{{ asset('frontend/assets/js/video_player_youtube.js') }}"></script>
   <!--wow js-->
   <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
   <!--main/custom js-->
   <script src="{{ asset('frontend/assets/js/main.js') }}"></script>

@@ -9,6 +9,7 @@ use App\Models\Enrollment;
 use App\Models\WatchHistory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class EnrolledCourseController extends Controller
 {
@@ -28,8 +29,9 @@ class EnrolledCourseController extends Controller
         }
 
         $lastWatchHistory = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id,])->orderByDesc('updated_at')->first();
+        $watchedLessonIds = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id, 'is_completed' => 1])->pluck('lesson_id')->toArray(); 
 
-        return view('frontend.student-dashboard.enrolled-course.player', compact('course', 'lastWatchHistory'));
+        return view('frontend.student-dashboard.enrolled-course.player', compact('course', 'lastWatchHistory', 'watchedLessonIds'));
     }
 
     public function getLessonContent(Request $request)
@@ -56,5 +58,29 @@ class EnrolledCourseController extends Controller
                 'updated_at' => now()
             ]
         );
+    }
+
+    public function updateLessonCompletion(Request $request): Response
+    {
+
+        $watchedLesson = WatchHistory::where([
+            'user_id' => auth()->id(),
+            'lesson_id' => $request->lesson_id
+        ])->first();
+
+        WatchHistory::updateOrCreate(
+            [
+                'user_id' => auth()->id(),
+                'lesson_id' => $request->lesson_id,
+            ],
+            [
+                'course_id' => $request->course_id,
+                'chapter_id' => $request->chapter_id,
+                'is_completed' => !$watchedLesson->is_completed
+            ]
+        );
+
+        return response(['status'=> 'success', 'message' => 'Updated Successfully!']);
+
     }
 }

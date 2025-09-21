@@ -11,7 +11,8 @@ class WatchHistory extends Model
         'course_id',
         'chapter_id',
         'lesson_id',
-        'updated_at'
+        'updated_at',
+        'is_completed'
     ];
 }
 
