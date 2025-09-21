@@ -36,7 +36,7 @@
   <link href="{{ asset('frontend/assets/css/style.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend/assets/css/responsive.css') }}" rel="stylesheet">
 
-  @vite(['resources/js/frontend/player.js'])
+  @vite(['resources/js/frontend/player.js', 'resources/css/frontend.css'])
 
 </head>
 
@@ -72,9 +72,7 @@
                 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/webm"/>
             </video> -->
 
-      <div class="video-holder">
-        
-      </div>
+    <div id="video-holder"></div>
 
       <div class="video_tabs_area">
         <ul

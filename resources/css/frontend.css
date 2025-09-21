@@ -1,19 +1,18 @@
-.wsus__sign_in{
-    margin-top:99px;
+.wsus__sign_in {
+    margin-top: 99px;
 }
 
-.wsus__sign_in.sign_up{
+.wsus__sign_in.sign_up {
     height: 100%;
 }
 
-.wsus__sign_in.sign_up .wsus__sign_img{
+.wsus__sign_in.sign_up .wsus__sign_img {
     height: 100%;
 }
 
-.wsus__sign_in.sign_up .wsus__sign_form_area{
+.wsus__sign_in.sign_up .wsus__sign_form_area {
     min-height: calc(820px - 2vw);
 }
-
 
 .item_list {
     display: flex;
@@ -64,4 +63,13 @@
 
 .item_list action_btn {
     top: 13px;
+}
+
+/* Vimeo style */
+#video-holder {
+    iframe {
+        aspect-ratio: 16/9 !important;
+        width: auto !important;
+        height: auto !important;
+    }
 }

@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@tabler/icons-webfont": "^3.34.1",
+        "@vimeo/player": "^2.29.7",
         "jquery": "^3.7.1"
     }
 }
