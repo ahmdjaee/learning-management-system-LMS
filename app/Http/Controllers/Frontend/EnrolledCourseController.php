@@ -28,10 +28,11 @@ class EnrolledCourseController extends Controller
             return abort(404);
         }
 
+        $lessonCount = CourseChapterLesson::where('course_id', $course->id)->count();
         $lastWatchHistory = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id,])->orderByDesc('updated_at')->first();
         $watchedLessonIds = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id, 'is_completed' => 1])->pluck('lesson_id')->toArray(); 
 
-        return view('frontend.student-dashboard.enrolled-course.player', compact('course', 'lastWatchHistory', 'watchedLessonIds'));
+        return view('frontend.student-dashboard.enrolled-course.player', compact('course', 'lastWatchHistory', 'watchedLessonIds', 'lessonCount'));
     }
 
     public function getLessonContent(Request $request)

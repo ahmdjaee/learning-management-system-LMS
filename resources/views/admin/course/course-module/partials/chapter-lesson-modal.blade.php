@@ -99,7 +99,7 @@
          <div class="add_course_basic_info_imput mb-3">
            <label for="">File types</label>
            <select
-             class="form-control select_js storage"
+             class="form-control select_js"
              name="file_type"
              required
            >

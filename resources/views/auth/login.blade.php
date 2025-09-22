@@ -33,7 +33,7 @@
                                     <div class="col-xl-12">
                                         <div class="wsus__login_form_input">
                                             <label>Email*</label>
-                                            <input type="email" placeholder="Email " name="email" value="{{ old('email') }}" required autofocus autocomplete="username">
+                                            <input type="email" placeholder="Email " name="email" value="{{ old('email') }}" required autofocus  autocomplete="username">
                                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                         </div>
                                     </div>

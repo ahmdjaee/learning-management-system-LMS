@@ -14,7 +14,7 @@ function loadingState() {
     `;
 }
 
-function playerHtml(storage_type, source) {
+function playerHtml(storage_type, source, file_type) {
     switch (storage_type) {
         case "youtube":
             return `
@@ -38,6 +38,7 @@ function playerHtml(storage_type, source) {
                 .ready()
                 .then(function () {
                     $(".loading-state").remove();
+                    player.setVolume(0);
                 })
                 .catch(function (error) {
                     $(".loading-state").remove();
@@ -47,8 +48,23 @@ function playerHtml(storage_type, source) {
                 console.warn("Error play Vimeo:", err);
             });
 
-            return "";
-        case "upload":
+            return;
+        case "upload" || "external_link":
+            if (file_type == "pdf") {
+                $("#video-holder").html(`
+                    <iframe
+                        src="${source}"
+                        style="width:100%;height:100%;border:none;"
+                        allowfullscreen
+                    ></iframe>
+                `);
+                return;
+            }
+
+            if (file_type == "doc") {
+                renderDocxPreview(source);
+                return;
+            }
             return `
                 <video
                     class="video-js vjs-default-skin"
@@ -62,6 +78,20 @@ function playerHtml(storage_type, source) {
         default:
             return "";
     }
+}
+
+async function renderDocxPreview(source) {
+    const response = await fetch(source);
+
+    if (!response.ok) {
+        notyf.error('Something when wrong, please try again later');
+    }
+
+    const blob = response.blob();
+
+    docx.renderAsync(blob, document.getElementById("video-holder"))
+        .then((x) => console.log("docx: finished"))
+        .catch((e) => console.log(e));
 }
 
 function updateWatchHistory(courseId, chapterId, lessonId) {
@@ -89,22 +119,26 @@ function loadLesson(courseId, chapterId, lessonId, updateHistory = true) {
         },
         beforeSend: function () {
             $("#video-holder").html(loadingState());
+            $(".about-lesson").html(
+                `<div class="spinner-border text-primary"></div>`
+            );
         },
         success: function (response) {
-            const htmlString = playerHtml(response.storage, response.file_path);
+            const htmlString = playerHtml(
+                response.storage,
+                response.file_path,
+                response.file_type
+            );
+            $(".about-lesson").text(response.description);
+            $("#video-holder").html(htmlString);
 
-            if (response.storage !== "vimeo") {
-                $("#video-holder").html(htmlString);
-
-                if (videojs.getPlayers()["vid1"]) {
-                    videojs.getPlayers()["vid1"].dispose();
-                }
-
-                if ($("#vid1").length > 0) {
-                    videojs("vid1").ready();
-                }
+            if (videojs.getPlayers()["vid1"]) {
+                videojs.getPlayers()["vid1"].dispose();
             }
 
+            if ($("#vid1").length > 0) {
+                videojs("vid1").ready();
+            }
             // update watch history
             updateWatchHistory(courseId, chapterId, lessonId);
 

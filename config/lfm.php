@@ -64,6 +64,11 @@ return [
                 'video/ogg',
                 'application/pdf',
                 'text/plain',
+                'audio/mp3',
+                'audio/mpeg',
+                'audio/ogg',
+                'audio/wav',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             ],
         ],
         'image' => [

@@ -70,10 +70,15 @@
     #vimeo-player {
         height: 100%;
 
-        iframe{
+        iframe {
             height: 100%;
             width: 100%;
         }
+    }
+
+    iframe {
+        height: 100%;
+        width: 100%;
     }
 }
 
@@ -81,6 +86,7 @@
     height: 100% !important;
     width: 100% !important;
 }
+
 .form-check-label.lesson.active {
     color: var(--colorPrimary);
     font-weight: 600;
