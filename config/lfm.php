@@ -69,6 +69,9 @@ return [
                 'audio/ogg',
                 'audio/wav',
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/octet-stream',
+                'application/zip',
+                'application/x-zip-compressed',
             ],
         ],
         'image' => [

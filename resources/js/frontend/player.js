@@ -14,7 +14,7 @@ function loadingState() {
     `;
 }
 
-function playerHtml(storage_type, source, file_type) {
+function playerHtml(id, storage_type, source, file_type) {
     switch (storage_type) {
         case "youtube":
             return `
@@ -50,7 +50,7 @@ function playerHtml(storage_type, source, file_type) {
 
             return;
         case "upload" || "external_link":
-            if (file_type == "pdf") {
+            if (file_type === "pdf") {
                 $("#video-holder").html(`
                     <iframe
                         src="${source}"
@@ -59,9 +59,20 @@ function playerHtml(storage_type, source, file_type) {
                     ></iframe>
                 `);
                 return;
+            } else if (file_type === "file") {
+                return `
+                <div class="file_type position-absolute" style="display: flex; justify-content: center; align-items: center; position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+                    <div class="text-center">
+                        <div class="d-flex flex-column justify-content-center" style="border-radius:4px; height: 240px; width: 240px !important; box-shadow: 0 0 15px 0px rgb(0, 0, 0, 0.08) ">
+                            <img class="mx-auto" style="width: 100px !important; height: fit-content !important;" src="${baseUrl}/default-files/folder.png" alt="">
+                            <p class="">Type: File</p>
+                            ${storage_type == 'external_link'? `<a style="width: fit-content;" href="${source}" class="common_btn mt-2 mx-auto">Download</a>` : `<a style="width: fit-content;" href="${baseUrl}/student/file-download/${id}" class="common_btn mt-2 mx-auto">Download</a>`}
+                        </div>
+                    </div>
+                </div>`;
             }
 
-            if (file_type == "doc") {
+            if (file_type === "doc") {
                 renderDocxPreview(source);
                 return;
             }
@@ -84,7 +95,7 @@ async function renderDocxPreview(source) {
     const response = await fetch(source);
 
     if (!response.ok) {
-        notyf.error('Something when wrong, please try again later');
+        notyf.error("Something when wrong, please try again later");
     }
 
     const blob = response.blob();
@@ -125,6 +136,7 @@ function loadLesson(courseId, chapterId, lessonId, updateHistory = true) {
         },
         success: function (response) {
             const htmlString = playerHtml(
+                response.id,
                 response.storage,
                 response.file_path,
                 response.file_type

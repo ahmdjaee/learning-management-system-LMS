@@ -30,7 +30,7 @@ class EnrolledCourseController extends Controller
 
         $lessonCount = CourseChapterLesson::where('course_id', $course->id)->count();
         $lastWatchHistory = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id,])->orderByDesc('updated_at')->first();
-        $watchedLessonIds = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id, 'is_completed' => 1])->pluck('lesson_id')->toArray(); 
+        $watchedLessonIds = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id, 'is_completed' => 1])->pluck('lesson_id')->toArray();
 
         return view('frontend.student-dashboard.enrolled-course.player', compact('course', 'lastWatchHistory', 'watchedLessonIds', 'lessonCount'));
     }
@@ -81,7 +81,13 @@ class EnrolledCourseController extends Controller
             ]
         );
 
-        return response(['status'=> 'success', 'message' => 'Updated Successfully!']);
+        return response(['status' => 'success', 'message' => 'Updated Successfully!']);
+    }
 
+    public function fileDownload(string $id)
+    {
+        $lesson = CourseChapterLesson::findOrFail($id);
+
+        return response()->download(public_path($lesson->file_path));
     }
 }

@@ -17,7 +17,7 @@
           class="nav-link px-0 hide-theme-dark"
           data-bs-toggle="tooltip"
           data-bs-placement="bottom"
-          href="?theme=dark"
+          href="{{ request()->fullUrlWithQuery(['theme' => 'dark']) }}"
           title="Enable dark mode"
         >
           <!-- Download SVG icon from http://tabler-icons.io/i/moon -->
@@ -46,7 +46,7 @@
           class="nav-link px-0 hide-theme-light"
           data-bs-toggle="tooltip"
           data-bs-placement="bottom"
-          href="?theme=light"
+          href="{{ request()->fullUrlWithQuery(['theme' => 'light']) }}"
           title="Enable light mode"
         >
           <!-- Download SVG icon from http://tabler-icons.io/i/sun -->
@@ -277,7 +277,8 @@
           aria-label="Open user menu"
         >
           <span class="avatar avatar-sm"
-            style="background-image: url({{ asset('admin/assets/static/avatars/000m.jpg') }})"></span>
+            style="background-image: url({{ asset('admin/assets/static/avatars/000m.jpg') }})"
+          ></span>
           <div class="d-none d-xl-block ps-2">
             <div>Paweł Kuna</div>
             <div class="mt-1 small text-secondary">UI Designer</div>
