@@ -429,6 +429,17 @@
           </div>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{ route('admin.certificate-builder.index') }}">
+            <span
+              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+             <i class="ti ti-moneybag-edit"></i>
+            </span>
+            <span class="nav-link-title">
+              Certificate Builder
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{ route('admin.payment-setting.index') }}">
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->

@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Auth\NewPasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordController;
 use App\Http\Controllers\Admin\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Admin\Auth\VerifyEmailController;
+use App\Http\Controllers\Admin\CertificateBuilderController;
 use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -136,6 +137,8 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::get('/withdraw-request', [WithdrawRequestController::class, 'index'])->name('withdraw-request.index');
     Route::get('/withdraw-request/{withdraw}/detail', [WithdrawRequestController::class, 'show'])->name('withdraw-request.show');
     Route::post('/withdraw-request/{withdraw}', [WithdrawRequestController::class, 'updateStatus'])->name('withdraw-request.update');
+    Route::get('/certificate-builder', [CertificateBuilderController::class, 'index'])->name('certificate-builder.index');
+    
 
 
     /** Laravel File Manager Routes */

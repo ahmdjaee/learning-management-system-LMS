@@ -151,6 +151,7 @@
 
   <script
     src="{{ asset('admin/assets/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487') }}"
+    defer
   ></script>
   @stack('bottom-scripts')
 </body>
