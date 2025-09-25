@@ -197,13 +197,13 @@ textarea::placeholder {
 
 .add_course_content .accordion-item .accordion-button:not(.collapsed) {
     color: var(--tblr-primary);
-    background-color: var(--colorLightBg);
+    /* background-color: var(--colorLightBg); */
     box-shadow: none;
 }
 
 .add_course_content .accordion-item button {
     display: inline-block;
-    background: var(--tblr-primary-fg);
+    background: var(--tblr-bg-surface-secondary);
     padding-right: 130px;
     padding-left: 55px;
     position: relative;

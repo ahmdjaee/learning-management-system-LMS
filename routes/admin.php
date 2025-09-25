@@ -138,6 +138,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::get('/withdraw-request/{withdraw}/detail', [WithdrawRequestController::class, 'show'])->name('withdraw-request.show');
     Route::post('/withdraw-request/{withdraw}', [WithdrawRequestController::class, 'updateStatus'])->name('withdraw-request.update');
     Route::get('/certificate-builder', [CertificateBuilderController::class, 'index'])->name('certificate-builder.index');
+    Route::post('/certificate-builder', [CertificateBuilderController::class, 'update'])->name('certificate-builder.update');
     
 
 

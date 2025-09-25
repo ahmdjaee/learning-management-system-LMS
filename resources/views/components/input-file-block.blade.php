@@ -15,23 +15,24 @@
 
   <!-- Wrapper -->
   <div
-    class="border rounded p-3 text-center"
-    id="imagePicker"
+    class="p-3 text-center form-control"
+    id="{{ $name }}"
     style="cursor:pointer;"
   >
     <img
       class="img-fluid mb-2 rounded"
-      id="previewImg"
-      src="{{ $value}}"
+      id="preview-{{ $name }}"
+      src="{{ $value }}"
       style="max-height: 200px; object-fit: contain;"
     />
+
     <p class="text-muted mb-0">Klik untuk pilih gambar</p>
   </div>
 
   <!-- Input file hidden -->
   <input
     class="form-control d-none"
-    id="fileInput"
+    id="file-{{ $name }}"
     name="{{ $name }}"
     type="file"
     accept="{{ $accept ?? 'image/*' }}"
@@ -42,16 +43,19 @@
 </div>
 
 <script>
-  document.getElementById("imagePicker").addEventListener("click", function() {
-    document.getElementById("fileInput").click();
+  document.addEventListener('reset', function(){
+   document.getElementById("preview-{{ $name }}").src = "{{ $value }}";
+  })
+  document.getElementById("{{ $name }}").addEventListener("click", function() {
+    document.getElementById("file-{{ $name }}").click();
   });
 
-  document.getElementById("fileInput").addEventListener("change", function(e) {
+  document.getElementById("file-{{ $name }}").addEventListener("change", function(e) {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = function(evt) {
-        document.getElementById("previewImg").src = evt.target.result;
+        document.getElementById("preview-{{ $name }}").src = evt.target.result;
       }
       reader.readAsDataURL(file);
     }

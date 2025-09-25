@@ -16,7 +16,7 @@ class InputFileBlock extends Component
         public string $name,
         public string $accept = "",
         public bool $required = false,
-        public string $value = '',
+        public ?string $value = null,
     ) {
         //
     }

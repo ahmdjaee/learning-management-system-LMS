@@ -385,7 +385,7 @@
           <a class="nav-link" href="{{ route('admin.instructor-request.index') }}">
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-              <i class="ti ti-target"></i>
+              <i class="ti ti-user-check"></i>
             </span>
             <span class="nav-link-title">
               Instructor request
@@ -432,7 +432,7 @@
           <a class="nav-link" href="{{ route('admin.certificate-builder.index') }}">
             <span
               class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-             <i class="ti ti-moneybag-edit"></i>
+             <i class="ti ti-certificate"></i>
             </span>
             <span class="nav-link-title">
               Certificate Builder
