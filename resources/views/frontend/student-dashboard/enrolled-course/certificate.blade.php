@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Certificate</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>{{ auth()->user()->name }}</title>
   <style>
     @media print {
       .certificate-container {
@@ -16,8 +17,16 @@
       }
 
       * {
-        print-color-adjust: exact
+        print-color-adjust: exact;
       }
+    }
+
+    * {
+      margin: 0;
+    }
+
+    body {
+        line-height: 1.4285714286;
     }
 
     .certificate-container {
@@ -45,7 +54,7 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-image: url({{ asset($certificate->background) }})
+      background-image: url({{ public_path($certificate->background) }})
     }
 
     .grid-overlay {
@@ -64,6 +73,8 @@
 
     .draggable-text {
       position: absolute;
+      text-align: center;
+      padding: 5px;
     }
 
     .draggable-signature {
@@ -72,23 +83,23 @@
     }
 
     .title-text .text-content {
-      font-size: 24px;
-      font-weight: bold;
+      font-size: 70px;
+      font-weight: normal;
       font-family: 'Times New Roman', serif;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     .subtitle-text .text-content {
-      font-size: 36px;
-      font-weight: normal;
+      font-size: 20px;
+      font-weight: 600;
       font-family: 'Times New Roman', serif;
     }
 
     .description-text .text-content {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: normal;
       font-family: Arial, sans-serif;
-      max-width: 600px;
+      max-width: 700px;
       line-height: 1.4;
     }
 
@@ -108,7 +119,7 @@
       <div
         class="draggable-text title-text"
         id="draggable-title"
-        style="top: {{ $certificate?->title_y}}px; left: {{ $certificate?->title_x}}px;"
+        style="top: {{ $certificate?->title_y }}px; left: {{ $certificate?->title_x }}px;"
       >
         <span class="text-content" style="color: {{ $certificate?->title_color ?? '#000000' }}">
           {{ $certificate?->title ?? 'Certificate Title' }}
@@ -118,7 +129,7 @@
       <div
         class="draggable-text subtitle-text"
         id="draggable-subtitle"
-        style="top: {{ $certificate?->subtitle_y}}px; left: {{ $certificate?->subtitle_x}}px;"
+        style="top: {{ $certificate?->subtitle_y }}px; left: {{ $certificate?->subtitle_x }}px;"
       >
         <span class="text-content" style="color: {{ $certificate?->subtitle_color ?? '#666666' }}">
           {{ $certificate?->sub_title ?? 'Certificate Subtitle' }}
@@ -128,24 +139,22 @@
       <div
         class="draggable-text description-text"
         id="draggable-description"
-        style="top: {{ $certificate?->description_y}}px; left: {{ $certificate?->description_x}}px;"
+        style="top: {{ $certificate?->description_y }}px; left: {{ $certificate?->description_x }}px;"
       >
-        <span class="text-content"
-          style="color: {{ $certificate?->description_color ?? '#333333' }}"
-        >
+        <p class="text-content" style="color: {{ $certificate?->description_color ?? '#333333' }}">
           {{ $certificate?->description ?? 'Certificate Description' }}
-        </span>
+        </p>
       </div>
 
       <div
         class="draggable-signature"
         id="draggable-signature"
-        style="bottom: {{ $certificate?->signature_y ?? 100 }}px; right: {{ $certificate?->signature_x}}px;"
+        style="top: {{ $certificate?->signature_y ?? 100 }}px; right: {{ $certificate?->signature_x }}px;"
       >
         <img
-          src="{{ asset($certificate->signature) }}"
+          src="{{ public_path($certificate->signature) }}"
           alt="Signature"
-          style="max-width: 150px; max-height: 80px; {{ $certificate?->signature ? '' : 'display: none;' }}"
+          style="max-width: 200px; max-height: 105px; {{ $certificate?->signature ? '' : 'display: none;' }}"
         >
       </div>
     </div>

@@ -17,6 +17,10 @@
             <div class="card-body">
               @csrf
 
+              <div class="alert alert-info">
+                <h4 class="alert-heading mb-1">Default variables</h4>
+                <p>[student_name], [course_name], [platform_name], [instructor_name], [date]</p>
+              </div>
               <!-- Hidden inputs for position data -->
               <input
                 id="title_x"
@@ -245,23 +249,23 @@
                     id="draggable-description"
                     style="top: {{ $certificate?->description_y ?? 350 }}px; left: {{ $certificate?->description_x ?? 50 }}px;"
                   >
-                    <span class="text-content"
+                    <p class="text-content"
                       style="color: {{ $certificate?->description_color ?? '#333333' }}"
                     >
                       {{ $certificate?->description ?? 'Certificate Description' }}
-                    </span>
+                    </p>
                     <div class="drag-handle"></div>
                   </div>
 
                   <div
                     class="draggable-signature"
                     id="draggable-signature"
-                    style="bottom: {{ $certificate?->signature_y ?? 100 }}px; right: {{ $certificate?->signature_x ?? 150 }}px;"
+                    style="top: {{ $certificate?->signature_y ?? 100 }}px; right: {{ $certificate?->signature_x ?? 150 }}px;"
                   >
                     <img
                       src="{{ $certificate?->signature_url ?? '' }}"
                       alt="Signature"
-                      style="max-width: 150px; max-height: 80px; {{ $certificate?->signature ? '' : 'display: none;' }}"
+                      style="max-width: 200px; max-height: 105px; {{ $certificate?->signature ? '' : 'display: none;' }}"
                     >
                     <div class="drag-handle"></div>
                   </div>
@@ -354,23 +358,23 @@
     }
 
     .title-text .text-content {
-      font-size: 24px;
-      font-weight: bold;
+      font-size: 70px;
+      font-weight: normal;
       font-family: 'Times New Roman', serif;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     }
 
     .subtitle-text .text-content {
-      font-size: 36px;
-      font-weight: normal;
+      font-size: 20px;
+      font-weight: 600;
       font-family: 'Times New Roman', serif;
     }
 
     .description-text .text-content {
-      font-size: 16px;
+      font-size: 20px;
       font-weight: normal;
       font-family: Arial, sans-serif;
-      max-width: 600px;
+      max-width: 700px;
       line-height: 1.4;
     }
 
@@ -497,10 +501,10 @@
           document.getElementById('description_y').value = Math.round(top);
         } else if (element.id === 'draggable-signature') {
           // For signature, calculate from right and bottom
-          const rightPos = previewWidth - left - element.offsetWidth;
-          const bottomPos = preview.offsetHeight - top - element.offsetHeight;
-          document.getElementById('signature_x').value = Math.round(rightPos);
-          document.getElementById('signature_y').value = Math.round(bottomPos);
+          // const rightPos = previewWidth - left - element.offsetWidth;
+          // const bottomPos = preview.offsetHeight - top - element.offsetHeight;
+          document.getElementById('signature_x').value = Math.round(left);
+          document.getElementById('signature_y').value = Math.round(top);
         }
       }
 
