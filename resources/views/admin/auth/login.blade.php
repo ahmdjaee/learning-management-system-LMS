@@ -44,7 +44,7 @@
              <!-- Session Status -->
             <x-auth-session-status class="mb-4" :status="session('status')" />
 
-            <form method="POST" action="{{ route('admin.login') }}" autocomplete="off" novalidate>
+            <form method="POST" action="{{ route('admin.login.store') }}" autocomplete="off" novalidate>
                 @csrf
 
               <div class="mb-3">

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CertificateBuilderController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CertificateController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\CourseContentController;
 use App\Http\Controllers\Frontend\CourseController;
@@ -77,6 +78,9 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::post('/update-watch-history',[EnrolledCourseController::class, 'updateWatchHistory'])->name('update-watch-history');
     Route::post('/update-lesson-completion',[EnrolledCourseController::class, 'updateLessonCompletion'])->name('update-lesson-completion');
     Route::get('/file-download/{id}', [EnrolledCourseController::class, 'fileDownload'])->name('file-download');
+
+    Route::get('/certificate', [CertificateController::class, 'index'])->name('certificate.index');
+
 });
 
 
