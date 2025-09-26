@@ -19,7 +19,7 @@
 
               <div class="alert alert-info">
                 <h4 class="alert-heading mb-1">Default variables</h4>
-                <p>[student_name], [course_name], [platform_name], [instructor_name], [date]</p>
+                <p>[student_name], [course_title], [platform_name], [instructor_name], [date]</p>
               </div>
               <!-- Hidden inputs for position data -->
               <input

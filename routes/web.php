@@ -79,7 +79,7 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::post('/update-lesson-completion',[EnrolledCourseController::class, 'updateLessonCompletion'])->name('update-lesson-completion');
     Route::get('/file-download/{id}', [EnrolledCourseController::class, 'fileDownload'])->name('file-download');
 
-    Route::get('/certificate', [CertificateController::class, 'index'])->name('certificate.index');
+    Route::get('/certificate/{course}/download', [CertificateController::class, 'download'])->name('certificate.download');
 
 });
 

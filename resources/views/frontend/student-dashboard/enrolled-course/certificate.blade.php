@@ -26,7 +26,7 @@
     }
 
     body {
-        line-height: 1.4285714286;
+      line-height: 1.4285714286;
     }
 
     .certificate-container {

@@ -51,6 +51,9 @@
                           <th class="image">
                             COURSES
                           </th>
+                          <th class="image">
+                            DETAILS
+                          </th>
                           <th class="action">
                             ACTION
                           </th>
@@ -76,7 +79,9 @@
                                 <i class="far fa-star" aria-hidden="true"></i>
                                 <span>(5.0)</span>
                               </p>
-                              <a class="title" href="{{ route('student.enrolled-courses.player.index', $enrollment->course->slug)}}">
+                              <a class="title"
+                                href="{{ route('student.enrolled-courses.player.index', $enrollment->course->slug) }}"
+                              >
                                 {{ $enrollment->course->title }}
                               </a>
                               <div class="text-muted">
@@ -84,13 +89,26 @@
                               </div>
                             </td>
                             <td>
-                              <a class="common_btn" href="{{ route('student.enrolled-courses.player.index', $enrollment->course->slug)}}">
-                                Watch Course
-                              </a>
+                              <div>
+                                <a class="btn btn-sm me-2"
+                                  style="background-color: rgba(0, 140, 255, 0.067); color: #356DF1; width: fit-content;"
+                                  href="{{ route('student.certificate.download', $enrollment->course->id) }}"
+                                >
+                                  <i class="fa fa-download"></i>
+                                  Certificate</a>
+                                <a class="btn btn-sm"
+                                  href="{{ route('student.enrolled-courses.player.index', $enrollment->course->slug) }}"
+                                  style="background-color: rgba(0, 140, 255, 0.067); color: #356DF1; width: fit-content;"
+
+                                >
+                                  <i class="fa fa-eye"></i>
+                                  Watch
+                                </a>
+                              </div>
                             </td>
                           </tr>
                         @empty
-                        No Data Found
+                          No Data Found
                         @endforelse
                       </tbody>
                     </table>
