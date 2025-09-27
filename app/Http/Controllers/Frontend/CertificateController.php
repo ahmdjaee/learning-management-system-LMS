@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\CertificateBuilder;
 use App\Models\Course;
+use App\Models\WatchHistory;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class CertificateController extends Controller
 {
     public function download(Course $course)
     {
+        $watchedHistoryCount = WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $course->id, 'is_completed' => 1])->count();
+        $lessonCount = $course->lessons()->count();
+
+        if($lessonCount != $watchedHistoryCount) return abort(404);
+
         $certificate = CertificateBuilder::first();
 
         $html = view('frontend.student-dashboard.enrolled-course.certificate', compact('certificate'))->render();

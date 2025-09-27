@@ -57,4 +57,14 @@ class Course extends Model
     {
         return $this->hasMany(CourseChapter::class, 'course_id', 'id')->orderBy('order');
     }
+
+    /**
+     * Get all of the lessons for the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function lessons(): HasMany
+    {
+        return $this->hasMany(CourseChapterLesson::class, 'course_id', 'id');
+    }
 }

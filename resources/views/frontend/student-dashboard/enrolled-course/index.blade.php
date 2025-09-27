@@ -89,16 +89,24 @@
                               </div>
                             </td>
                             <td>
-                              <div>
-                                <a class="btn btn-sm me-2"
-                                  style="background-color: rgba(0, 140, 255, 0.067); color: #356DF1; width: fit-content;"
+                              <div class="d-flex flex-column gap-2 align-items-center">
+                                @php
+                                    $watchedHistoryCount = \App\Models\WatchHistory::where(['user_id' => auth()->id(), 'course_id' => $enrollment->course->id, 'is_completed' => 1])->count();
+                                    $lessonCount = $enrollment->course->lessons()->count();
+                                @endphp
+                                @if ($lessonCount == $watchedHistoryCount)
+                                <a class="btn btn-sm text-primary"
+                                  {{-- style="background-color: rgba(0, 140, 255, 0.067); color: #356DF1; width: fit-content;" --}}
                                   href="{{ route('student.certificate.download', $enrollment->course->id) }}"
+                                  target="_blank"
                                 >
                                   <i class="fa fa-download"></i>
-                                  Certificate</a>
-                                <a class="btn btn-sm"
+                                  Certificate
+                                </a>    
+                                @endif
+                                <a class="btn btn-sm btn-primary"
                                   href="{{ route('student.enrolled-courses.player.index', $enrollment->course->slug) }}"
-                                  style="background-color: rgba(0, 140, 255, 0.067); color: #356DF1; width: fit-content;"
+                                  {{-- style="background-color: rgba(0, 140, 255, 0.067); color: #356DF1; width: fit-content;" --}}
 
                                 >
                                   <i class="fa fa-eye"></i>
