@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\CourseCategoryController;
 use App\Http\Controllers\Admin\CourseContentController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
+use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
@@ -140,7 +141,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::get('/certificate-builder', [CertificateBuilderController::class, 'index'])->name('certificate-builder.index');
     Route::post('/certificate-builder', [CertificateBuilderController::class, 'update'])->name('certificate-builder.update');
     
-
+    Route::resource('/hero', HeroController::class);
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

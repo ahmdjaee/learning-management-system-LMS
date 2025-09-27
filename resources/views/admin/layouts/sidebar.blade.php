@@ -483,6 +483,33 @@
             </span>
           </a>
         </li>
+         <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="false"
+            href="#navbar-base"
+            role="button"
+            aria-expanded="false"
+          >
+            <span
+              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+             <i class="ti ti-section"></i>
+            </span>
+            <span class="nav-link-title">
+              Sections
+            </span>
+          </a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-columns">
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item" href="{{ route('admin.hero.index') }}">
+                  Hero
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('admin.settings.index') }}">
             <span
