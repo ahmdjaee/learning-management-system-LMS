@@ -27,25 +27,11 @@
                 <x-input-file-block  name="image" accept="image/*" />
               </div>
               <div class="col-md-12">
-                <x-input-icon-block
-                  name="icon"
-                  required
-                  label="Icon"
-                />
-              </div>
-              <div class="col-md-12">
                 <x-input-block
                   name="name"
                   placeholder="Enter category name"
                   label="Name"
                   required
-                />
-              </div>
-              <div class="col-md-3">
-                <x-input-toggle-block
-                  name="show_at_trending"
-                  formCheckLabel=""
-                  label="Show At Trending"
                 />
               </div>
               <div class="col-md-3">

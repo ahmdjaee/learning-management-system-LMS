@@ -109,9 +109,9 @@
   <!--bootstrap js-->
   <script src="{{ asset('frontend/assets/js/bootstrap.bundle.min.js') }}"></script>
   <!--font-awesome js-->
-  <script src="{{ asset('frontend/assets/js/Font-Awesome.js') }}"></script>
+  <script src="{{ asset('frontend/assets/js/Font-Awesome.js') }}" defer></script>
   <!--marquee js-->
-  <script src="{{ asset('frontend/assets/js/jquery.marquee.min.js') }}"></script>
+  <script src="{{ asset('frontend/assets/js/jquery.marquee.min.js') }}" defer></script>
   <!--slick js-->
   <script src="{{ asset('frontend/assets/js/slick.min.js') }}"></script>
   <!--countup js-->
@@ -130,16 +130,16 @@
   <!--barfiller js-->
   <script src="{{ asset('frontend/assets/js/animated_barfiller.js') }}"></script>
   <!--calendar js-->
-  <script src="{{ asset('frontend/assets/js/jquery.calendar.js') }}"></script>
+  <script src="{{ asset('frontend/assets/js/jquery.calendar.js') }}" defer></script>
   <!--starRating js-->
-  <script src="{{ asset('frontend/assets/js/starRating.js') }}"></script>
+  <script src="{{ asset('frontend/assets/js/starRating.js') }}" defer></script>
   <!--Bar Graph js-->
-  <script src="{{ asset('frontend/assets/js/jquery.simple-bar-graph.min.js') }}"></script>
+  <script src="{{ asset('frontend/assets/js/jquery.simple-bar-graph.min.js') }}" defer></script>
   <!--select2 js-->
   <script src="{{ asset('frontend/assets/js/select2.min.js') }}"></script>
   <!--Video player js-->
   <script src="{{ asset('frontend/assets/js/video_player.min.js') }}"></script>
-  <script src="{{ asset('frontend/assets/js/video_player_youtube.js') }}"></script>
+  <script src="{{ asset('frontend/assets/js/video_player_youtube.js') }}" defer></script>
   <!--wow js-->
   <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
 

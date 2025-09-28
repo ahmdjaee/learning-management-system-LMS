@@ -8,9 +8,7 @@
           <h3 class="card-title">Course Sub Category of: ({{ $category->name }})</h3>
           <div class="card-actions">
             <div class="card-actions">
-              <a class="btn btn-3"
-                href="{{ route('admin.course-categories.index') }}"
-              >
+              <a class="btn btn-3" href="{{ route('admin.course-categories.index') }}">
                 <i class="ti ti-arrow-left me-2" style="font-size: 24px;"></i>
                 Back
               </a>
@@ -29,10 +27,8 @@
               <thead>
                 <tr>
                   <th>Image</th>
-                  <th>Icon</th>
                   <th>Name</th>
                   <th>Slug</th>
-                  <th>Show At Trending</th>
                   <th>Status</th>
                   <th class="text-end">Action</th>
                 </tr>
@@ -42,25 +38,19 @@
                 @forelse ($subCategories as $subCategory)
                   <tr>
                     <td>
-                      <img
-                        class="object-cover"
-                        src="{{ asset($subCategory->image) }}"
-                        srcset=""
-                        alt=""
-                        height="50"
-                        width="50"
-                      >
-                    </td>
-                    <td><i class="ti ti-{{ $subCategory->icon }}" style="font-size: 24px"></i></td>
-                    <td>{{ $subCategory->name }}</td>
-                    <td>{{ $subCategory->slug }}</td>
-                    <td>
-                      @if ($subCategory->show_at_trending)
-                        <span class="badge bg-green-lt">Yes</span>
-                      @else
-                        <span class="badge bg-red-lt">No</span>
+                      @if ($subCategory->image)
+                        <img
+                          class="object-cover"
+                          src="{{ asset($subCategory->image) }}"
+                          srcset=""
+                          alt=""
+                          height="50"
+                          width="50"
+                        >
                       @endif
                     </td>
+                    <td>{{ $subCategory->name }}</td>
+                    <td>{{ $subCategory->slug }}</td>
                     <td>
                       @if ($subCategory->status)
                         <span class="badge bg-green-lt">Yes</span>

@@ -16,4 +16,14 @@ class CourseCategory extends Model
     {
         return $this->hasMany(CourseCategory::class, 'parent_id');
     }
+
+    /**
+     * Get all of the courses for the CourseCategory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function courses(): HasMany
+    {
+        return $this->hasMany(Course::class, 'category_id', 'id');
+    }
 }

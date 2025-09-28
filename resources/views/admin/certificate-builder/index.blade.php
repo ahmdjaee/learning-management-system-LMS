@@ -182,7 +182,9 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title text-warning">
-                <i class="ti ti-"></i> Don't forget to save, or your changes will be lost!.
+                <small style="border-left: 1px">
+                  Don't forget to save, or your changes will be lost!.
+                </small>
               </h3>
               <div class="card-actions">
                 <div class="form-switch d-inline me-2" style="width: fit-content">

@@ -15,7 +15,7 @@ class PaymentGatewaySettingService
     public function getSettings(): array
     {
         return Cache::rememberForever('gatewaySettings', function () {
-            return PaymentSetting::pluck('value', 'key')->toArray(); //['key', 'value']
+            return PaymentSetting::whereNotNull('key')->pluck('value', 'key')->toArray(); //['key', 'value']
         });
     }
 

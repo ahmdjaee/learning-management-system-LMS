@@ -29,7 +29,6 @@
               <div class="col-md-12">
                 <x-input-icon-block
                   name="icon"
-                  required
                   label="Icon"
                 />
               </div>

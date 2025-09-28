@@ -10,7 +10,7 @@
       name="{{ $name }}"
       type="text"
       style="cursor: pointer"
-      required
+      {{ $required }}
       placeholder="No icon chosen"
       onkeydown="return false;"
       onpaste="return false;"

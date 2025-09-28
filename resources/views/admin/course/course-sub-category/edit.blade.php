@@ -36,15 +36,7 @@
 
             <div class="row">
               <div class="col-md-12">
-                <x-input-file-block name="image" :value="asset($subCategory->image)" />
-              </div>
-              <div class="col-md-12">
-                <x-input-icon-block
-                  name="icon"
-                  required
-                  label="Icon"
-                  :value="$subCategory->icon"
-                />
+                <x-input-file-block name="image" :value="$subCategory->image" />
               </div>
               <div class="col-md-12">
                 <x-input-block
@@ -53,14 +45,6 @@
                   label="Name"
                   required
                   :value="$subCategory->name"
-                />
-              </div>
-              <div class="col-md-3">
-                <x-input-toggle-block
-                  name="show_at_trending"
-                  formCheckLabel=""
-                  label="Show At Trending"
-                  :checked="$subCategory->show_at_trending"
                 />
               </div>
               <div class="col-md-3">

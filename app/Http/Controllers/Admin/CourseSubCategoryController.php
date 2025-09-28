@@ -39,11 +39,11 @@ class CourseSubCategoryController extends Controller
      */
     public function store(CourseSubCategoryStoreRequest $request, CourseCategory $course_category)
     {
+        // dd($request->all());
 
         $data = $request->validated();
 
         $category = new CourseCategory();
-        $category->icon = $data['icon'];
         $category->name = $data['name'];
         $category->slug = Str::slug($data['name']);
         $category->parent_id = $course_category->id;
@@ -54,6 +54,7 @@ class CourseSubCategoryController extends Controller
             $imagePath = $this->uploadFile($data['image']);
             $category->image = $imagePath;
         }
+
         $category->save();
 
         notyf()->success("Sub Category created successfully");
@@ -88,7 +89,6 @@ class CourseSubCategoryController extends Controller
         $data = $request->validated();
 
         $category = $course_sub_category;
-        $category->icon = $data['icon'];
         $category->name = $data['name'];
         $category->slug = Str::slug($data['name']);
         $category->parent_id = $course_category->id;
