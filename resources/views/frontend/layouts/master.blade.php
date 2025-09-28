@@ -13,7 +13,7 @@
   <title>EduCore - Online Courses & Education HTML Template</title>
   <link
     type="image/png"
-    href="images/favicon.png"
+    href="{{ asset('frontend/assets/images/favicon.png') }}"
     rel="icon"
   >
   <link href="{{ asset('frontend/assets/css/all.min.css') }}" rel="stylesheet">
@@ -40,7 +40,7 @@
 
   <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet">
 
-  @vite(['resources/css/frontend.css', 'resources/js/frontend/frontend.js']);
+  @vite(['resources/css/frontend.css', 'resources/js/frontend/frontend.js'])
 
   <!--dynamic js-->
   @stack('header_scripts')

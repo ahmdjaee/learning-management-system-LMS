@@ -506,6 +506,9 @@
                 <a class="dropdown-item" href="{{ route('admin.hero.index') }}">
                   Hero
                 </a>
+                <a class="dropdown-item" href="{{ route('admin.feature.index') }}">
+                  Feature
+                </a>
               </div>
             </div>
           </div>

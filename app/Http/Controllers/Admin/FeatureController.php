@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Frontend\HeroUpdateRequest;
-use App\Models\Hero;
+use App\Http\Requests\Admin\FeatureUpdateRequest;
+use App\Models\Feature;
 use App\Traits\FileUpload;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class HeroController extends Controller
+class FeatureController extends Controller
 {
     use FileUpload;
 
@@ -18,9 +17,8 @@ class HeroController extends Controller
      */
     public function index()
     {
-        $hero = Hero::first();
-
-        return view('admin.sections.hero.index', compact('hero'));
+        $feature =Feature::first();
+        return view('admin.sections.feature.index', compact('feature'));
     }
 
     /**
@@ -34,24 +32,24 @@ class HeroController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(HeroUpdateRequest $request): RedirectResponse
+    public function store(FeatureUpdateRequest $request)
     {
-
         $data = $request->validated();
+        $feature = Feature::first();
 
-        if ($request->hasFile('image')) {
-            $hero = Hero::first();
+        for ($i = 1; $i <= 3; $i++) {
+            if ($request->hasFile('image_' . $i)) {
+                if (isset($feature->{'image_' . $i})) {
+                    $oldImagePath = $feature->{'image_' . $i};
+                    $this->deleteFile($oldImagePath);
+                }
 
-            if (isset($hero->image)) {
-                $oldImagePath = $hero->image;
-                $this->deleteFile($oldImagePath);
+                $imagePath = $this->uploadFile($request->file('image_' . $i));
+                $data['image_' . $i] = $imagePath;
             }
-
-            $imagePath = $this->uploadFile($request->file('image'));
-            $data['image'] = $imagePath;
         }
 
-        Hero::updateOrCreate(['id' => 1], $data);
+        Feature::updateOrCreate(['id' => 1], $data);
 
         notyf('Updated Successfully');
 
@@ -79,6 +77,7 @@ class HeroController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //
     }
 
     /**
