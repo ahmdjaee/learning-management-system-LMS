@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutUsSection;
 use App\Models\CourseCategory;
 use App\Models\Feature;
 use App\Models\Hero;
@@ -22,7 +23,9 @@ class FrontendController extends Controller
         }
         ])->where(['show_at_trending' => 1, 'parent_id' => null, 'status' => 1])->limit(8)->get();
 
-        return view('frontend.pages.home.index', compact('hero', 'feature', 'categories'));
+        $about = AboutUsSection::first();
+
+        return view('frontend.pages.home.index', compact('hero', 'feature', 'categories', 'about'));
 
     }
 }

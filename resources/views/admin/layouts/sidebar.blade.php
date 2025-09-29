@@ -509,6 +509,9 @@
                 <a class="dropdown-item" href="{{ route('admin.feature.index') }}">
                   Feature
                 </a>
+                <a class="dropdown-item" href="{{ route('admin.about-section.index') }}">
+                  About Us
+                </a>
               </div>
             </div>
           </div>

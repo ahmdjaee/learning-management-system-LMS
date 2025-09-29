@@ -59,4 +59,25 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 },
             });
         });
+
+    let options = {
+        selector: ".editor",
+        height: 300,
+        menubar: false,
+        statusbar: false,
+        plugins:
+            "preview importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap pagebreak nonbreaking anchor insertdatetime advlist lists wordcount help charmap quickbars emoticons",
+        toolbar:
+            "undo redo | formatselect | " +
+            "bold italic backcolor | alignleft aligncenter " +
+            "alignright alignjustify | bullist numlist outdent indent | " +
+            "removeformat | blocks fontfamily fontsize",
+        content_style:
+            "body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }",
+    };
+    if (localStorage.getItem("tablerTheme") === "dark") {
+        options.skin = "oxide-dark";
+        options.content_css = "dark";
+    }
+    tinyMCE.init(options);
 });
