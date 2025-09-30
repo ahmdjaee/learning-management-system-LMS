@@ -8,8 +8,11 @@ use App\Models\CourseCategory;
 use App\Models\Feature;
 use App\Models\Hero;
 use App\Models\LatestCourseSection;
+use App\Models\Newsletter;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class FrontendController extends Controller
 {
@@ -28,6 +31,23 @@ class FrontendController extends Controller
         $latestCourses = LatestCourseSection::first();
 
         return view('frontend.pages.home.index', compact('hero', 'feature', 'categories', 'about', 'latestCourses'));
+    }
 
+    public function subscribe(Request $request) : JsonResponse {
+        $request->validate([
+            'email' => ['required', 'email', 'unique:newsletters,email']
+        ],[
+            'email.unique' => 'Already subscribe to newsletter!'
+        ]);
+
+        $newsLetter = new Newsletter();
+        $newsLetter->email = $request->email;
+        $newsLetter->save();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Subscribe to newsletter successfully!'
+        ]);
+    
     }
 }

@@ -1,6 +1,7 @@
 import "./cart.js";
 
 var csrfToken = $('meta[name="csrf_token"]').attr("content");
+var baseUrl = $('meta[name="base_url"]').attr("content");
 
 $(function () {
     ezShare.execute();
@@ -37,6 +38,35 @@ $(function () {
                     },
                 });
             }
+        });
+    });
+
+    // subscribe to newsletter
+    $('.newsletter').on('submit', function (e) {
+        e.preventDefault()
+
+        let formData = $(this).serialize();
+
+        $.ajax({
+            type: "POST",
+            url: `${baseUrl}/newsletter-subscribe`,
+            data: formData,
+            headers: {
+                "X-CSRF-TOKEN": csrfToken
+            },
+            beforeSend: function () { 
+                $('.btn-subscribe').attr('disabled', true).html("Loading...");
+             },
+            success: function (response) {
+                notyf.success(response.message)
+            },
+            error: function (xhr, status, error) {
+                notyf.error(xhr.responseJSON?.message)
+            },
+            complete: function () { 
+                $('.btn-subscribe').attr('disabled', false).html("Subscribe");
+                $(this).trigger('reset');  
+             }
         });
     });
 });

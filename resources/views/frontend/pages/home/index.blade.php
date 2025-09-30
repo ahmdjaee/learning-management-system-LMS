@@ -41,7 +41,7 @@
     <!--===========================
         OFFER START
     ============================-->
-    @include('frontend.pages.home.sections.offer-section')
+    @include('frontend.pages.home.sections.newsletter-section')
     <!--===========================
         OFFER END
     ============================-->
