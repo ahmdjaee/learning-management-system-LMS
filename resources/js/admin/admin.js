@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             });
         });
 
+    //  Tiny MCE
     let options = {
         selector: ".editor",
         height: 300,

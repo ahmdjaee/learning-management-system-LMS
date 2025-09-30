@@ -7,6 +7,7 @@ use App\Models\AboutUsSection;
 use App\Models\CourseCategory;
 use App\Models\Feature;
 use App\Models\Hero;
+use App\Models\LatestCourseSection;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,9 @@ class FrontendController extends Controller
         ])->where(['show_at_trending' => 1, 'parent_id' => null, 'status' => 1])->limit(8)->get();
 
         $about = AboutUsSection::first();
+        $latestCourses = LatestCourseSection::first();
 
-        return view('frontend.pages.home.index', compact('hero', 'feature', 'categories', 'about'));
+        return view('frontend.pages.home.index', compact('hero', 'feature', 'categories', 'about', 'latestCourses'));
 
     }
 }
