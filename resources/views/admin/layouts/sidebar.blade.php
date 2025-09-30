@@ -515,6 +515,9 @@
                 <a class="dropdown-item" href="{{ route('admin.latest-courses.index') }}">
                   Latest Courses
                 </a>
+                <a class="dropdown-item" href="{{ route('admin.become-instructor-section.index') }}">
+                  Become Instructor
+                </a>
               </div>
             </div>
           </div>
