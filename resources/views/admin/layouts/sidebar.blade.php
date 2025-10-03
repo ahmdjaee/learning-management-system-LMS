@@ -521,6 +521,9 @@
                 <a class="dropdown-item" href="{{ route('admin.video-section.index') }}">
                   Video
                 </a>
+                <a class="dropdown-item" href="{{ route('admin.brand-section.index') }}">
+                  Brand
+                </a>
               </div>
             </div>
           </div>
