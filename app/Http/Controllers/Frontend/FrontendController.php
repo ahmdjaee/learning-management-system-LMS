@@ -10,6 +10,7 @@ use App\Models\Feature;
 use App\Models\Hero;
 use App\Models\LatestCourseSection;
 use App\Models\Newsletter;
+use App\Models\VideoSection;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -32,8 +33,9 @@ class FrontendController extends Controller
         $latestCourses = LatestCourseSection::first();
 
         $becomeInstructor = BecomeInstructorSection::first();
+        $video = VideoSection::first();
 
-        return view('frontend.pages.home.index', compact('hero', 'feature', 'categories', 'about', 'latestCourses' , 'becomeInstructor'));
+        return view('frontend.pages.home.index', compact('hero', 'feature', 'categories', 'about', 'latestCourses' , 'becomeInstructor', 'video'));
     }
 
     public function subscribe(Request $request) : JsonResponse {

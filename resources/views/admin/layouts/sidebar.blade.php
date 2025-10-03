@@ -518,6 +518,9 @@
                 <a class="dropdown-item" href="{{ route('admin.become-instructor-section.index') }}">
                   Become Instructor
                 </a>
+                <a class="dropdown-item" href="{{ route('admin.video-section.index') }}">
+                  Video
+                </a>
               </div>
             </div>
           </div>

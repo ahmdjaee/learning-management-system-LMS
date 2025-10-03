@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\VideoSectionController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use Illuminate\Support\Facades\Route;
 
@@ -150,6 +151,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::resource('/about-section', AboutUsSectionController::class);
     Route::resource('/latest-courses', LatestCourseSectionController::class);
     Route::resource('/become-instructor-section', BecomeInstructorSectionController::class);
+    Route::resource('/video-section', VideoSectionController::class);
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
