@@ -54,6 +54,11 @@ $(function (e) {
     window.TomSelect &&
         elements.forEach(function (el) {
             new TomSelect(el, {
+                plugins: {
+                    remove_button: {
+                        title: "Remove this item",
+                    },
+                },
                 sortField: {
                     field: "text",
                     direction: "asc",

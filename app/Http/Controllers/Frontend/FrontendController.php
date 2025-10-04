@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\AboutUsSection;
 use App\Models\BecomeInstructorSection;
 use App\Models\Brand;
+use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Feature;
+use App\Models\FeaturedInstructor;
 use App\Models\Hero;
 use App\Models\LatestCourseSection;
 use App\Models\Newsletter;
@@ -36,14 +38,28 @@ class FrontendController extends Controller
         $becomeInstructor = BecomeInstructorSection::first();
         $video = VideoSection::first();
         $brands = Brand::where('status', 1)->get();
+        $featuredInstructor = FeaturedInstructor::first();
+        $featuredInstructorCourses = Course::whereIn('id', json_decode($featuredInstructor->featured_courses))->get();
 
-        return view('frontend.pages.home.index', compact('hero', 'feature', 'categories', 'about', 'latestCourses' , 'becomeInstructor', 'video', 'brands'));
+        return view('frontend.pages.home.index', compact(
+            'hero',
+            'feature',
+            'categories',
+            'about',
+            'latestCourses',
+            'becomeInstructor',
+            'video',
+            'brands',
+            'featuredInstructor',
+            'featuredInstructorCourses'
+        ));
     }
 
-    public function subscribe(Request $request) : JsonResponse {
+    public function subscribe(Request $request): JsonResponse
+    {
         $request->validate([
             'email' => ['required', 'email', 'unique:newsletters,email']
-        ],[
+        ], [
             'email.unique' => 'Already subscribe to newsletter!'
         ]);
 
@@ -55,6 +71,6 @@ class FrontendController extends Controller
             'status' => 'success',
             'message' => 'Subscribe to newsletter successfully!'
         ]);
-    
+
     }
 }

@@ -22,7 +22,7 @@
                     class="form-control"
                     name="title"
                     type="text"
-                    {{-- value="{{ old('title') ?? $instructor?->title }}" --}}
+                    value="{{ old('title') ?? $featuredInstructor?->title }}"
                     placeholder="Enter title"
                     autofocus
                   >
@@ -36,7 +36,7 @@
                     class="form-control"
                     name="sub_title"
                     type="text"
-                    {{-- value="{{ old('sub_title') ?? $instructor?->sub_title }}" --}}
+                    value="{{ old('sub_title') ?? $featuredInstructor?->sub_title }}"
                     placeholder="Enter sub title"
                     autofocus
                   >
@@ -50,7 +50,7 @@
                     class="form-control"
                     name="button_text"
                     type="text"
-                    {{-- value="{{ old('button_text') ?? $instructor?->button_text }}" --}}
+                    value="{{ old('button_text') ?? $featuredInstructor?->button_text }}"
                     placeholder="Enter button text"
                     autofocus
                   >
@@ -64,7 +64,7 @@
                     class="form-control"
                     name="button_url"
                     type="text"
-                    {{-- value="{{ old('button_url') ?? $instructor?->button_url }}" --}}
+                    value="{{ old('button_url') ?? $featuredInstructor?->button_url }}"
                     placeholder="Enter button url"
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('button_url')" />
@@ -80,7 +80,8 @@
                   >
                     <option value="">Select Instructor</option>
                     @foreach ($instructors as $instructor)
-                      <option value="{{ $instructor->id }}">{{ $instructor->name }}</option>
+                      <option value="{{ $instructor->id }}" @selected($featuredInstructor?->instructor_id == $instructor?->id)>
+                        {{ $instructor?->name }}</option>
                     @endforeach
                   </select>
                   <x-input-error class="mt-2" :messages="$errors->get('instructor_id')" />
@@ -96,16 +97,24 @@
                     multiple
                   >
                     <option value="">Select Course</option>
+                    @foreach ($selectedInstructorCourses as $course)
+                      <option value="{{ $course->id }}" @selected(in_array($course->id, $selectedCourses))>
+                        {{ $course->title }}</option>
+                    @endforeach
                   </select>
                   <x-input-error class="mt-2" :messages="$errors->get('featured_courses')" />
                 </div>
               </div>
 
               <div class="col-12">
-                <input type="hidden" name="old_image" value="{{ $instructor?->image }}">
+                <input
+                  name="old_image"
+                  type="hidden"
+                  value="{{ $featuredInstructor?->image }}"
+                >
                 <x-input-file-block
                   name="image"
-                  {{-- value="{{ old('image') ?? $instructor?->image }}" --}}
+                  value="{{ old('image') ?? $featuredInstructor?->image }}"
                   label="Instructor Image"
                 />
               </div>

@@ -150,7 +150,7 @@
   <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 
   <script
-    src="{{ asset('admin/assets/dist/libs/tom-select/dist/js/tom-select.base.min.js?1692870487') }}"
+    src="{{ asset('admin/assets/dist/libs/tom-select/dist/js/tom-select.complete.min.js') }}"
     defer
   ></script>
   <script src="{{ asset('admin/assets/dist/libs/tinymce/tinymce.min.js?1692870487') }}" defer>
