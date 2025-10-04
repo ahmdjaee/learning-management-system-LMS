@@ -99,3 +99,14 @@ td a i {
 .form-select:open::picker-icon {
     transform: rotate(180deg);
 }
+
+.navbar-vertical.navbar-expand-lg
+    .navbar-collapse
+    .dropdown-menu
+    .dropdown-item.active,
+.navbar-vertical.navbar-expand-lg
+    .navbar-collapse
+    .dropdown-menu
+    .dropdown-item:active {
+    background: rgb(0 0 16 / 14%);
+}

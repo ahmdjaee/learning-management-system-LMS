@@ -370,21 +370,21 @@
     </div>
     <div class="collapse navbar-collapse" id="sidebar-menu">
       <ul class="navbar-nav pt-lg-3">
-        <li class="nav-item">
+        <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('admin.dashboard') }}">
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-             <i class="ti ti-home"></i>
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-home"></i>
             </span>
             <span class="nav-link-title">
               Home
             </span>
           </a>
         </li>
-        <li class="nav-item">
+
+        <li
+          class="nav-item {{ request()->routeIs('admin.instructor-request.*') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('admin.instructor-request.index') }}">
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-user-check"></i>
             </span>
             <span class="nav-link-title">
@@ -392,68 +392,82 @@
             </span>
           </a>
         </li>
-        <li class="nav-item dropdown">
+
+        <li
+          class="nav-item dropdown {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*') ? 'active' : '' }}"
+        >
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*') ? 'show' : '' }}"
             data-bs-toggle="dropdown"
             data-bs-auto-close="false"
             href="#navbar-base"
             role="button"
-            aria-expanded="false"
+            aria-expanded="{{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*') ? 'true' : 'false' }}"
           >
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
-             <i class="ti ti-book"></i>
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-book"></i>
             </span>
             <span class="nav-link-title">
               Course Management
             </span>
           </a>
-          <div class="dropdown-menu">
+          <div
+            class="dropdown-menu {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*') ? 'show' : '' }}"
+          >
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
-                <a class="dropdown-item" href="{{ route('admin.courses.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.courses.*') ? 'active' : '' }}"
+                  href="{{ route('admin.courses.index') }}"
+                >
                   Courses
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.course-languages.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.course-languages.*') ? 'active' : '' }}"
+                  href="{{ route('admin.course-languages.index') }}"
+                >
                   Course Languages
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.course-levels.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.course-levels.*') ? 'active' : '' }}"
+                  href="{{ route('admin.course-levels.index') }}"
+                >
                   Course Levels
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.course-categories.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.course-categories.*') ? 'active' : '' }}"
+                  href="{{ route('admin.course-categories.index') }}"
+                >
                   Course Categories
                 </a>
               </div>
             </div>
           </div>
         </li>
-        <li class="nav-item">
+
+        <li
+          class="nav-item {{ request()->routeIs('admin.certificate-builder.*') ? 'active' : '' }}"
+        >
           <a class="nav-link" href="{{ route('admin.certificate-builder.index') }}">
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-             <i class="ti ti-certificate"></i>
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-certificate"></i>
             </span>
             <span class="nav-link-title">
               Certificate Builder
             </span>
           </a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item {{ request()->routeIs('admin.payment-setting.*') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('admin.payment-setting.index') }}">
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
-             <i class="ti ti-moneybag-edit"></i>
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-moneybag-edit"></i>
             </span>
             <span class="nav-link-title">
               Payment Setting
             </span>
           </a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('admin.orders.index') }}">
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-transaction-dollar"></i>
             </span>
             <span class="nav-link-title">
@@ -461,10 +475,10 @@
             </span>
           </a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item {{ request()->routeIs('admin.payout-gateway.*') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('admin.payout-gateway.index') }}">
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-galaxy"></i>
             </span>
             <span class="nav-link-title">
@@ -472,10 +486,10 @@
             </span>
           </a>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item {{ request()->routeIs('admin.withdraw-request.*') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('admin.withdraw-request.index') }}">
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-switch-horizontal"></i>
             </span>
             <span class="nav-link-title">
@@ -483,55 +497,78 @@
             </span>
           </a>
         </li>
-         <li class="nav-item dropdown">
+
+        <li
+          class="nav-item dropdown {{ request()->is('admin/sections/*') ? 'active' : '' }}"
+        >
           <a
-            class="nav-link dropdown-toggle"
+            class="nav-link dropdown-toggle {{ request()->is('admin/sections/*') ? 'show' : '' }}"
             data-bs-toggle="dropdown"
             data-bs-auto-close="false"
             href="#navbar-base"
             role="button"
-            aria-expanded="false"
+            aria-expanded="{{ request()->is('admin/sections/*') ? 'true' : 'false' }}"
           >
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
-             <i class="ti ti-section"></i>
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-section"></i>
             </span>
             <span class="nav-link-title">
               Sections
             </span>
           </a>
-          <div class="dropdown-menu">
+          <div
+            class="dropdown-menu {{ request()->is('admin/sections/*') ? 'show' : '' }}"
+          >
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">
-                <a class="dropdown-item" href="{{ route('admin.hero.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.hero.*') ? 'active' : '' }}"
+                  href="{{ route('admin.hero.index') }}"
+                >
                   Hero
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.feature.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.feature.*') ? 'active' : '' }}"
+                  href="{{ route('admin.feature.index') }}"
+                >
                   Feature
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.about-section.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.about-section.*') ? 'active' : '' }}"
+                  href="{{ route('admin.about-section.index') }}"
+                >
                   About Us
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.latest-courses.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.latest-courses.*') ? 'active' : '' }}"
+                  href="{{ route('admin.latest-courses.index') }}"
+                >
                   Latest Courses
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.become-instructor-section.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.become-instructor-section.*') ? 'active' : '' }}"
+                  href="{{ route('admin.become-instructor-section.index') }}"
+                >
                   Become Instructor
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.video-section.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.video-section.*') ? 'active' : '' }}"
+                  href="{{ route('admin.video-section.index') }}"
+                >
                   Video
                 </a>
-                <a class="dropdown-item" href="{{ route('admin.brand-section.index') }}">
+                <a class="dropdown-item {{ request()->routeIs('admin.brand-section.*') ? 'active' : '' }}"
+                  href="{{ route('admin.brand-section.index') }}"
+                >
                   Brand
+                </a>
+                <a class="dropdown-item {{ request()->routeIs('admin.featured-instructor-section.*') ? 'active' : '' }}"
+                  href="{{ route('admin.featured-instructor-section.index') }}"
+                >
+                  Instructor
                 </a>
               </div>
             </div>
           </div>
         </li>
-        <li class="nav-item">
+
+        <li class="nav-item {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('admin.settings.index') }}">
-            <span
-              class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/home -->
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-settings"></i>
             </span>
             <span class="nav-link-title">

@@ -21,6 +21,7 @@ use App\Http\Controllers\Admin\CourseContentController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\FeatureController;
+use App\Http\Controllers\Admin\FeaturedInstructorController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
 use App\Http\Controllers\Admin\OrderController;
@@ -147,14 +148,19 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::post('/withdraw-request/{withdraw}', [WithdrawRequestController::class, 'updateStatus'])->name('withdraw-request.update');
     Route::get('/certificate-builder', [CertificateBuilderController::class, 'index'])->name('certificate-builder.index');
     Route::post('/certificate-builder', [CertificateBuilderController::class, 'update'])->name('certificate-builder.update');
-    
-    Route::resource('/hero', HeroController::class);
-    Route::resource('/feature', FeatureController::class);
-    Route::resource('/about-section', AboutUsSectionController::class);
-    Route::resource('/latest-courses', LatestCourseSectionController::class);
-    Route::resource('/become-instructor-section', BecomeInstructorSectionController::class);
-    Route::resource('/video-section', VideoSectionController::class);
-    Route::resource('/brand-section', BrandSectionController::class);
+
+    Route::prefix('/sections')->group(function () {
+        Route::resource('/hero', HeroController::class);
+        Route::resource('/feature', FeatureController::class);
+        Route::resource('/about-section', AboutUsSectionController::class);
+        Route::resource('/latest-courses', LatestCourseSectionController::class);
+        Route::resource('/become-instructor-section', BecomeInstructorSectionController::class);
+        Route::resource('/video-section', VideoSectionController::class);
+        Route::resource('/brand-section', BrandSectionController::class);
+
+        Route::get('/get-instructor-courses/{id}', [FeaturedInstructorController::class, 'getInstructorCourses']);
+        Route::resource('/featured-instructor-section', FeaturedInstructorController::class);
+    });
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

@@ -5,6 +5,7 @@ window.jQuery = $;
 
 var notyf = new Notyf();
 var csrfToken = $('meta[name="csrf_token"]').attr("content");
+var baseUrl = $('meta[name="base_url"]').attr("content");
 var deleteUrl = "";
 
 $(".delete-item").on("click", function (e) {
@@ -48,7 +49,7 @@ $(".show-modal-icon").on("click", function (e) {
     $("#iconModal").modal("show");
 });
 
-document.addEventListener("DOMContentLoaded", function (e) {
+$(function (e) {
     var elements = document.querySelectorAll(".tom-select");
     window.TomSelect &&
         elements.forEach(function (el) {
@@ -81,4 +82,27 @@ document.addEventListener("DOMContentLoaded", function (e) {
         options.content_css = "dark";
     }
     tinyMCE.init(options);
+
+    // Featured instructor js
+    $(".select-instructor").on("change", function () {
+        let id = $(this).val();
+        var selectEl = document.querySelector(".instructor-courses").tomselect;
+
+        selectEl.clear();
+        selectEl.clearOptions();
+
+        $.ajax({
+            url: `${baseUrl}/admin/sections/get-instructor-courses/${id}`,
+            success: function (response) {
+                $.each(response.courses, function (index, value) {
+                    selectEl.addOption({
+                        value: value.id,
+                        text: value.title,
+                    });
+                });
+
+                selectEl.refreshOptions();
+            },
+        });
+    });
 });

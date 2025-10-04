@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-12">
         <div class="wsus__brand_slider_area wow fadeInUp">
-          <h6>Our Part</h6>
+          <h6>Our Partners</h6>
           <div class="marquee_animi">
             <ul class="d-flex flex-wrap">
               @foreach ($brands as $brand)
