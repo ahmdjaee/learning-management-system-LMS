@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\VideoSectionController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Models\BrandSection;
@@ -160,6 +161,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
         Route::get('/get-instructor-courses/{id}', [FeaturedInstructorController::class, 'getInstructorCourses']);
         Route::resource('/featured-instructor-section', FeaturedInstructorController::class);
+        Route::resource('/testimonials-section', TestimonialController::class);
     });
 
     /** Laravel File Manager Routes */

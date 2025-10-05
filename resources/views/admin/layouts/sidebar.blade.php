@@ -561,6 +561,11 @@
                 >
                   Instructor
                 </a>
+                <a class="dropdown-item {{ request()->routeIs('admin.testimonials-section.*') ? 'active' : '' }}"
+                  href="{{ route('admin.testimonials-section.index') }}"
+                >
+                  Testimonials
+                </a>
               </div>
             </div>
           </div>
