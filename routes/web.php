@@ -55,6 +55,7 @@ Route::get('/order-success', [PaymentController::class, 'orderSuccess'])->name('
 Route::get('/order-failed', [PaymentController::class, 'orderFailed'])->name('order.failed');
 
 Route::post('/newsletter-subscribe', [FrontendController::class, 'subscribe'])->name('newsletter-subscribe');
+Route::post('/newsletter-subscribe', [FrontendController::class, 'subscribe'])->name('newsletter-subscribe');
 
 /**
  * -------------------------------------------------

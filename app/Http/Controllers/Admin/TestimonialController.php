@@ -110,7 +110,7 @@ class TestimonialController extends Controller
     public function destroy(Testimonial $testimonials_section)
     {
         try {
-            $this->deleteFile($testimonials_section->image);
+            $this->deleteFile($testimonials_section->user_image);
             $testimonials_section->delete();
             notyf()->success('Deleted Successfully');
             return response(['message' => 'Deleted Successfully'], 200);
