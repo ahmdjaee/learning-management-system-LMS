@@ -176,10 +176,13 @@
                     <a class="nav-link" href="{{ route('about') }}">About</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('contact.index') }}">Contact</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">Courses <i class="far fa-angle-down"></i></a>
                     <ul class="droap_menu">
                         <li><a href="courses.html">Courses</a></li>
-                        <li><a href="courses_details.html">Course details</a></li>
+                        <li><a href="courses_details.html">Course details</a></li> 
                         <li><a href="course_video.html">Course video</a></li>
                     </ul>
                 </li>
