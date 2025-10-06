@@ -566,6 +566,11 @@
                 >
                   Testimonials
                 </a>
+                <a class="dropdown-item {{ request()->routeIs('admin.counter-section.*') ? 'active' : '' }}"
+                  href="{{ route('admin.counter-section.index') }}"
+                >
+                  Counter
+                </a>
               </div>
             </div>
           </div>

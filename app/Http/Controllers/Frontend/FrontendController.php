@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AboutUsSection;
 use App\Models\BecomeInstructorSection;
 use App\Models\Brand;
+use App\Models\Counter;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use App\Models\Feature;
@@ -75,5 +76,14 @@ class FrontendController extends Controller
             'message' => 'Subscribe to newsletter successfully!'
         ]);
 
+    }
+
+    public function about() : View {
+        $about = AboutUsSection::first();
+        $counter = Counter::first();
+        $testimonials = Testimonial::all();
+
+        return view('frontend.pages.about', compact('about', 'counter', 'testimonials'));
+    
     }
 }

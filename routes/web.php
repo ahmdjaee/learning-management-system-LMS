@@ -57,6 +57,9 @@ Route::get('/order-failed', [PaymentController::class, 'orderFailed'])->name('or
 Route::post('/newsletter-subscribe', [FrontendController::class, 'subscribe'])->name('newsletter-subscribe');
 Route::post('/newsletter-subscribe', [FrontendController::class, 'subscribe'])->name('newsletter-subscribe');
 
+/** About us */
+Route::get('/about', [FrontendController::class, 'about'])->name('about');
+
 /**
  * -------------------------------------------------
  * Student Routes

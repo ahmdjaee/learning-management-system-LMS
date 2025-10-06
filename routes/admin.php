@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Auth\VerifyEmailController;
 use App\Http\Controllers\Admin\BecomeInstructorSectionController;
 use App\Http\Controllers\Admin\BrandSectionController;
 use App\Http\Controllers\Admin\CertificateBuilderController;
+use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -162,6 +163,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
         Route::get('/get-instructor-courses/{id}', [FeaturedInstructorController::class, 'getInstructorCourses']);
         Route::resource('/featured-instructor-section', FeaturedInstructorController::class);
         Route::resource('/testimonials-section', TestimonialController::class);
+        Route::resource('/counter-section', CounterController::class);
     });
 
     /** Laravel File Manager Routes */
