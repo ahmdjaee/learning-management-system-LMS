@@ -718,6 +718,11 @@ $(function () {
         }
     });
 
+    $('.categoty_list li .form-check').on('click', function (e) {
+        e.stopPropagation();
+        console.log('testttttttttt')
+    });
+
 
     // Range Slider
     $('.basic').alRangeSlider();
