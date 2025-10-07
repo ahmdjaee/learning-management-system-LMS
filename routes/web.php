@@ -65,6 +65,8 @@ Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/contact', [FrontendContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [FrontendContactController::class, 'sendMail'])->name('contact.send');
 
+Route::post('/review', [CoursePageController::class, 'storeReview'])->name('review.store');
+
 /**
  * -------------------------------------------------
  * Student Routes
