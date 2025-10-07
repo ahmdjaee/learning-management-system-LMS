@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\BecomeInstructorSectionController;
 use App\Http\Controllers\Admin\BrandSectionController;
 use App\Http\Controllers\Admin\CertificateBuilderController;
 use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ContactSettingController;
 use App\Http\Controllers\Admin\CounterController;
 use App\Http\Controllers\Admin\CourseLanguageController;
 use App\Http\Controllers\Admin\CourseLevelController;
@@ -142,6 +143,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::get('/commission-settings', [SettingController::class, 'commissionSetting'])->name('commission-settings');
     Route::post('/commission-settings', [SettingController::class, 'updateCommissionSetting'])->name('commission-settings.update');
 
+    Route::get('/smtp-settings', [SettingController::class, 'smptSetting'])->name('smtp-settings');
+    Route::post('/smtp-settings', [SettingController::class, 'updateSmtpSetting'])->name('smtp-settings.update');
+
     /** Payout gateway routes */
     Route::resource('/payout-gateway', PayoutGatewayController::class);
 
@@ -168,6 +172,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     });
 
         Route::resource('/contact', ContactController::class);
+        Route::resource('/contact-setting', ContactSettingController::class);
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

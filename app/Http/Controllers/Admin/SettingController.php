@@ -66,4 +66,27 @@ class SettingController extends Controller
 
         return redirect()->back();
     }
+
+    public function smptSetting(): View
+    {
+        return view('admin.setting.smpt-settings');
+    }
+
+    public function updateSmtpSetting(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'sender_email' => 'required|email|max:255',
+            'receiver_email' => 'required|email|max:255',
+        ]);
+
+        foreach ($data as $key => $value) {
+            Setting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        Cache::forget('settings');
+
+        notyf()->success('Updated Successfully');
+
+        return redirect()->back();
+    }
 }

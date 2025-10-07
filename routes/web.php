@@ -63,6 +63,7 @@ Route::get('/about', [FrontendController::class, 'about'])->name('about');
 
 /** Contact  */
 Route::get('/contact', [FrontendContactController::class, 'index'])->name('contact.index');
+Route::post('/contact', [FrontendContactController::class, 'sendMail'])->name('contact.send');
 
 /**
  * -------------------------------------------------

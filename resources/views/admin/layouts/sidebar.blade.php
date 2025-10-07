@@ -604,6 +604,11 @@
                 >
                   Cards
                 </a>
+                <a class="dropdown-item {{ request()->routeIs('admin.contact-setting.*') ? 'active' : '' }}"
+                  href="{{ route('admin.contact-setting.index') }}"
+                >
+                  Setting
+                </a>
               </div>
             </div>
           </div>

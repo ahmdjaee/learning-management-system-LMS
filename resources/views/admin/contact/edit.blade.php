@@ -27,7 +27,7 @@
               <x-input-file-block
                 name="icon"
                 value="{{ old('icon') ?? $contactCard->icon }}"
-                label="icon Icon"
+                label="Icon"
               />
 
               <input

@@ -4,18 +4,18 @@
     <div class="list-group list-group-transparent">
       <a class="list-group-item list-group-item-action d-flex align-items-center {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}"
         href="{{ route('admin.settings.index') }}"
-      >General Settings</a>
+      >General Settings
+    </a>
       <a class="list-group-item list-group-item-action d-flex align-items-center {{ request()->routeIs('admin.commission-settings') ? 'active' : '' }}"
         href="{{ route('admin.commission-settings') }}"
       >
-        Commission Settings</a>
-      <a class="list-group-item list-group-item-action d-flex align-items-center"
-        href="#">Connected Apps</a>
-      <a class="list-group-item list-group-item-action d-flex align-items-center"
-        href="./settings-plan.html"
-      >Plans</a>
-      <a class="list-group-item list-group-item-action d-flex align-items-center"
-        href="#">Billing &amp; Invoices</a>
+        Commission Settings
+      </a>
+      <a class="list-group-item list-group-item-action d-flex align-items-center {{ request()->routeIs('admin.smtp-settings') ? 'active' : '' }}"
+        href="{{ route('admin.smtp-settings') }}"
+      >
+        SMTP Settings
+      </a>
     </div>
     <h4 class="subheader mt-4">Experience</h4>
     <div class="list-group list-group-transparent">

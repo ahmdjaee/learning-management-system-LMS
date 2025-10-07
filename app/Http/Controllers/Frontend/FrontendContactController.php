@@ -3,13 +3,50 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactMail;
+use App\Models\Contact;
+use App\Models\ContactSetting;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class FrontendContactController extends Controller
 {
     public function index(): View
     {
-        return view('frontend.pages.contact');
+        $contactCards = Contact::where('status', 1)->get();
+        $setting = ContactSetting::first();
+
+        return view('frontend.pages.contact', compact('contactCards', 'setting'));
+    }
+
+    public function sendMail(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        if (config('mail_queue.is_queue')) {
+            Mail::to(config('settings.receiver_email'))->queue(new ContactMail(
+                $request->name,
+                $request->email,
+                $request->subject,
+                $request->message,
+            ));
+        } else {
+            Mail::to(config('settings.receiver_email'))->send(new ContactMail(
+                $request->name,
+                $request->email,
+                $request->subject,
+                $request->message,
+            ));
+        }
+
+        notyf('Email send successfully!');
+
+        return redirect()->back();
     }
 }
