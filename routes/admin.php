@@ -33,6 +33,7 @@ use App\Http\Controllers\Admin\PayoutGatewayController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TopBarController;
 use App\Http\Controllers\Admin\VideoSectionController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Models\BrandSection;
@@ -177,6 +178,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     Route::resource('/contact', ContactController::class);
     Route::resource('/contact-setting', ContactSettingController::class);
+
+    /** Header and Footer */
+    Route::resource('/top-bar', TopBarController::class);
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

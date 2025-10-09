@@ -619,6 +619,39 @@
           </div>
         </li>
 
+        <li
+          class="nav-item dropdown {{ request()->is('admin/top-bar*') ? 'active' : '' }}"
+        >
+          <a
+            class="nav-link dropdown-toggle {{ request()->is('admin/top-bar*') ? 'show' : '' }}"
+            data-bs-toggle="dropdown"
+            data-bs-auto-close="false"
+            href="#navbar-base"
+            role="button"
+            aria-expanded="{{ request()->is('admin/top-bar*') ? 'true' : 'false' }}"
+          >
+            <span class="nav-link-icon d-md-none d-lg-inline-block">
+              <i class="ti ti-layout-navbar"></i>
+            </span>
+            <span class="nav-link-title">
+              Header / Footer
+            </span>
+          </a>
+          <div
+            class="dropdown-menu {{ request()->is('admin/top-bar*') ? 'show' : '' }}"
+          >
+            <div class="dropdown-menu-columns">
+              <div class="dropdown-menu-column">
+                <a class="dropdown-item {{ request()->routeIs('admin.top-bar.*') ? 'active' : '' }}"
+                  href="{{ route('admin.top-bar.index') }}"
+                >
+                  Top Bar
+                </a>
+              </div>
+            </div>
+          </div>
+        </li>
+
         <li class="nav-item {{ request()->routeIs('admin.settings.*') ? 'active' : '' }}">
           <a class="nav-link" href="{{ route('admin.settings.index') }}">
             <span class="nav-link-icon d-md-none d-lg-inline-block">
