@@ -128,7 +128,7 @@
   <!--range slider js-->
   <script src="{{ asset('frontend/assets/js/range_slider.js') }}"></script>
   <!--barfiller js-->
-  <script src="{{ asset('frontend/assets/js/animated_barfiller.js') }}"></script>
+  <script src="{{ asset('frontend/assets/js/animated_barfiller.js') }}" defer></script>
   <!--calendar js-->
   <script src="{{ asset('frontend/assets/js/jquery.calendar.js') }}" defer></script>
   <!--starRating js-->

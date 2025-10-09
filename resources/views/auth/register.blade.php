@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-12">
-                                        <div class="wsus__login_form_input">
+                                        <div class="add_course_basic_info_imput mb-0 mt-3">
                                             <label>Document (Education/Certificate)</label>
                                             <input type="file" name="document" required value="{{ old('document') }}" placeholder="Document" >
                                             <x-input-error :messages="$errors->get('document')" class="mt-2" />

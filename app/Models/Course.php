@@ -67,4 +67,14 @@ class Course extends Model
     {
         return $this->hasMany(CourseChapterLesson::class, 'course_id', 'id');
     }
+
+    /**
+     * Get all of the reviews for the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'course_id', 'id');
+    }
 }

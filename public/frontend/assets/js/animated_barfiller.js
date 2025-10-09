@@ -1,180 +1,106 @@
-/*
-* File: jquery.barfiller.js
-* Version: 1.0.1
-* Description: A plugin that fills bars with a percentage you set.
-* Author: 9bit Studios
-* Copyright 2012, 9bit Studios
-* http://www.9bitstudios.com
-* Free to use and abuse under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-*/
-
+/**
+ * jQuery Barfiller Plugin
+ */
 (function ($) {
+    "use strict";
 
     $.fn.barfiller = function (options) {
+        var settings = $.extend(
+            {
+                barColor: "#16a085",
+                backgroundColor: "#e0e0e0",
+                tooltip: true,
+                tooltipColor: "#000",
+                duration: 1000,
+                animateOnResize: true,
+                barHeight: 8,
+                borderRadius: 5,
+            },
+            options
+        );
 
-        var defaults = $.extend({
-            barColor: '#16b597',
-            tooltip: true,
-            duration: 1000,
-            animateOnResize: true,
-            symbol: "%"
-        }, options);
+        return this.each(function () {
+            var $this = $(this);
+            var $fill = $this.find(".fill");
+            var $tip = $this.find(".tip");
+            var percentage = $fill.data("percentage") || 0;
 
+            $this.css({
+                position: "relative",
+                width: "100%",
+                height: settings.barHeight + "px",
+                "background-color": settings.backgroundColor,
+                "border-radius": settings.borderRadius + "px",
+                overflow: "hidden",
+            });
 
-        /******************************
-        Private Variables
-        *******************************/         
+            $fill.css({
+                display: "block",
+                position: "relative",
+                width: "0%",
+                height: "100%",
+                "background-color": settings.barColor,
+                "border-radius": settings.borderRadius + "px",
+                transition: "width " + settings.duration + "ms ease-in-out",
+            });
 
-        var object = $(this);
-        var settings = $.extend(defaults, options);
-        var barWidth = object.width();
-        var fill = object.find('.fill');
-        var toolTip = object.find('.tip');
-        var fillPercentage = fill.attr('data-percentage');
-        var resizeTimeout;
-        var transitionSupport = false;
-        var transitionPrefix;
+            if (settings.tooltip) {
+                var $tipWrap = $this.find(".tipWrap");
 
-        /******************************
-        Public Methods
-        *******************************/         
-        
-        var methods = {
-
-            init: function() {
-                return this.each(function () {
-                    if(methods.getTransitionSupport()) {
-                        transitionSupport = true;
-                        transitionPrefix = methods.getTransitionPrefix();
-                    }
-
-                    methods.appendHTML();
-                    methods.setEventHandlers();
-                    methods.initializeItems();
+                $tipWrap.css({
+                    position: "absolute",
+                    top: "-30px",
+                    left: "0%",
+                    transition: "left " + settings.duration + "ms ease-in-out",
+                    "z-index": "10",
                 });
-            },
 
-            /******************************
-            Append HTML
-            *******************************/			
+                $tip.css({
+                    display: "inline-block",
+                    padding: "5px 10px",
+                    "background-color": settings.tooltipColor,
+                    color: "#fff",
+                    "border-radius": "3px",
+                    "font-size": "12px",
+                    "font-weight": "bold",
+                    "white-space": "nowrap",
+                    position: "relative",
+                    left: "-50%",
+                });
 
-            appendHTML: function() {
-                fill.css('background', settings.barColor);
+                $tip.append(
+                    '<span style="position: absolute; bottom: -5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid ' +
+                        settings.tooltipColor +
+                        ';"></span>'
+                );
 
-                if(!settings.tooltip) {
-                    toolTip.css('display', 'none');
-                }
-                toolTip.text(fillPercentage + settings.symbol);
-            },
-            
-
-            /******************************
-            Set Event Handlers
-            *******************************/
-            setEventHandlers: function() {
-                if(settings.animateOnResize) {
-                    $(window).on("resize", function(event){
-                        clearTimeout(resizeTimeout);
-                        resizeTimeout = setTimeout(function() { 
-                        methods.refill(); 
-                        }, 300);
-                    });				
-                }
-            },				
-
-            /******************************
-            Initialize
-            *******************************/			
-
-            initializeItems: function() {
-            var pctWidth = methods.calculateFill(fillPercentage);
-            object.find('.tipWrap').css({ display: 'inline' });
-
-            if(transitionSupport)
-                methods.transitionFill(pctWidth);
-            else
-                methods.animateFill(pctWidth);
-            },
-
-            getTransitionSupport: function() {
-
-                var thisBody = document.body || document.documentElement,
-                thisStyle = thisBody.style;
-                var support = thisStyle.transition !== undefined || thisStyle.WebkitTransition !== undefined || thisStyle.MozTransition !== undefined || thisStyle.MsTransition !== undefined || thisStyle.OTransition !== undefined;
-                return support; 	
-            },
-                
-            getTransitionPrefix: function() {
-                if(/mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase())) {
-                    return '-moz-transition';
-                }
-                if(/webkit/.test(navigator.userAgent.toLowerCase())) {
-                    return '-webkit-transition';
-                }
-                if(/opera/.test(navigator.userAgent.toLowerCase())) {
-                    return '-o-transition';
-                }
-                if (/msie/.test(navigator.userAgent.toLowerCase())) {
-                    return '-ms-transition';
-                }
-                else {
-                    return 'transition';
-                }
-            },
-
-            getTransition: function(val, time, type) {
-
-                var CSSObj;
-                if(type === 'width') {
-                    CSSObj = { width : val };
-                }
-                else if (type === 'left') {
-                    CSSObj = { left: val };
-                }
-
-                time = time/1000;
-                CSSObj[transitionPrefix] = type+' '+time+'s ease-in-out';		    
-                return CSSObj;
-
-            },				
-
-            refill: function() {
-                fill.css('width', 0);
-                toolTip.css('left', 0);
-                barWidth = object.width();
-                methods.initializeItems();
-            },
-
-            calculateFill: function(percentage) {
-                percentage = percentage *  0.01;
-                var finalWidth = barWidth * percentage;
-                return finalWidth;
-            },       
-
-            transitionFill: function(barWidth) {
-
-                var toolTipOffset = barWidth - toolTip.width();
-                fill.css( methods.getTransition(barWidth, settings.duration, 'width'));
-                toolTip.css( methods.getTransition(toolTipOffset, settings.duration, 'left'));
-
-            },	
-
-            animateFill: function(barWidth) {
-                var toolTipOffset = barWidth - toolTip.width();
-                fill.stop().animate({width: '+=' + barWidth}, settings.duration);
-                toolTip.stop().animate({left: '+=' + toolTipOffset}, settings.duration);
+                $tip.text(percentage + "%");
             }
-			
-        };
-        
-        if (methods[options]) { 	// $("#element").pluginName('methodName', 'arg1', 'arg2');
-            return methods[options].apply(this, Array.prototype.slice.call(arguments, 1));
-        } else if (typeof options === 'object' || !options) { 	// $("#element").pluginName({ option: 1, option:2 });
-            return methods.init.apply(this);  
-        } else {
-            $.error( 'Method "' +  method + '" does not exist in barfiller plugin!');
-        } 
-    };
 
+            function animate() {
+                setTimeout(function () {
+                    $fill.css("width", percentage + "%");
+
+                    if (settings.tooltip) {
+                        $this.find(".tipWrap").css("left", percentage + "%");
+                    }
+                }, 100);
+            }
+
+            animate();
+
+            if (settings.animateOnResize) {
+                $(window).on("resize", function () {
+                    animate();
+                });
+            }
+
+            $this.data("updatePercentage", function (newPercentage) {
+                percentage = newPercentage;
+                $fill.data("percentage", newPercentage);
+                $tip.text(newPercentage + "%");
+                animate();
+            });
+        });
+    };
 })(jQuery);

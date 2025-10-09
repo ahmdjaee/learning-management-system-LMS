@@ -48,12 +48,16 @@ class CoursePageController extends Controller
 
     public function show(string $slug): View
     {
-        $course = Course::where('slug', $slug)
+        $course = Course::with('reviews')->where('slug', $slug)
             ->where('is_approved', 'approved')
             ->where('status', 'active')
             ->firstOrFail();
 
-        return view('frontend.pages.course-details-page', compact('course'));
+        $reviews = Review::where('course_id', $course->id)->where('status', 1)
+        ->paginate(1)
+        ->withQueryString();
+
+        return view('frontend.pages.course-details-page', compact('course', 'reviews'));
     }
 
 
@@ -81,7 +85,7 @@ class CoursePageController extends Controller
         }
 
         if ($isAlreadyReview) {
-            notyf('You already review this course!');
+            notyf()->error('You already review this course!');
             return redirect()->back();
         }
 
@@ -96,7 +100,7 @@ class CoursePageController extends Controller
         $review->user_id = auth()->id();
         $review->save();
 
-        notyf('Review Posted Successfully!');
+        notyf('Submit Successfully!, Waiting for Admin Approval');
 
         return redirect()->back();
     }

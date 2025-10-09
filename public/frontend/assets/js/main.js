@@ -726,7 +726,7 @@ $(function () {
     };
 
     // Pregress Bar
-    $(document).ready(function () {
+    $(function () {
         $("#bar1").barfiller({});
         $("#bar2").barfiller({});
         $("#bar3").barfiller({});

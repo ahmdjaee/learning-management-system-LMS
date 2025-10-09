@@ -8,10 +8,58 @@
   <meta property="og:type" content="Course">
 @endpush
 
+@push('header_scripts')
+  <style>
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .pagination .page-item .page-link {
+      border: none;
+      color: #555;
+      background: #f8f9fa;
+      border-radius: 50%;
+      padding: 8px 14px;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .pagination .page-item .page-link:hover {
+      background: #007bff;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(0, 123, 255, 0.4);
+    }
+
+    .pagination .page-item.active .page-link {
+      background: #007bff;
+      color: white;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0, 123, 255, 0.3);
+    }
+
+    .pagination .page-item.disabled .page-link {
+      background: #e9ecef;
+      color: #aaa;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* Optional: ubah simbol previous/next jadi lebih halus */
+    .pagination .page-link[aria-label="« Previous"],
+    .pagination .page-link[aria-label="Next »"] {
+      font-weight: bold;
+    }
+  </style>
+@endpush
+
 @section('content')
   <!--===========================
-          BREADCRUMB START
-      ============================-->
+                                    BREADCRUMB START
+                                ============================-->
   <section class="wsus__breadcrumb course_details_breadcrumb"
     style="background: url({{ asset('frontend/assets/images/breadcrumb_bg.jpg') }});"
   >
@@ -62,12 +110,12 @@
     </div>
   </section>
   <!--===========================
-          BREADCRUMB END
-      ============================-->
+                                    BREADCRUMB END
+                                ============================-->
 
   <!--===========================
-          COURSES DETAILS START
-      ============================-->
+                                    COURSES DETAILS START
+                                ============================-->
   <section class="wsus__courses_details pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
@@ -82,60 +130,60 @@
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link active"
-                  id="pills-home-tab"
+                  id="pills-overview-tab"
                   data-bs-toggle="pill"
-                  data-bs-target="#pills-home"
+                  data-bs-target="#pills-overview"
                   type="button"
                   role="tab"
-                  aria-controls="pills-home"
+                  aria-controls="pills-overview"
                   aria-selected="true"
                 >Overview</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
-                  id="pills-profile-tab"
+                  id="pills-curriculum-tab"
                   data-bs-toggle="pill"
-                  data-bs-target="#pills-profile"
+                  data-bs-target="#pills-curriculum"
                   type="button"
                   role="tab"
-                  aria-controls="pills-profile"
+                  aria-controls="pills-curriculum"
                   aria-selected="false"
                 >Curriculum</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
-                  id="pills-contact-tab"
+                  id="pills-instructor-tab"
                   data-bs-toggle="pill"
-                  data-bs-target="#pills-contact"
+                  data-bs-target="#pills-instructor"
                   type="button"
                   role="tab"
-                  aria-controls="pills-contact"
+                  aria-controls="pills-instructor"
                   aria-selected="false"
                 >Instructor</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
-                  id="pills-disabled-tab"
+                  id="pills-review-tab"
                   data-bs-toggle="pill"
-                  data-bs-target="#pills-disabled"
+                  data-bs-target="#pills-review"
                   type="button"
                   role="tab"
-                  aria-controls="pills-disabled"
+                  aria-controls="pills-review"
                   aria-selected="false"
                 >FAQs</button>
               </li>
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
-                  id="pills-disabled-tab2"
+                  id="pills-review-tab2"
                   data-bs-toggle="pill"
-                  data-bs-target="#pills-disabled2"
+                  data-bs-target="#pills-review2"
                   type="button"
                   role="tab"
-                  aria-controls="pills-disabled2"
+                  aria-controls="pills-review2"
                   aria-selected="false"
                 >Review</button>
               </li>
@@ -144,9 +192,9 @@
             <div class="tab-content" id="pills-tabContent">
               <div
                 class="tab-pane fade show active"
-                id="pills-home"
+                id="pills-overview"
                 role="tabpanel"
-                aria-labelledby="pills-home-tab"
+                aria-labelledby="pills-overview-tab"
                 tabindex="0"
               >
                 <div class="wsus__courses_overview box_area">
@@ -156,9 +204,9 @@
               </div>
               <div
                 class="tab-pane fade"
-                id="pills-profile"
+                id="pills-curriculum"
                 role="tabpanel"
-                aria-labelledby="pills-profile-tab"
+                aria-labelledby="pills-curriculum-tab"
                 tabindex="0"
               >
                 <div class="wsus__courses_curriculum box_area">
@@ -211,9 +259,9 @@
               </div>
               <div
                 class="tab-pane fade"
-                id="pills-contact"
+                id="pills-instructor"
                 role="tabpanel"
-                aria-labelledby="pills-contact-tab"
+                aria-labelledby="pills-instructor-tab"
                 tabindex="0"
               >
                 <div class="wsus__courses_instructor box_area">
@@ -343,9 +391,9 @@
               </div>
               <div
                 class="tab-pane fade"
-                id="pills-disabled"
+                id="pills-review"
                 role="tabpanel"
-                aria-labelledby="pills-disabled-tab"
+                aria-labelledby="pills-review-tab"
                 tabindex="0"
               >
                 <div class="wsus__course_faq box_area">
@@ -472,9 +520,9 @@
 
               <div
                 class="tab-pane fade"
-                id="pills-disabled2"
+                id="pills-review2"
                 role="tabpanel"
-                aria-labelledby="pills-disabled-tab2"
+                aria-labelledby="pills-review-tab2"
                 tabindex="0"
               >
                 <div class="wsus__courses_review box_area">
@@ -482,13 +530,11 @@
                   <div class="row align-items-center mb_50">
                     <div class="col-xl-4 col-md-6">
                       <div class="total_review">
-                        <h2>4.7</h2>
+                        <h2>{{ number_format($course->reviews()->avg('rating'), 1) ?? 0 }}</h2>
                         <p>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
+                          @for ($i = 0; $i < number_format($course->reviews()->avg('rating'), 1) ?? 0; $i++)
+                            <i class="fas fa-star"></i>
+                          @endfor
                         </p>
                         <h4>3 Ratings</h4>
                       </div>
@@ -501,9 +547,12 @@
                             <div class="tipWrap">
                               <span class="tip"></span>
                             </div>
-                            <span class="fill" data-percentage="85"></span>
+                            <span class="fill"
+                              data-percentage="{{ $course->reviews()->count() != 0 ? number_format($course->reviews()->where('rating', 5)->count() / $course->reviews()->count()) * 100 : 0 }}"
+                            ></span>
                           </div>
-                          <span class="qnty">87</span>
+                          <span
+                            class="qnty">{{ $course->reviews()->where('rating', 5)->count() }}</span>
                         </div>
                         <div class="review_bar_single">
                           <p>4 <i class="fas fa-star"></i></p>
@@ -511,9 +560,12 @@
                             <div class="tipWrap">
                               <span class="tip"></span>
                             </div>
-                            <span class="fill" data-percentage="70"></span>
+                            <span class="fill"
+                              data-percentage="{{ $course->reviews()->count() != 0 ? number_format($course->reviews()->where('rating', 4)->count() / $course->reviews()->count()) * 100 : 0 }}"
+                            ></span>
                           </div>
-                          <span class="qnty">69</span>
+                          <span
+                            class="qnty">{{ $course->reviews()->where('rating', 4)->count() }}</span>
                         </div>
                         <div class="review_bar_single">
                           <p>3 <i class="fas fa-star"></i></p>
@@ -521,9 +573,12 @@
                             <div class="tipWrap">
                               <span class="tip"></span>
                             </div>
-                            <span class="fill" data-percentage="50"></span>
+                            <span class="fill"
+                              data-percentage="{{ $course->reviews()->count() != 0 ? number_format($course->reviews()->where('rating', 3)->count() / $course->reviews()->count()) * 100 : 0 }}"
+                            ></span>
                           </div>
-                          <span class="qnty">44</span>
+                          <span
+                            class="qnty">{{ $course->reviews()->where('rating', 3)->count() }}</span>
                         </div>
                         <div class="review_bar_single">
                           <p>2 <i class="fas fa-star"></i></p>
@@ -531,9 +586,12 @@
                             <div class="tipWrap">
                               <span class="tip"></span>
                             </div>
-                            <span class="fill" data-percentage="30"></span>
+                            <span class="fill"
+                              data-percentage="{{ $course->reviews()->count() != 0 ? number_format($course->reviews()->where('rating', 2)->count() / $course->reviews()->count()) * 100 : 0 }}"
+                            ></span>
                           </div>
-                          <span class="qnty">29</span>
+                          <span
+                            class="qnty">{{ $course->reviews()->where('rating', 2)->count() }}</span>
                         </div>
                         <div class="review_bar_single">
                           <p>1 <i class="fas fa-star"></i></p>
@@ -541,65 +599,42 @@
                             <div class="tipWrap">
                               <span class="tip"></span>
                             </div>
-                            <span class="fill" data-percentage="10"></span>
+                            <span class="fill"
+                              data-percentage="{{ $course->reviews()->count() != 0 ? number_format($course->reviews()->where('rating', 1)->count() / $course->reviews()->count()) * 100 : 0 }}"
+                            ></span>
                           </div>
-                          <span class="qnty">12</span>
+                          <span
+                            class="qnty">{{ $course->reviews()->where('rating', 1)->count() }}</span>
                         </div>
 
                       </div>
                     </div>
                   </div>
                   <h3>Reviews</h3>
-                  <div class="wsus__course_single_reviews">
-                    <div class="wsus__single_review_img">
-                      <img
-                        class="img-fluid"
-                        src="images/testimonial_user_1.png"
-                        alt="user"
-                      >
+                  @foreach ($reviews as $review)
+                    <div class="wsus__course_single_reviews">
+                      <div class="wsus__single_review_img">
+                        <img
+                          class="img-fluid"
+                          src="{{ asset($review->user->image) }}"
+                          alt="user"
+                        >
+                      </div>
+                      <div class="wsus__single_review_text">
+                        <h4>{{ $review->user->name }}</h4>
+                        <h6> {{ date('d m y', strtotime($review->created_at)) }}
+                          <span>
+                            @for ($i = 0; $i < $review->rating; $i++)
+                              <i class="fas fa-star"></i>
+                            @endfor
+                          </span>
+                        </h6>
+                        <p>{{ $review->review }}</p>
+                      </div>
                     </div>
-                    <div class="wsus__single_review_text">
-                      <h4>Dominic L. Ement</h4>
-                      <h6> March 23,2024 at 8:37 pm
-                        <span>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                        </span>
-                      </h6>
-                      <p>Donec vel mauris at lectus iaculis elementum vel vel
-                        lacus. Sed finibus velit vitae risus imperdiet placerat. Ut posuere eros
-                        ut molestie rhoncus. Duis eget ex elementum, ultricies dolor sed,
-                        hendrerit diam. Donec ut blandit nunc, et tempus lorem.</p>
-                    </div>
-                  </div>
-                  <div class="wsus__course_single_reviews">
-                    <div class="wsus__single_review_img">
-                      <img
-                        class="img-fluid"
-                        src="images/testimonial_user_2.png"
-                        alt="user"
-                      >
-                    </div>
-                    <div class="wsus__single_review_text">
-                      <h4>Smith jhon</h4>
-                      <h6> March 23,2024 at 8:37 pm
-                        <span>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                          <i class="fas fa-star"></i>
-                        </span>
-                      </h6>
-                      <p>Donec vel mauris at lectus iaculis elementum vel vel
-                        lacus. Sed finibus velit vitae risus imperdiet placerat. Ut posuere eros
-                        ut molestie rhoncus. Duis eget ex elementum, ultricies dolor sed,
-                        hendrerit diam. Donec ut blandit nunc, et tempus lorem.</p>
-                    </div>
-                  </div>
+                  @endforeach
+                  <br>
+                  {{ $reviews->links() }}
                 </div>
                 @auth
                   <div class="wsus__courses_review_input box_area mt_40">
@@ -631,7 +666,7 @@
                           ></textarea>
                         </div>
                         <div class="col-12">
-                          <button class="common_btn mt-3" type="submit">Post Review</button>
+                          <button class="common_btn mt-3" type="submit">Submit Review</button>
                         </div>
                       </div>
                     </form>
@@ -848,8 +883,8 @@
     </div>
   </section>
   <!--===========================
-          COURSES DETAILS END
-      ============================-->
+                                    COURSES DETAILS END
+                                ============================-->
 @endsection
 
 @push('scripts')
@@ -862,6 +897,95 @@
 
         $("input[name=rating]").val(starRating);
       });
+    });
+
+    function initHistoryTabs(tabSelector, paginationSelector = ".pagination") {
+      const tabContainer = document.querySelector(tabSelector);
+      if (!tabContainer) return;
+
+      const tabs = tabContainer.querySelectorAll('[data-bs-toggle="pill"]');
+
+      // ======= Fungsi: Aktifkan tab tertentu =======
+      function activateTabById(tabId, push = false) {
+        const tabButton = tabContainer.querySelector(`[data-bs-target="${tabId}"]`);
+        if (!tabButton) return;
+
+        const tab = new bootstrap.Tab(tabButton);
+        tab.show();
+
+        // Update URL
+        const url = new URL(window.location);
+        url.searchParams.set("tab", tabId.replace("#", ""));
+
+        if (push) {
+          history.pushState({
+            tab: tabId
+          }, "", url);
+        } else {
+          // replace agar tidak bikin history baru
+          history.replaceState({
+            tab: tabId
+          }, "", url);
+        }
+
+        updatePaginationLinks(paginationSelector, tabId.replace("#", ""));
+      }
+
+      // ======= Fungsi: Update pagination link Laravel =======
+      function updatePaginationLinks(paginationSelector, tabParam) {
+        const paginationLinks = document.querySelectorAll(`${paginationSelector} a.page-link`);
+        paginationLinks.forEach(link => {
+          try {
+            const url = new URL(link.href);
+            url.searchParams.set("tab", tabParam);
+            link.href = url.toString();
+          } catch (err) {
+            console.warn("Invalid pagination link:", link.href);
+          }
+        });
+      }
+
+      // ======= Saat tab diklik =======
+      tabs.forEach(tabBtn => {
+        tabBtn.addEventListener("shown.bs.tab", e => {
+          const target = e.target.getAttribute("data-bs-target");
+          activateTabById(target, true);
+        });
+      });
+
+      // ======= Saat tombol Back/Forward browser =======
+      window.addEventListener("popstate", e => {
+        const tabId =
+          e.state?.tab ||
+          `#${new URL(window.location).searchParams.get("tab")}`;
+        if (tabId) activateTabById(tabId);
+      });
+
+      // ======= Saat halaman pertama kali dimuat =======
+      const urlParams = new URL(window.location).searchParams;
+      const tabParam = urlParams.get("tab");
+      const initialTab = tabParam ?
+        `#${tabParam}` :
+        tabs[0]?.getAttribute("data-bs-target"); // default tab pertama
+
+      if (initialTab) {
+        // Aktifkan tab pertama dan ubah URL-nya (replace, bukan push)
+        activateTabById(initialTab, false);
+
+        // Langsung replaceState agar URL berubah tapi history lama dihapus
+        const url = new URL(window.location);
+        url.searchParams.set("tab", initialTab.replace("#", ""));
+        history.replaceState({
+          tab: initialTab
+        }, "", url);
+
+        updatePaginationLinks(paginationSelector, initialTab.replace("#", ""));
+      }
+    }
+
+    // 🚀 Inisialisasi
+    document.addEventListener("DOMContentLoaded", () => {
+      initHistoryTabs("#pills-tab", ".pagination");
     });
   </script>
 @endpush

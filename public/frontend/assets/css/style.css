@@ -8839,6 +8839,7 @@ footer {
 
 .wsus__single_review_text {
     max-width: 90%;
+    flex:1 ;
 }
 
 .wsus__single_review_text h4 {

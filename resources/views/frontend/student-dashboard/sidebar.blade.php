@@ -33,6 +33,10 @@
                 'route' => 'student.enrolled-courses.index',
                 'label' => 'Enrolled Courses',
             ],
+            [
+                'route' => 'student.reviews.index',
+                'label' => 'Review',
+            ],
         ];
       @endphp
       @foreach ($links as $key => $link)

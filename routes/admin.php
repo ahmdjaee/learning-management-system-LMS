@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\LatestCourseSectionController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
+use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\VideoSectionController;
@@ -91,6 +92,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /** Course Level Routes */
     Route::resource('course-levels', CourseLevelController::class);
+
+    /** Course Reviews */
+    Route::resource('/course-reviews', ReviewController::class);
 
     /** Course Category Routes */
     Route::resource('course-categories', CourseCategoryController::class);
@@ -171,8 +175,8 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
         Route::resource('/counter-section', CounterController::class);
     });
 
-        Route::resource('/contact', ContactController::class);
-        Route::resource('/contact-setting', ContactSettingController::class);
+    Route::resource('/contact', ContactController::class);
+    Route::resource('/contact-setting', ContactSettingController::class);
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

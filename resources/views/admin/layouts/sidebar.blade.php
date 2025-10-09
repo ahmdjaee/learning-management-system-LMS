@@ -436,6 +436,11 @@
                 >
                   Course Categories
                 </a>
+                <a class="dropdown-item {{ request()->routeIs('admin.course-reviews.*') ? 'active' : '' }}"
+                  href="{{ route('admin.course-reviews.index') }}"
+                >
+                  Course Reviews
+                </a>
               </div>
             </div>
           </div>

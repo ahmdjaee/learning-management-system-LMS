@@ -94,6 +94,10 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
 
     Route::get('/certificate/{course}/download', [CertificateController::class, 'download'])->name('certificate.download');
 
+    /** Review Routes */
+    Route::get('/reviews', [StudentDashboardController::class, 'review'])->name('reviews.index');
+    Route::delete('/reviews/{id}', [StudentDashboardController::class, 'reviewDestroy'])->name('reviews.destroy');
+
 });
 
 
