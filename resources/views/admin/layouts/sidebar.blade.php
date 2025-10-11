@@ -657,6 +657,11 @@
                 >
                   Social Links
                 </a>
+                <a class="dropdown-item {{ request()->routeIs('admin.useful-links.*') ? 'active' : '' }}"
+                  href="{{ route('admin.useful-links.index') }}"
+                >
+                  Useful Links
+                </a>
               </div>
             </div>
           </div>

@@ -36,6 +36,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SocialLinkController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\TopBarController;
+use App\Http\Controllers\Admin\UsefulLinkController;
 use App\Http\Controllers\Admin\VideoSectionController;
 use App\Http\Controllers\Admin\WithdrawRequestController;
 use App\Models\BrandSection;
@@ -185,6 +186,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::resource('/top-bar', TopBarController::class);
     Route::resource('/footer', FooterController::class);
     Route::resource('/social-links', SocialLinkController::class);
+    Route::resource('/useful-links', UsefulLinkController::class);
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

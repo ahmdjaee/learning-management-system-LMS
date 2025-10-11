@@ -23,7 +23,12 @@
               <h2>Follow Us On</h2>
               <ul class="d-flex flex-wrap">
                 @foreach ($socialLinks as $social)
-                <li><a href="{{ $social->url }}" target="_blank"><img style="width: 16px !important; height: 16px !important;"  src="{{ $social->icon }}" alt="" srcset=""></a></li>
+                  <li><a href="{{ $social->url }}" target="_blank"><img
+                        src="{{ $social->icon }}"
+                        srcset=""
+                        alt=""
+                        style="width: 16px !important; height: 16px !important;"
+                      ></a></li>
                 @endforeach
               </ul>
             </div>
@@ -66,7 +71,7 @@
                   </div>
                   <div class="text">
                     <h4>Email us:</h4>
-                    <a href="mailto:{{ $footer->email }}">{{ $footer->email}}</a>
+                    <a href="mailto:{{ $footer->email }}">{{ $footer->email }}</a>
                   </div>
                 </li>
                 <li>
@@ -79,7 +84,7 @@
                   </div>
                   <div class="text">
                     <h4>Call us:</h4>
-                    <a href="callto:{{ $footer->phone }}">{{ $footer->phone}}</a>
+                    <a href="callto:{{ $footer->phone }}">{{ $footer->phone }}</a>
                   </div>
                 </li>
                 <li>
@@ -92,7 +97,7 @@
                   </div>
                   <div class="text">
                     <h4>Office:</h4>
-                    <p>{{ $footer->address}}</p>
+                    <p>{{ $footer->address }}</p>
                   </div>
                 </li>
               </ul>
