@@ -647,6 +647,11 @@
                 >
                   Top Bar
                 </a>
+                <a class="dropdown-item {{ request()->routeIs('admin.footer.*') ? 'active' : '' }}"
+                  href="{{ route('admin.footer.index') }}"
+                >
+                  Footer
+                </a>
               </div>
             </div>
           </div>

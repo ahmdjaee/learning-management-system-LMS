@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\Admin\CourseSubCategoryController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\FeaturedInstructorController;
+use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
 use App\Http\Controllers\Admin\OrderController;
@@ -181,6 +182,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
 
     /** Header and Footer */
     Route::resource('/top-bar', TopBarController::class);
+    Route::resource('/footer', FooterController::class);
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {
