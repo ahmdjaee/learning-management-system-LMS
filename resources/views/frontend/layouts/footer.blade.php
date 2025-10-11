@@ -1,5 +1,6 @@
 @php
   $footer = \App\Models\Footer::first();
+  $socialLinks = \App\Models\SocialLink::where('status', 1)->get();
 @endphp
 
 <footer class="footer_3"
@@ -21,9 +22,9 @@
               <p>{{ $footer->description }}</p>
               <h2>Follow Us On</h2>
               <ul class="d-flex flex-wrap">
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                @foreach ($socialLinks as $social)
+                <li><a href="{{ $social->url }}" target="_blank"><img style="width: 16px !important; height: 16px !important;"  src="{{ $social->icon }}" alt="" srcset=""></a></li>
+                @endforeach
               </ul>
             </div>
           </div>

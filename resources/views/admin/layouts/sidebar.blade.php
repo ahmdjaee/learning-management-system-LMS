@@ -652,6 +652,11 @@
                 >
                   Footer
                 </a>
+                <a class="dropdown-item {{ request()->routeIs('admin.social-links.*') ? 'active' : '' }}"
+                  href="{{ route('admin.social-links.index') }}"
+                >
+                  Social Links
+                </a>
               </div>
             </div>
           </div>
