@@ -1,9 +1,9 @@
 @extends('frontend.layouts.master')
 
 @section('content')
-  {{--===========================
+  {{-- ===========================
         BREADCRUMB START
-    ============================--}}
+    ============================ --}}
   <section class="wsus__breadcrumb"
     style="background: url({{ asset('frontend/assets/images/breadcrumb_bg.jpg') }});"
   >
@@ -23,13 +23,13 @@
       </div>
     </div>
   </section>
-  {{--===========================
+  {{-- ===========================
         BREADCRUMB END
-    ============================--}}
+    ============================ --}}
 
-  {{--===========================
+  {{-- ===========================
         COURSES PAGE START
-    ============================--}}
+    ============================ --}}
   <section class="wsus__courses mt_120 xs_mt_100 pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
@@ -66,7 +66,9 @@
                               name="category[]"
                               type="checkbox"
                               value="{{ $subCategory->id }}"
-                              @checked(in_array($subCategory->id, request()->category ?? []))
+                              @checked(is_array(request()->category)
+                                      ? in_array($subCategory->id, request()->category ?? [])
+                                      : $subCategory->id == request()->category)
                             >
                             <label class="form-check-label" for="c-{{ $subCategory->id }}">
                               {{ $subCategory->name }}
@@ -188,12 +190,18 @@
         <div class="col-xl-9 col-lg-8 order-lg-1">
           <div class="wsus__page_courses_header wow fadeInUp">
             {{-- @dd($courses) --}}
-            <p>Showing <span>1-{{ $courses->count() }}</span> Of <span>{{$courses->total()}}</span> Results</p>
+            <p>Showing <span>1-{{ $courses->count() }}</span> Of
+              <span>{{ $courses->total() }}</span> Results
+            </p>
             <form>
               <p>Sort-by:</p>
-              <select class="select_js" name="order" onchange="this.form.submit()">
-                <option @selected(request()->order == 'desc') value="desc">Recently added</option>
-                <option @selected(request()->order == 'asc') value="asc">Earliest added</option>
+              <select
+                class="select_js"
+                name="order"
+                onchange="this.form.submit()"
+              >
+                <option value="desc" @selected(request()->order == 'desc')>Recently added</option>
+                <option value="asc" @selected(request()->order == 'asc')>Earliest added</option>
               </select>
             </form>
           </div>
@@ -294,15 +302,15 @@
 
           {{-- Pagination --}}
           <div class="wsus__pagination mt_50 wow fadeInUp">
-            
-            {{ $courses->withQueryString()->links() }}            
+
+            {{ $courses->withQueryString()->links() }}
 
           </div>
         </div>
       </div>
     </div>
   </section>
-  {{--===========================
+  {{-- ===========================
         COURSES PAGE END
-    ============================--}}
+    ============================ --}}
 @endsection

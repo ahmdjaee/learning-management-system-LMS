@@ -18,6 +18,7 @@ class CoursePageController extends Controller
 {
     public function index(Request $request): View
     {
+        // dd($request->category);
         $courses = Course::where('is_approved', 'approved')
             ->where('status', 'active')
             ->when($request->has('search') && $request->filled('search'), function (Builder $q) use ($request) {
@@ -25,7 +26,11 @@ class CoursePageController extends Controller
                     ->orWhere('description', 'like', "%$request->search%");
             })
             ->when($request->has('category') && $request->filled('category'), function (Builder $q) use ($request) {
-                $q->whereIn('category_id', $request->category);
+                if (is_array($request->category)) {
+                    $q->whereIn('category_id', $request->category);
+                }else {
+                    $q->where('category_id', $request->category);
+                }
             })
             ->when($request->has('level') && $request->filled('level'), function (Builder $q) use ($request) {
                 $q->whereIn('course_level_id', $request->level);

@@ -29,10 +29,12 @@ Route::get('/', [FrontendController::class, 'index'])->name('home');
 Route::get('/courses', [CoursePageController::class, 'index'])->name('courses.index');
 Route::get('/courses/{slug}', [CoursePageController::class, 'show'])->name('courses.show');
 
-/** Cart Routes */
-Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
-Route::post('/add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart');
-Route::get('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove-from-cart');
+Route::middleware(['auth'])->group(function () {
+    /** Cart Routes */
+    Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart');
+    Route::get('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove-from-cart');
+});
 
 /** Payment Routes */
 Route::get('/checkout', CheckoutController::class)->name('checkout.index');
@@ -84,12 +86,12 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::post('/profile/update-social', [ProfileController::class, 'updateSocial'])->name('profile.update-social');
 
     /** Enrolled courses routes */
-    Route::get('/enrolled-courses',[EnrolledCourseController::class, 'index'])->name('enrolled-courses.index');
-    Route::get('/enrolled-courses/player/{slug}',[EnrolledCourseController::class, 'player'])->name('enrolled-courses.player.index');
+    Route::get('/enrolled-courses', [EnrolledCourseController::class, 'index'])->name('enrolled-courses.index');
+    Route::get('/enrolled-courses/player/{slug}', [EnrolledCourseController::class, 'player'])->name('enrolled-courses.player.index');
 
-    Route::get('/get-lesson-content',[EnrolledCourseController::class, 'getLessonContent'])->name('get-lesson-content');
-    Route::post('/update-watch-history',[EnrolledCourseController::class, 'updateWatchHistory'])->name('update-watch-history');
-    Route::post('/update-lesson-completion',[EnrolledCourseController::class, 'updateLessonCompletion'])->name('update-lesson-completion');
+    Route::get('/get-lesson-content', [EnrolledCourseController::class, 'getLessonContent'])->name('get-lesson-content');
+    Route::post('/update-watch-history', [EnrolledCourseController::class, 'updateWatchHistory'])->name('update-watch-history');
+    Route::post('/update-lesson-completion', [EnrolledCourseController::class, 'updateLessonCompletion'])->name('update-lesson-completion');
     Route::get('/file-download/{id}', [EnrolledCourseController::class, 'fileDownload'])->name('file-download');
 
     Route::get('/certificate/{course}/download', [CertificateController::class, 'download'])->name('certificate.download');

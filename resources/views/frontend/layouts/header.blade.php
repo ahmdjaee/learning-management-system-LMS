@@ -1,21 +1,24 @@
 @php
-    $topBar = \App\Models\TopBar::first();
+  $topBar = \App\Models\TopBar::first();
+  $categories = \App\Models\CourseCategory::whereNull('parent_id')->where('status', 1)->get();
 @endphp
 
-<!--===========================
+{{--===========================
         HEADER START
-    ============================-->
+    ============================--}}
 <header class="header_3">
   <div class="row">
     <div class="col-xxl-4 col-lg-7 col-md-8 d-none d-md-block">
       <ul class="wsus__header_left d-flex flex-wrap">
-        <li><a href="mailto:{{ $topBar->email }}"><i class="fab fa-envelope"></i>{{ $topBar->email }}</a></li>
-        <li><a href="callto:{{ $topBar->phone }}"><i class="fas fa-phone-alt"></i>{{ $topBar->phone }}</a></li>
+        <li><a href="mailto:{{ $topBar->email }}"><i
+              class="fab fa-envelope"></i>{{ $topBar->email }}</a></li>
+        <li><a href="callto:{{ $topBar->phone }}"><i
+              class="fas fa-phone-alt"></i>{{ $topBar->phone }}</a></li>
       </ul>
     </div>
     <div class="col-xxl-5 col-lg-7 d-none d-xxl-block">
       <div class="wsus__header_center">
-        <p> <span>{{ $topBar->offer_name}}</span>{{ $topBar->offer_description }} <a
+        <p> <span>{{ $topBar->offer_name }}</span>{{ $topBar->offer_description }} <a
             href="{{ $topBar->offer_button_url }}"
           >{{ $topBar->offer_button_text }}</a></p>
       </div>
@@ -44,13 +47,13 @@
     </div> --}}
   </div>
 </header>
-<!--===========================
+{{--===========================
         HEADER END
-    ============================-->
+    ============================--}}
 
-<!--===========================
+{{--===========================
         MAIN MENU 3 START
-    ============================-->
+    ============================--}}
 <nav class="navbar navbar-expand-lg main_menu main_menu_3">
   <a class="navbar-brand" href="{{ url('/') }}">
     <img
@@ -81,132 +84,27 @@
       </div>
       Category
       <ul>
-        <li>
-          <a href="#">
-            <span>
-              <img
-                class="img-fluid"
-                src="{{ asset('frontend/assets/images/menu_category_icon_1.png') }}"
-                alt="Category"
-              >
-            </span>
-            Development
-          </a>
-          <ul class="category_sub_menu">
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX Design</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <span>
-              <img
-                class="img-fluid"
-                src="{{ asset('frontend/assets/images/menu_category_icon_2.png') }}"
-                alt="Category"
-              >
-            </span>
-            Business
-          </a>
-          <ul class="category_sub_menu">
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX Design</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <span>
-              <img
-                class="img-fluid"
-                src="{{ asset('frontend/assets/images/menu_category_icon_3.png') }}"
-                alt="Category"
-              >
-            </span>
-            Marketing
-          </a>
-          <ul class="category_sub_menu">
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX Design</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <span>
-              <img
-                class="img-fluid"
-                src="{{ asset('frontend/assets/images/menu_category_icon_4.png') }}"
-                alt="Category"
-              >
-            </span>
-            Lifestyle
-          </a>
-          <ul class="category_sub_menu">
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX Design</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <span>
-              <img
-                class="img-fluid"
-                src="{{ asset('frontend/assets/images/menu_category_icon_5.png') }}"
-                alt="Category"
-              >
-            </span>
-            Health & Fitness
-          </a>
-          <ul class="category_sub_menu">
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX Design</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <span>
-              <img
-                class="img-fluid"
-                src="{{ asset('frontend/assets/images/menu_category_icon_6.png') }}"
-                alt="Category"
-              >
-            </span>
-            Design
-          </a>
-          <ul class="category_sub_menu">
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX Design</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="#">
-            <span>
-              <img
-                class="img-fluid"
-                src="{{ asset('frontend/assets/images/menu_category_icon_7.png') }}"
-                alt="Category"
-              >
-            </span>
-            Academics
-          </a>
-          <ul class="category_sub_menu">
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">UI/UX Design</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </li>
+        @foreach ($categories as $category)
+          <li>
+            <a href="javascript:;">
+              <span>
+                <img
+                  class="img-fluid"
+                  src="{{ asset($category->image) }}"
+                  alt="Category"
+                >
+              </span>
+              {{ $category->name }}
+            </a>
+            @if ($category->subCategories->count() > 0)
+              <ul class="category_sub_menu">
+                @foreach ($category->subCategories as $subCategory)  
+                <li><a href="{{ route('courses.index', ['category' => $subCategory->id]) }}">{{ $subCategory->name }}</a></li>
+                @endforeach
+              </ul>
+            @endif
+          </li>
+        @endforeach
       </ul>
     </div>
     <ul class="navbar-nav m-auto">
@@ -249,18 +147,6 @@
           </a>
         </li>
         <li>
-          <a class="admin" href="#">
-            <span>
-              <img
-                class="img-fluid"
-                src="{{ asset('frontend/assets/images/user_icon_black.png') }}"
-                alt="user"
-              >
-            </span>
-            {{ auth()->user()->name ?? '' }}
-          </a>
-        </li>
-        <li>
           <a class="common_btn" href="{{ route('login') }}">Sign In</a>
         </li>
       </ul>
@@ -269,19 +155,19 @@
   </div>
 </nav>
 <div class="wsus__menu_3_search_area">
-  <form action="#">
-    <input type="text" placeholder="Search School, Online.....">
+  <form action="{{ route('courses.index') }}">
+    <input type="text" placeholder="Search School, Online....." name="search">
     <button class="common_btn" type="submit">Search</button>
     <span class="close_search"><i class="far fa-times"></i></span>
   </form>
 </div>
-<!--===========================
+{{--===========================
         MAIN MENU 3 END
-    ============================-->
+    ============================--}}
 
-<!--============================
+{{--============================
         STICKY MENU START
-    ==============================-->
+    ============================= --}}
 <div class="mobile_menu_area">
   <div class="mobile_menu_area_top">
     <a class="mobile_menu_logo" href="{{ url('/') }}">
@@ -564,6 +450,6 @@
     </div>
   </div>
 </div>
-<!--============================
+{{--============================
         STICKY MENU END
-    ==============================-->
+    ============================= --}}
