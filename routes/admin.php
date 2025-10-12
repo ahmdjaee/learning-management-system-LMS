@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\FeaturedInstructorController;
 use App\Http\Controllers\Admin\FooterController;
 use App\Http\Controllers\Admin\HeroController;
 use App\Http\Controllers\Admin\LatestCourseSectionController;
+use App\Http\Controllers\Admin\MoreLinkController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PaymentSettingController;
 use App\Http\Controllers\Admin\PayoutGatewayController;
@@ -147,6 +148,9 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     /** Site settings routes */
     Route::get('/general-settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/general-settings', [SettingController::class, 'updateGeneralSetting'])->name('general-settings.update');
+    
+    Route::get('/logo-settings', [SettingController::class, 'logoSetting'])->name('logo-settings');
+    Route::post('/logo-settings', [SettingController::class, 'updateLogoSetting'])->name('logo-settings.update');
 
     Route::get('/commission-settings', [SettingController::class, 'commissionSetting'])->name('commission-settings');
     Route::post('/commission-settings', [SettingController::class, 'updateCommissionSetting'])->name('commission-settings.update');
@@ -187,6 +191,7 @@ Route::group(["middleware" => "auth:admin", "prefix" => "admin", "as" => "admin.
     Route::resource('/footer', FooterController::class);
     Route::resource('/social-links', SocialLinkController::class);
     Route::resource('/useful-links', UsefulLinkController::class);
+    Route::resource('/more-links', MoreLinkController::class);
 
     /** Laravel File Manager Routes */
     Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth:admin']], function () {

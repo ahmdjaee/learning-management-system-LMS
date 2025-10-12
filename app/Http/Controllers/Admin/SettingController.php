@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
+use App\Traits\FileUpload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -11,6 +12,7 @@ use Illuminate\View\View;
 
 class SettingController extends Controller
 {
+    use FileUpload;
 
     /**-----------------------------------------------
      * General settings
@@ -78,6 +80,52 @@ class SettingController extends Controller
             'sender_email' => 'required|email|max:255',
             'receiver_email' => 'required|email|max:255',
         ]);
+
+        foreach ($data as $key => $value) {
+            Setting::updateOrCreate(['key' => $key], ['value' => $value]);
+        }
+
+        Cache::forget('settings');
+
+        notyf()->success('Updated Successfully');
+
+        return redirect()->back();
+    }
+
+    public function logoSetting(): View
+    {
+
+        return view('admin.setting.logo-setting');
+    }
+
+    public function updateLogoSetting(Request $request): RedirectResponse
+    {
+        $data = $request->validate([
+            'site_logo' => 'nullable|image|max:3000',
+            'site_footer_logo' => 'nullable|image|max:3000',
+            'site_favicon' => 'nullable|image|max:3000',
+            'site_breadcrumb' => 'nullable|image|max:3000',
+        ]);
+
+        if ($request->hasFile('site_logo')) {
+            $data['site_logo'] = $this->uploadFile($request->file('site_logo'));
+            $this->deleteFile(config('settings.site_logo'));
+        }
+
+        if ($request->hasFile('site_footer_logo')) {
+            $data['site_footer_logo'] = $this->uploadFile($request->file('site_footer_logo'));
+            $this->deleteFile(config('settings.site_footer_logo'));
+        }
+
+        if ($request->hasFile('site_favicon')) {
+            $data['site_favicon'] = $this->uploadFile($request->file('site_favicon'));
+            $this->deleteFile(config('settings.site_favicon'));
+        }
+
+        if ($request->hasFile('site_breadcrumb')) {
+            $data['site_breadcrumb'] = $this->uploadFile($request->file('site_breadcrumb'));
+            $this->deleteFile(config('settings.site_breadcrumb'));
+        }
 
         foreach ($data as $key => $value) {
             Setting::updateOrCreate(['key' => $key], ['value' => $value]);

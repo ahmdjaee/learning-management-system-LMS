@@ -5,7 +5,11 @@
       <a class="list-group-item list-group-item-action d-flex align-items-center {{ request()->routeIs('admin.settings.index') ? 'active' : '' }}"
         href="{{ route('admin.settings.index') }}"
       >General Settings
-    </a>
+      </a>
+      <a class="list-group-item list-group-item-action d-flex align-items-center {{ request()->routeIs('admin.logo-settings') ? 'active' : '' }}"
+        href="{{ route('admin.logo-settings') }}"
+      >Logo & Favicon Settings
+      </a>
       <a class="list-group-item list-group-item-action d-flex align-items-center {{ request()->routeIs('admin.commission-settings') ? 'active' : '' }}"
         href="{{ route('admin.commission-settings') }}"
       >

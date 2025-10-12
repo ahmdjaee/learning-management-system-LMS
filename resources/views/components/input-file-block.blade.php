@@ -2,18 +2,23 @@
   <style>
     .file-uploaded {
       box-shadow: inset 0 40px 40px -25px rgba(0, 167, 22, 0.76);
-      background-color: #151f2c;
+      /* background-color: #151f2c; */
       animation: uploaded 0.5s ease-in-out;
+      transition: background-color 0.3s ease-in-out, box-shadow 0.5s ease-in-out;
+
+    }
+    .file-uploaded:hover {
+      background-color: #2b2b2b17;
     }
 
     @keyframes uploaded {
       from {
-        background-color: #1c293a;
+        /* background-color: #1c293a; */
         box-shadow: inset 0 30px 30px -10px rgba(0, 167, 22, 0);
       }
 
       to {
-        background-color: #151f2c;
+        /* background-color: #151f2c; */
         box-shadow: inset 0 40px 40px -25px rgba(0, 167, 22, 0.76);
       }
     }

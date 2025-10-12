@@ -58,7 +58,7 @@
   <a class="navbar-brand" href="{{ url('/') }}">
     <img
       class="img-fluid"
-      src="{{ asset('frontend/assets/images/logo.png') }}"
+      src="{{ asset(config('settings.site_logo')) }}"
       alt="EduCore"
     >
   </a>
@@ -171,7 +171,7 @@
 <div class="mobile_menu_area">
   <div class="mobile_menu_area_top">
     <a class="mobile_menu_logo" href="{{ url('/') }}">
-      <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="EduCore">
+      <img src="{{ asset(config('settings.site_logo')) }}" alt="EduCore">
     </a>
     <div
       class="mobile_menu_icon d-block d-lg-none"

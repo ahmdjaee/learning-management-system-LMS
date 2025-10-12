@@ -1,6 +1,8 @@
 @php
   $footer = \App\Models\Footer::first();
   $socialLinks = \App\Models\SocialLink::where('status', 1)->get();
+  $usefulLinks = \App\Models\UsefulLink::where('status', 1)->get();
+  $moreLinks = \App\Models\MoreLink::where('status', 1)->get();
 @endphp
 
 <footer class="footer_3"
@@ -15,7 +17,7 @@
               <a class="logo" href="index.html">
                 <img
                   class="img-fluid"
-                  src="{{ asset('frontend/assets/images/footer_logo.png') }}"
+                  src="{{ asset(config('settings.site_logo')) }}"
                   alt="EduCore"
                 >
               </a>
@@ -35,25 +37,22 @@
           </div>
           <div class="col-lg-2 col-sm-6 col-md-3 wow fadeInUp">
             <div class="wsus__footer_link">
-              <h2>Courses</h2>
+              <h2>Useful Links</h2>
               <ul>
-                <li><a href="#">Life Coach</a></li>
-                <li><a href="#">Business Coach</a></li>
-                <li><a href="#">Health Coach</a></li>
-                <li><a href="#">Development</a></li>
-                <li><a href="#">SEO Optimize</a></li>
+                @foreach ($usefulLinks as $link)
+                  <li><a href="{{ $link->url }}">{{ $link->title }}</a></li>
+                @endforeach
               </ul>
             </div>
           </div>
           <div class="col-lg-2 col-sm-6 col-md-3 wow fadeInUp">
             <div class="wsus__footer_link">
-              <h2>Programs</h2>
+              <h2>More Links</h2>
               <ul>
-                <li><a href="#">The Arts</a></li>
-                <li><a href="#">Human Sciences</a></li>
-                <li><a href="#">Economics</a></li>
-                <li><a href="#">Natural Sciences</a></li>
-                <li><a href="#">Business</a></li>
+
+                @foreach ($moreLinks as $link)
+                  <li><a href="{{ $link->url }}">{{ $link->title }}</a></li>
+                @endforeach
               </ul>
             </div>
           </div>

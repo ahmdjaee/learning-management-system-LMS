@@ -5,9 +5,9 @@
     <div class="container-xl">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Create Social Links</h3>
+          <h3 class="card-title">Create More Links</h3>
           <div class="card-actions">
-            <a class="btn btn-primary btn-3" href="{{ route('admin.social-links.index') }}">
+            <a class="btn btn-primary btn-3" href="{{ route('admin.more-links.index') }}">
               <i class="ti ti-arrow-left me-2" style="font-size: 24px"></i>
               Back
             </a>
@@ -15,26 +15,30 @@
         </div>
         <div class="card-body">
           <form
-            action="{{ route('admin.social-links.update', $social->id) }}"
+            action="{{ route('admin.more-links.store') }}"
             method="post"
             enctype="multipart/form-data"
           >
             @csrf
-            @method('put')
             <div class="mb-3">
-              <x-input-file-block
-                name="icon"
-                value="{{ old('icon') ?? $social->icon }}"
-                label="Icon"
-              />
+              <label class="form-label">Title</label>
+              <input
+                class="form-control"
+                name="title"
+                type="text"
+                value="{{ old('title') }}"
+                placeholder="Enter title"
+                autofocus
+              >
+              <x-input-error class="mt-2" :messages="$errors->get('title')" />
             </div>
             <div class="mb-3">
               <label class="form-label">Url</label>
               <input
                 class="form-control"
                 name="url"
-                type="url"
-                value="{{ old('url') ?? $social->url }}"
+                type="text"
+                value="{{ old('url') }}"
                 placeholder="Enter url"
                 autofocus
               >
@@ -44,12 +48,11 @@
               <x-input-toggle-block
                 name="status"
                 formCheckLabel="Active / Inactive"
-                value="1"
                 label="Status"
-                :checked="$social->status"
+                value="1"
+                checked
               />
             </div>
-
             <div class="mb-3">
               <button class="btn" type="reset">
                 Reset

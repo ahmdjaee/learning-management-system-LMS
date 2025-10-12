@@ -24,7 +24,7 @@
               <x-input-file-block
                 name="icon"
                 value="{{ old('icon') }}"
-                label="Hero Icon"
+                label="Icon"
               />
             </div>
             <div class="mb-3">
