@@ -77,4 +77,14 @@ class Course extends Model
     {
         return $this->hasMany(Review::class, 'course_id', 'id');
     }
+
+    /**
+     * Get all of the enrollments for the Course
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function enrollments(): HasMany
+    {
+        return $this->hasMany(Enrollment::class, 'course_id', 'id');
+    }
 }
