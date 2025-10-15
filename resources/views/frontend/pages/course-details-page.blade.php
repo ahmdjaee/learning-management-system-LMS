@@ -58,8 +58,8 @@
 
 @section('content')
   <!--===========================
-                                    BREADCRUMB START
-                                ============================-->
+                                        BREADCRUMB START
+                                    ============================-->
   <section class="wsus__breadcrumb course_details_breadcrumb"
     style="background: url({{ asset(config('settings.site_breadcrumb')) }});"
   >
@@ -69,12 +69,14 @@
           <div class="col-12 wow fadeInUp">
             <div class="wsus__breadcrumb_text">
               <p class="rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <span>(4 Reviews)</span>
+                @for ($i = 0; $i < 5; $i++)
+                  @if ($i < $course->reviews()->avg('rating'))
+                    <i class="fas fa-star"></i>
+                  @else
+                    <i class="far fa-star"></i>
+                  @endif
+                @endfor
+                <span>({{ $course->reviews()->count() }} Reviews)</span>
               </p>
               <h1>{{ $course->title }}</h1>
               <ul class="list">
@@ -110,12 +112,12 @@
     </div>
   </section>
   <!--===========================
-                                    BREADCRUMB END
-                                ============================-->
+                                        BREADCRUMB END
+                                    ============================-->
 
   <!--===========================
-                                    COURSES DETAILS START
-                                ============================-->
+                                        COURSES DETAILS START
+                                    ============================-->
   <section class="wsus__courses_details pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
@@ -281,7 +283,14 @@
                         <h4>{{ $course->instructor->name }}</h4>
                         <p class="designation">{{ $course->instructor->headline }}</p>
                         <ul class="list">
-                          <li><i class="fas fa-star"></i> <b>74,537 Reviews</b></li>
+                          @php
+                            $courseId = $course->instructor->courses()->pluck('id')->toArray();
+                            $reviewsCount = \App\Models\Review::whereIn(
+                                'course_id',
+                                $courseId,
+                            )->count();
+                          @endphp
+                          <li><i class="fas fa-star"></i> <b>{{ $reviewsCount }} Reviews</b></li>
                           <li><strong>4.7 Rating</strong></li>
                           <li>
                             <span><img
@@ -297,58 +306,7 @@
                                 src="{{ asset('frontend/assets/images/user_icon_gray.png') }}"
                                 alt="user"
                               ></span>
-                            32 Students
-                          </li>
-                        </ul>
-                        <ul class="badge d-flex flex-wrap">
-                          <li
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-title="Exclusive Author"
-                          >
-                            <img
-                              class="img-fluid"
-                              src="{{ asset('frontend/assets/images/badge_1.png') }}"
-                              alt="Badge"
-                            >
-                          </li>
-                          <li
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-title="Top Earning"
-                          ><img
-                              class="img-fluid"
-                              src="{{ asset('frontend/assets/images/badge_2.png') }}"
-                              alt="Badge"
-                            ></li>
-                          <li
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-title="Trending"
-                          ><img
-                              class="img-fluid"
-                              src="{{ asset('frontend/assets/images/badge_3.png') }}"
-                              alt="Badge"
-                            ></li>
-                          <li
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-title="2 Years of Membership"
-                          ><img
-                              class="img-fluid"
-                              src="{{ asset('frontend/assets/images/badge_4.png') }}"
-                              alt="Badge"
-                            ></li>
-                          <li
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-title="Collector Lavel 1"
-                          >
-                            <img
-                              class="img-fluid"
-                              src="{{ asset('frontend/assets/images/badge_5.png') }}"
-                              alt="Badge"
-                            >
+                            {{ $course->instructor->students()->count() }} Students
                           </li>
                         </ul>
                         <p class="description">
@@ -747,7 +705,7 @@
                       ></span>
                     Student Enrolled
                   </p>
-                  47
+                  {{ $course->enrollments()->count() }}
                 </li>
                 <li>
                   <p>
@@ -761,11 +719,8 @@
                   {{ $course->language->name }}
                 </li>
               </ul>
-              <a class="common_btn" href="#">Enroll The Course <i
-                  class="far fa-arrow-right"></i></a>
-            </div>
-            <div class="wsus__courses_sidebar_share_btn d-flex flex-wrap justify-content-between">
-              <a class="common_btn" href="#"><i class="far fa-heart"></i> Add to Wishlist</a>
+              <a class="common_btn add-to-cart" data-course-id="{{ $course->id }}">Add To Cart
+                <i class="far fa-arrow-right"></i></a>
             </div>
             <div class="wsus__courses_sidebar_share_area">
               <span>Share:</span>
@@ -822,60 +777,9 @@
                 </div>
                 <div class="text">
                   <h3>{{ $course->instructor->name }}</h3>
-                  <p><span>Instructor</span> Level 2</p>
+                  <p><span>Instructor</span></p>
                 </div>
               </div>
-              <ul class="d-flex flex-wrap">
-                <li
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="Exclusive Author"
-                >
-                  <img
-                    class="img-fluid"
-                    src="{{ asset('frontend/assets/images/badge_1.png') }}"
-                    alt="Badge"
-                  >
-                </li>
-                <li
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="Top Earning"
-                ><img
-                    class="img-fluid"
-                    src="{{ asset('frontend/assets/images/badge_2.png') }}"
-                    alt="Badge"
-                  ></li>
-                <li
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="Trending"
-                ><img
-                    class="img-fluid"
-                    src="{{ asset('frontend/assets/images/badge_3.png') }}"
-                    alt="Badge"
-                  ></li>
-                <li
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="2 Years of Membership"
-                ><img
-                    class="img-fluid"
-                    src="{{ asset('frontend/assets/images/badge_4.png') }}"
-                    alt="Badge"
-                  ></li>
-                <li
-                  data-bs-toggle="tooltip"
-                  data-bs-placement="top"
-                  data-bs-title="Collector Lavel 1"
-                >
-                  <img
-                    class="img-fluid"
-                    src="{{ asset('frontend/assets/images/badge_5.png') }}"
-                    alt="Badge"
-                  >
-                </li>
-              </ul>
             </div>
           </div>
         </div>
@@ -883,8 +787,8 @@
     </div>
   </section>
   <!--===========================
-                                    COURSES DETAILS END
-                                ============================-->
+                                        COURSES DETAILS END
+                                    ============================-->
 @endsection
 
 @push('scripts')

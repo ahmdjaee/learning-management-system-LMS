@@ -149,7 +149,13 @@
           </a>
         </li>
         <li>
-          <a class="common_btn" href="{{ route('login') }}">Sign In</a>
+          @if (!auth()->check())
+            <a class="common_btn" href="{{ route('login') }}">Sign In</a>
+          @elseif (user()?->role == 'student')
+            <a class="common_btn" href="{{ route('student.dashboard') }}">Dashboard</a>
+          @elseif (user()?->role == 'instructor')
+            <a class="common_btn" href="{{ route('instructor.dashboard') }}">Dashboard</a>
+          @endif
         </li>
       </ul>
     </div>
@@ -211,7 +217,11 @@
       </ul>
 
       <form class="mobile_menu_search" action="{{ route('courses.index') }}">
-        <input type="text" placeholder="Search" name="search">
+        <input
+          name="search"
+          type="text"
+          placeholder="Search"
+        >
         <button type="submit"><i class="far fa-search"></i></button>
       </form>
 
@@ -291,13 +301,14 @@
                     {{ $category->name }}
                   </a>
                   @if ($category->subCategories->count() > 0)
-                  <ul class="inner_menu">
-                    @foreach ($category->subCategories as $subCategory)
-                      <li><a
-                          href="{{ route('courses.index', ['category' => $subCategory->id]) }}">{{ $subCategory->name }}</a>
-                      </li>
-                    @endforeach
-                  </ul>
+                    <ul class="inner_menu">
+                      @foreach ($category->subCategories as $subCategory)
+                        <li><a
+                            href="{{ route('courses.index', ['category' => $subCategory->id]) }}"
+                          >{{ $subCategory->name }}</a>
+                        </li>
+                      @endforeach
+                    </ul>
                   @endif
                 </li>
               @endforeach

@@ -1,11 +1,11 @@
 <?php
 
+use App\Models\Cart;
+use App\Models\User;
+
 /**
  * Convert minutes to hours
  */
-
-use App\Models\Cart;
-
 if (!function_exists('convertMinutesToHours')) {
     function convertMinutesToHours(int $minutes): string
     {
@@ -54,4 +54,17 @@ if (!function_exists('calcCommission')) {
         return $amount == 0 ? 0 : ($amount * $rate) / 100;
     }
 }
+
+
+/**
+ * Get current user
+ */
+if (!function_exists('user')) {
+    function user(): User
+    {
+        return auth('web')->user();
+    }
+}
+
+
 

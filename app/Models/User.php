@@ -70,4 +70,24 @@ class User extends Authenticatable
     {
         return $this->hasOne(InstructorPayoutInformation::class, 'instructor_id', 'id');
     }
+
+    /**
+     * Get all of the students for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function students(): HasMany
+    {
+        return $this->hasMany(Enrollment::class, 'instructor_id', 'id');
+    }
+
+    /**
+     * Get all of the enrollments for the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function enrollments(): HasMany
+    {
+        return $this->hasMany(Enrollment::class, 'user_id', 'id');
+    }
 }

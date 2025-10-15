@@ -29,6 +29,10 @@ class CartController extends Controller
         $course = Course::findOrFail($courseId);
         $cart = new Cart();
 
+        if(auth()->user()->enrollments()->where('course_id', $course->id)->exists()){
+            return response(['message' => 'This course already enrolled!'], 401);
+        }
+
         if ($cart->where(['course_id' => $courseId, 'user_id' => auth('web')->id()])->exists()) {
             return response(['message' => 'Already added!'], 401);
         }
