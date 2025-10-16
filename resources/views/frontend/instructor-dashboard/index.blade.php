@@ -2,9 +2,11 @@
 
 @section('content')
   <!--===========================
-          BREADCRUMB START
-      ============================-->
-  <section class="wsus__breadcrumb" style="background: url({{ asset(config('settings.site_breadcrumb')) }});">
+              BREADCRUMB START
+          ============================-->
+  <section class="wsus__breadcrumb"
+    style="background: url({{ asset(config('settings.site_breadcrumb')) }});"
+  >
     <div class="wsus__breadcrumb_overlay">
       <div class="container">
         <div class="row">
@@ -22,12 +24,12 @@
     </div>
   </section>
   <!--===========================
-          BREADCRUMB END
-      ============================-->
+              BREADCRUMB END
+          ============================-->
 
   <!--===========================
-          DASHBOARD OVERVIEW START
-      ============================-->
+              DASHBOARD OVERVIEW START
+          ============================-->
   <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
@@ -63,38 +65,97 @@
               </div>
             </div>
           @endif
-          <div class="text-end"><a class="common_btn"
-              href="{{ route('student.become-instructor') }}"
-            >Become a Instructor</a></div>
-            <div class="row">
-                <div class="col-xl-4 col-sm-6 wow fadeInUp">
-                    <div class="wsus__dash_earning">
-                        <h6>REVENUE</h6>
-                        <h3>$2456.34</h3>
-                        <p>Earning this month</p>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-sm-6 wow fadeInUp">
-                    <div class="wsus__dash_earning">
-                        <h6>STUDENTS ENROLLMENTS</h6>
-                        <h3>16,450</h3>
-                        <p>Progress this month</p>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-sm-6 wow fadeInUp">
-                    <div class="wsus__dash_earning">
-                        <h6>COURSES RATING</h6>
-                        <h3>4.70</h3>
-                        <p>Rating this month</p>
-                    </div>
-                </div>
+          {{-- @if (user()?->role != 'instructor')
+            <div class="text-end"><a class="common_btn"
+                href="{{ route('student.become-instructor') }}"
+              >Become a Instructor</a></div>
+          @endif --}}
+          <div class="row">
+            <div class="col-xl-4 col-sm-6 wow fadeInUp">
+              <div class="wsus__dash_earning">
+                <h6>PENDING COURSES</h6>
+                <h3>{{ $pendingCourses }}</h3>
+              </div>
             </div>
+            <div class="col-xl-4 col-sm-6 wow fadeInUp">
+              <div class="wsus__dash_earning">
+                <h6>APPROVED COURSES</h6>
+                <h3>{{ $approvedCourses }}</h3>
+              </div>
+            </div>
+            <div class="col-xl-4 col-sm-6 wow fadeInUp">
+              <div class="wsus__dash_earning">
+                <h6>REJECTED COURSES</h6>
+                <h3>{{ $rejectedCourses }}</h3>
+              </div>
+            </div>
+          </div>
 
+          <div class="wsus__dashboard_contant">
+              <div class="wsus__dashboard_contant_top">
+              <div class="wsus__dashboard_heading relative">
+                <h5>Recent Orders</h5>
+              </div>
+            </div>
+            <div class="wsus__dash_course_table">
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tbody>
+                        <tr>
+                          <th class="image">
+                            COURSE NAME
+                          </th>
+                          <th class="details">
+                            PURCHASED BY
+                          </th>
+                          <th class="sale">
+                            PRICE
+                          </th>
+                          <th class="status">
+                            COMMISSION RATE
+                          </th>
+                          <th class="status">
+                            EARNING
+                          </th>
+                        </tr>
+                        @forelse ($recentOrders as $item)
+                          <tr>
+                            <td class="details">
+                              <a class="title" href="#">
+                                {{ $item->course->title }}
+                              </a>
+                            </td>
+                            <td class="details">
+                              {{ $item->order->customer->name }}
+                            </td>
+                            <td class="sale">
+                              <p>{{ $item->price }}</p>
+                            </td>
+                            <td class="details">
+                              {{ $item->commission_rate ?? 0 }} %
+                            </td>
+                            <td class="sale text-uppercase">
+                              {{ calcCommission($item->price, $item->commission_rate) }}
+                              {{ $item->order->currency }}
+                            </td>
+                          </tr>
+                        @empty
+                          No Orders Found
+                        @endforelse
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
   <!--===========================
-          DASHBOARD OVERVIEW END
-      ============================-->
+              DASHBOARD OVERVIEW END
+          ============================-->
 @endsection

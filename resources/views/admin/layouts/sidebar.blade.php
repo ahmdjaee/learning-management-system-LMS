@@ -351,7 +351,7 @@
           aria-label="Open user menu"
         >
           <span class="avatar avatar-sm"
-            style="background-image: url({{ asset('admin/assets/static/avatars/000m.jpg') }})"
+            style="background-image: url({{ asset(auth()->user()->image) }})"
           ></span>
           <div class="d-none d-xl-block ps-2">
             <div>Paweł Kuna</div>
@@ -359,12 +359,10 @@
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-          <a class="dropdown-item" href="#">Status</a>
-          <a class="dropdown-item" href="./profile.html">Profile</a>
-          <a class="dropdown-item" href="#">Feedback</a>
+          <a class="dropdown-item" href="">Profile</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="./settings.html">Settings</a>
-          <a class="dropdown-item" href="./sign-in.html">Logout</a>
+          <a class="dropdown-item" href="{{ route('admin.settings.index') }}">Settings</a>
+          <a class="dropdown-item" href="{{ route('admin.logout') }}">Logout</a>
         </div>
       </div>
     </div>
@@ -394,15 +392,15 @@
         </li>
 
         <li
-          class="nav-item dropdown {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*') ? 'active' : '' }}"
+          class="nav-item dropdown {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*', 'admin.course-reviews.*') ? 'active' : '' }}"
         >
           <a
-            class="nav-link dropdown-toggle {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*') ? 'show' : '' }}"
+            class="nav-link dropdown-toggle {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*', 'admin.course-reviews.*') ? 'show' : '' }}"
             data-bs-toggle="dropdown"
             data-bs-auto-close="false"
             href="#navbar-base"
             role="button"
-            aria-expanded="{{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*') ? 'true' : 'false' }}"
+            aria-expanded="{{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*', 'admin.course-reviews.*') ? 'true' : 'false' }}"
           >
             <span class="nav-link-icon d-md-none d-lg-inline-block">
               <i class="ti ti-book"></i>
@@ -412,7 +410,7 @@
             </span>
           </a>
           <div
-            class="dropdown-menu {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*') ? 'show' : '' }}"
+            class="dropdown-menu {{ request()->routeIs('admin.courses.*', 'admin.course-languages.*', 'admin.course-levels.*', 'admin.course-categories.*', 'admin.course-reviews.*') ? 'show' : '' }}"
           >
             <div class="dropdown-menu-columns">
               <div class="dropdown-menu-column">

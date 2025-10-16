@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaymentController;
 use App\Http\Controllers\Frontend\ProfileController;
 use App\Http\Controllers\Frontend\StudentDashboardController;
+use App\Http\Controllers\Frontend\StudentOrderController;
 use App\Http\Controllers\Frontend\WithdrawController;
 use App\Models\PaymentSetting;
 use Illuminate\Support\Facades\DB;
@@ -34,28 +35,32 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/carts', [CartController::class, 'index'])->name('cart.index');
     Route::post('/add-to-cart/{course}', [CartController::class, 'addToCart'])->name('add-to-cart');
     Route::get('/remove-from-cart/{id}', [CartController::class, 'removeFromCart'])->name('remove-from-cart');
+
+
+    /** Payment Routes */
+    Route::get('/checkout', CheckoutController::class)->name('checkout.index');
+
+    /** Paypal */
+    Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
+    Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
+    Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
+
+    /** Stripe */
+    Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
+    Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
+    Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
+
+    /** Razorpay */
+    Route::get('razorpay/payment', [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
+    Route::get('razorpay/success', [PaymentController::class, 'razorpaySuccess'])->name('razorpay.success');
+    Route::get('razorpay/cancel', [PaymentController::class, 'razorpayCancel'])->name('razorpay.cancel');
+
+    Route::get('/order-success', [PaymentController::class, 'orderSuccess'])->name('order.success');
+    Route::get('/order-failed', [PaymentController::class, 'orderFailed'])->name('order.failed');
+
+    Route::post('/review', [CoursePageController::class, 'storeReview'])->name('review.store');
 });
 
-/** Payment Routes */
-Route::get('/checkout', CheckoutController::class)->name('checkout.index');
-
-/** Paypal */
-Route::get('paypal/payment', [PaymentController::class, 'payWithPaypal'])->name('paypal.payment');
-Route::get('paypal/success', [PaymentController::class, 'paypalSuccess'])->name('paypal.success');
-Route::get('paypal/cancel', [PaymentController::class, 'paypalCancel'])->name('paypal.cancel');
-
-/** Stripe */
-Route::get('stripe/payment', [PaymentController::class, 'payWithStripe'])->name('stripe.payment');
-Route::get('stripe/success', [PaymentController::class, 'stripeSuccess'])->name('stripe.success');
-Route::get('stripe/cancel', [PaymentController::class, 'stripeCancel'])->name('stripe.cancel');
-
-/** Razorpay */
-Route::get('razorpay/payment', [PaymentController::class, 'payWithRazorpay'])->name('razorpay.payment');
-Route::get('razorpay/success', [PaymentController::class, 'razorpaySuccess'])->name('razorpay.success');
-Route::get('razorpay/cancel', [PaymentController::class, 'razorpayCancel'])->name('razorpay.cancel');
-
-Route::get('/order-success', [PaymentController::class, 'orderSuccess'])->name('order.success');
-Route::get('/order-failed', [PaymentController::class, 'orderFailed'])->name('order.failed');
 
 Route::post('/newsletter-subscribe', [FrontendController::class, 'subscribe'])->name('newsletter-subscribe');
 Route::post('/newsletter-subscribe', [FrontendController::class, 'subscribe'])->name('newsletter-subscribe');
@@ -67,7 +72,6 @@ Route::get('/about', [FrontendController::class, 'about'])->name('about');
 Route::get('/contact', [FrontendContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [FrontendContactController::class, 'sendMail'])->name('contact.send');
 
-Route::post('/review', [CoursePageController::class, 'storeReview'])->name('review.store');
 
 /**
  * -------------------------------------------------
@@ -100,6 +104,8 @@ Route::group(['middleware' => ['auth:web', 'verified', 'check_role:student'], 'p
     Route::get('/reviews', [StudentDashboardController::class, 'review'])->name('reviews.index');
     Route::delete('/reviews/{id}', [StudentDashboardController::class, 'reviewDestroy'])->name('reviews.destroy');
 
+    Route::get('/orders', [StudentOrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [StudentOrderController::class, 'show'])->name('orders.show');
 });
 
 

@@ -278,7 +278,7 @@
           </div>
         </div>
         <div class="col-md-7 ">
-          <div class="card h-100" >
+          <div class="card h-100">
             <div class="card-header">
               <h3 class="card-title">Recent Orders</h3>
             </div>
@@ -326,14 +326,13 @@
                         </svg>
                       </a>
                     </td>
-                     <td>
-                        <div>{{ Str::limit($order->customer->name, 50) }}</div>
-                        <small>{{Str::limit($order->customer->email, 50)}}</small>
+                    <td>
+                      {{ Str::limit($order->customer->email, 50) }}
                     </td>
                     <td>
                       {{ $order->total_amount }} {{ $order->currency }}
                     </td>
-                     <td>
+                    <td>
                       @if ($order->status == 'pending')
                         <span class="badge bg-yellow text-yellow-fg">{{ $order->status }}</span>
                       @elseif ($order->status == 'approved')

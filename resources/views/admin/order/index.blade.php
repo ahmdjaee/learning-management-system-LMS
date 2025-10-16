@@ -14,6 +14,7 @@
               <thead>
                 <tr>
                   <th>No.</th>
+                  <th>Invoice</th>
                   <th>Name</th>
                   <th>Amount</th>
                   <th>Paid Amount</th>
@@ -26,6 +27,7 @@
                 @forelse ($orders as $order)
                   <tr>
                     <td>{{$loop->iteration}}</td>
+                    <td>{{$order->invoice_id}}</td>
                     <td>
                         <div>{{ $order->customer->name }}</div>
                         <small>{{$order->customer->email}}</small>

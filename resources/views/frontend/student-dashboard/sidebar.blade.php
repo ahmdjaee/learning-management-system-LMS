@@ -34,6 +34,10 @@
                 'label' => 'Enrolled Courses',
             ],
             [
+                'route' => 'student.orders.index',
+                'label' => 'Orders',
+            ],
+            [
                 'route' => 'student.reviews.index',
                 'label' => 'Review',
             ],

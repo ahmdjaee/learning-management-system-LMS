@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Review;
 use App\Models\User;
 use App\Traits\FileUpload;
@@ -13,10 +14,19 @@ use Illuminate\View\View;
 class StudentDashboardController extends Controller
 {
     use FileUpload;
-    //
+
     public function index(): View
     {
-        return view('frontend.student-dashboard.index');
+        $enrolledCourses = user()->enrollments()->count();
+        $totalReviews = Review::where('user_id', user()->id)->count();
+        $totalOrders = Order::where('buyer_id', user()->id)->count();
+
+        $orders = Order::where('buyer_id', user()->id)->orderByDesc('created_at')->take(5)->get();
+
+        return view(
+            'frontend.student-dashboard.index',
+            compact('enrolledCourses', 'totalReviews', 'totalOrders', 'orders')
+        );
     }
 
     public function becomeInstructor(): View

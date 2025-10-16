@@ -71,10 +71,10 @@
             <div class="col-6">
               <p class="h3">Company</p>
               <address>
-                Street Address<br>
-                State, City<br>
-                Region, Postal Code<br>
-                ltd@example.com
+                {{ config('settings.site_name') }}<br>
+                {{ config('settings.location') }}<br>
+                {{ config('settings.phone') }}<br>
+                {{ config('settings.email') }}
               </address>
             </div>
             <div class="col-6 text-end">
@@ -93,7 +93,7 @@
               <tr>
                 <th class="text-center" style="width: 1%"></th>
                 <th>Course</th>
-                <th class="text-center" style="width: 1%">Qnt</th>
+                <th class="text-center" style="width: 1%">Qty</th>
                 {{-- <th class="text-end" style="width: 1%">Unit</th> --}}
                 <th class="text-end" style="width: %">Amount</th>
               </tr>
