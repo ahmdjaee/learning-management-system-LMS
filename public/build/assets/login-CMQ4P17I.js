@@ -1,0 +1,1 @@
+import{$ as o}from"./jquery-RJfcpKhf.js";import"./_commonjsHelpers-Cpj98o6Y.js";o(".toggle-password").on("click",function(){let t=o(".password");t.attr("type")=="password"?t.attr("type","text"):t.attr("type","password")});o(".toggle-confirm-password").on("click",function(){let t=o(".confirm-password");t.attr("type")=="password"?t.attr("type","text"):t.attr("type","password")});

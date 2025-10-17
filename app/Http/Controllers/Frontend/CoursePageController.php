@@ -42,7 +42,7 @@ class CoursePageController extends Controller
                 $q->whereBetween('price', [$request->from, $request->to]);
             })
             ->orderBy('id', $request->filled('order') ? $request->order : 'desc')
-            ->paginate(2);
+            ->paginate(12);
 
         $categories = CourseCategory::where(['status' => 1, 'parent_id' => null])->get();
         $levels = CourseLevel::all();

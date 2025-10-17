@@ -165,7 +165,7 @@
                   aria-selected="false"
                 >Instructor</button>
               </li>
-              <li class="nav-item" role="presentation">
+              {{-- <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
                   id="pills-review-tab"
@@ -176,7 +176,7 @@
                   aria-controls="pills-review"
                   aria-selected="false"
                 >FAQs</button>
-              </li>
+              </li> --}}
               <li class="nav-item" role="presentation">
                 <button
                   class="nav-link"
