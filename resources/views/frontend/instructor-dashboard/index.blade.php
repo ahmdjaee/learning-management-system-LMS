@@ -2,8 +2,8 @@
 
 @section('content')
   <!--===========================
-              BREADCRUMB START
-          ============================-->
+                BREADCRUMB START
+            ============================-->
   <section class="wsus__breadcrumb"
     style="background: url({{ asset(config('settings.site_breadcrumb')) }});"
   >
@@ -24,12 +24,12 @@
     </div>
   </section>
   <!--===========================
-              BREADCRUMB END
-          ============================-->
+                BREADCRUMB END
+            ============================-->
 
   <!--===========================
-              DASHBOARD OVERVIEW START
-          ============================-->
+                DASHBOARD OVERVIEW START
+            ============================-->
   <section class="wsus__dashboard mt_90 xs_mt_70 pb_120 xs_pb_100">
     <div class="container">
       <div class="row">
@@ -92,7 +92,7 @@
           </div>
 
           <div class="wsus__dashboard_contant">
-              <div class="wsus__dashboard_contant_top">
+            <div class="wsus__dashboard_contant_top">
               <div class="wsus__dashboard_heading relative">
                 <h5>Recent Orders</h5>
               </div>
@@ -142,7 +142,21 @@
                             </td>
                           </tr>
                         @empty
-                          No Orders Found
+                          <td colspan="10">
+                            <div class="text-center mt-5">
+                              <div>
+                                <img
+                                  src="{{ asset('admin/assets/static/illustrations/undraw_printing_invoices_5r4r.svg') }}"
+                                  alt=""
+                                  style="width: 200px !important;"
+                                >
+                              </div>
+                              <p class="empty-title">No results found</p>
+                              <p class="empty-subtitle text-secondary">
+                                Try adjusting your search or filter to find what you're looking for.
+                              </p>
+                            </div>
+                          </td>
                         @endforelse
                       </tbody>
                     </table>
@@ -156,6 +170,6 @@
     </div>
   </section>
   <!--===========================
-              DASHBOARD OVERVIEW END
-          ============================-->
+                DASHBOARD OVERVIEW END
+            ============================-->
 @endsection

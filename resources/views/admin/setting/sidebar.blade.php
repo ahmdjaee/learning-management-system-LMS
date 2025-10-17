@@ -21,9 +21,5 @@
         SMTP Settings
       </a>
     </div>
-    <h4 class="subheader mt-4">Experience</h4>
-    <div class="list-group list-group-transparent">
-      <a class="list-group-item list-group-item-action" href="#">Give Feedback</a>
-    </div>
   </div>
 </div>

@@ -26,7 +26,7 @@
                       @if ($category->subCategories->isNotEmpty())
                         <optgroup label="{{ $category->name }}">
                           @foreach ($category->subCategories as $subCategory)
-                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection->category_1 == $subCategory->id)>
+                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection?->category_1 == $subCategory->id)>
                               {{ $subCategory->name }}</option>
                           @endforeach
                         </optgroup>
@@ -46,7 +46,7 @@
                       @if ($category->subCategories->isNotEmpty())
                         <optgroup label="{{ $category->name }}">
                           @foreach ($category->subCategories as $subCategory)
-                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection->category_2 == $subCategory->id)>
+                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection?->category_2 == $subCategory->id)>
                               {{ $subCategory->name }}</option>
                           @endforeach
                         </optgroup>
@@ -66,7 +66,7 @@
                       @if ($category->subCategories->isNotEmpty())
                         <optgroup label="{{ $category->name }}">
                           @foreach ($category->subCategories as $subCategory)
-                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection->category_3 == $subCategory->id)>
+                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection?->category_3 == $subCategory->id)>
                               {{ $subCategory->name }}</option>
                           @endforeach
                         </optgroup>
@@ -86,7 +86,7 @@
                       @if ($category->subCategories->isNotEmpty())
                         <optgroup label="{{ $category->name }}">
                           @foreach ($category->subCategories as $subCategory)
-                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection->category_4 == $subCategory->id)>
+                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection?->category_4 == $subCategory->id)>
                               {{ $subCategory->name }}</option>
                           @endforeach
                         </optgroup>
@@ -106,7 +106,7 @@
                       @if ($category->subCategories->isNotEmpty())
                         <optgroup label="{{ $category->name }}">
                           @foreach ($category->subCategories as $subCategory)
-                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection->category_5 == $subCategory->id)>
+                            <option value="{{ $subCategory->id }}" @selected($latestCourseSection?->category_5 == $subCategory->id)>
                               {{ $subCategory->name }}</option>
                           @endforeach
                         </optgroup>

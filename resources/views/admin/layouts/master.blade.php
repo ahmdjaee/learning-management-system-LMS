@@ -23,6 +23,8 @@
   <link href="{{ asset('admin/assets/dist/css/tom-select.css') }}" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css" rel="stylesheet">
 
+  <link rel="icon" type="image/png" href="{{ asset('frontend/assets/images/favicon.png') }}">
+
   @stack('top-section')
   <style>
     @import url('https://rsms.me/inter/inter.css');

@@ -26,10 +26,14 @@ class CartController extends Controller
             return response(['message' => 'Please login first!',], 401);
         }
 
+        if (user()->role == 'instructor') {
+            return response(['message' => 'Please use user account for add to cart!'], 401);
+        }
+
         $course = Course::findOrFail($courseId);
         $cart = new Cart();
 
-        if(auth()->user()->enrollments()->where('course_id', $course->id)->exists()){
+        if (auth()->user()->enrollments()->where('course_id', $course->id)->exists()) {
             return response(['message' => 'This course already enrolled!'], 401);
         }
 

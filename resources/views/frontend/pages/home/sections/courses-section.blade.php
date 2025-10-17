@@ -1,9 +1,9 @@
 @php
-  $category_1 = \App\Models\CourseCategory::where('id', $latestCourses->category_1)->first();
-  $category_2 = \App\Models\CourseCategory::where('id', $latestCourses->category_2)->first();
-  $category_3 = \App\Models\CourseCategory::where('id', $latestCourses->category_3)->first();
-  $category_4 = \App\Models\CourseCategory::where('id', $latestCourses->category_4)->first();
-  $category_5 = \App\Models\CourseCategory::where('id', $latestCourses->category_5)->first();
+  $category_1 = \App\Models\CourseCategory::where('id', $latestCourses?->category_1)->first();
+  $category_2 = \App\Models\CourseCategory::where('id', $latestCourses?->category_2)->first();
+  $category_3 = \App\Models\CourseCategory::where('id', $latestCourses?->category_3)->first();
+  $category_4 = \App\Models\CourseCategory::where('id', $latestCourses?->category_4)->first();
+  $category_5 = \App\Models\CourseCategory::where('id', $latestCourses?->category_5)->first();
 
 @endphp
 

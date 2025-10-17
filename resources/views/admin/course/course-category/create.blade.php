@@ -52,6 +52,8 @@
                   name="status"
                   formCheckLabel="Active / Inactive"
                   label="Status"
+                  value="1"
+                  checked
                 />
               </div>
             </div>

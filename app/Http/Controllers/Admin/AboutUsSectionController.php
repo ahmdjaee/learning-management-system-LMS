@@ -22,14 +22,6 @@ class AboutUsSectionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(AboutUsSectionUpdateRequest $request)
@@ -40,17 +32,17 @@ class AboutUsSectionController extends Controller
 
         if($request->hasFile('image')){
             $data['image'] = $this->uploadFile($request->file('image'));
-            if($about->image) $this->deleteFile($about->image);
+            if($about?->image) $this->deleteFile($about->image);
         }
    
         if($request->hasFile('learner_image')){
             $data['learner_image'] = $this->uploadFile($request->file('learner_image'));
-            if($about->learner_image) $this->deleteFile($about->learner_image);
+            if($about?->learner_image) $this->deleteFile($about->learner_image);
         }
 
         if($request->hasFile('video_image')){
             $data['video_image'] = $this->uploadFile($request->file('video_image'));
-            if($about->video_image) $this->deleteFile($about->video_image);
+            if($about?->video_image) $this->deleteFile($about->video_image);
         }
 
         AboutUsSection::updateOrCreate(['id' => 1], $data);
@@ -58,37 +50,5 @@ class AboutUsSectionController extends Controller
         notyf('Updated Successfully!');
 
         return redirect()->back();
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

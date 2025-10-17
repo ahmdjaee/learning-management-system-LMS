@@ -30,7 +30,7 @@ class AboutUsSectionUpdateRequest extends FormRequest
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'button_text' => ['nullable', 'string', 'max:255'],
-            'button_url' => ['nullable', 'url', 'max:255'],
+            'button_url' => ['nullable', 'string', 'max:255'],
             'video_url' => ['nullable', 'url', 'max:255'],
             'video_image' => ['nullable', 'image', 'max:3000'],
         ];

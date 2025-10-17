@@ -54,7 +54,7 @@
             <div class="wsus__contact_form_img">
               <img
                 class="img-fluid"
-                src="{{ asset($setting->image) }}"
+                src="{{ asset($setting?->image) }}"
                 alt="contact"
               >
             </div>
@@ -92,7 +92,7 @@
     </div>
     <div class="wsus__contact_map mt_120 xs_mt_100 wow fadeInUp">
       <iframe
-        src="{{ $setting->map_url }}"
+        src="{{ $setting?->map_url }}"
         style="border:0;"
         width="600"
         height="450"

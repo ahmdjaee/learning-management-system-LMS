@@ -38,7 +38,6 @@
                     type="text"
                     value="{{ old('label') ?? $hero?->label }}"
                     placeholder="Enter label"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('label')" />
                 </div>
@@ -52,7 +51,6 @@
                     type="text"
                     value="{{ old('sub_title') ?? $hero?->sub_title }}"
                     placeholder="Enter sub title"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('sub_title')" />
                 </div>
@@ -66,7 +64,6 @@
                     type="text"
                     value="{{ old('button_text') ?? $hero?->button_text }}"
                     placeholder="Enter button text"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('button_text')" />
                 </div>
@@ -77,10 +74,9 @@
                   <input
                     class="form-control"
                     name="button_url"
-                    type="url"
+                    type="text"
                     value="{{ old('button_url') ?? $hero?->button_url }}"
                     placeholder="Enter button url"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('button_url')" />
                 </div>
@@ -94,7 +90,6 @@
                     type="text"
                     value="{{ old('video_button_text') ?? $hero?->video_button_text }}"
                     placeholder="Enter video button text"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('video_button_text')" />
                 </div>
@@ -108,7 +103,6 @@
                     type="url"
                     value="{{ old('video_button_url') ?? $hero?->video_button_url }}"
                     placeholder="Enter video button url"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('video_button_url')" />
                 </div>
@@ -122,7 +116,6 @@
                     type="text"
                     value="{{ old('banner_item_title') ?? $hero?->banner_item_title }}"
                     placeholder="Enter banner item title"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('banner_item_title')" />
                 </div>
@@ -136,7 +129,6 @@
                     type="text"
                     value="{{ old('banner_item_sub_title') ?? $hero?->banner_item_sub_title }}"
                     placeholder="Enter banner sub title"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('banner_item_sub_title')" />
                 </div>
@@ -150,7 +142,6 @@
                     type="text"
                     value="{{ old('round_text') ?? $hero?->round_text }}"
                     placeholder="Enter round text"
-                    autofocus
                   >
                   <x-input-error class="mt-2" :messages="$errors->get('round_text')" />
                 </div>

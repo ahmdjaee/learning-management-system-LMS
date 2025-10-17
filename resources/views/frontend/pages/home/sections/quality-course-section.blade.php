@@ -9,11 +9,11 @@
             <div class="wsus__quality_courses_text">
               <div class="wsus__section_heading heading_left mb_30">
                 <h5>100% QUALITY COURSES</h5>
-                <h2>{{ $featuredInstructor->title }}</h2>
+                <h2>{{ $featuredInstructor?->title }}</h2>
               </div>
-              <p>{{ $featuredInstructor->sub_title }}</p>
+              <p>{{ $featuredInstructor?->sub_title }}</p>
               <a class="common_btn"
-                href="{{ $featuredInstructor->button_url }}">{{ $featuredInstructor->button_text }}<i
+                href="{{ $featuredInstructor?->button_url }}">{{ $featuredInstructor?->button_text }}<i
                   class="far fa-arrow-right"
                 ></i></a>
             </div>
@@ -22,7 +22,7 @@
             <div class="wsus__quality_courses_img">
               <img
                 class="img-fluid w-100"
-                src="{{ $featuredInstructor->image }}"
+                src="{{ $featuredInstructor?->image }}"
                 alt="Quality Courses"
               >
             </div>

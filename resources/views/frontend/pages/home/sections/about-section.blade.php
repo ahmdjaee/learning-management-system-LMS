@@ -6,20 +6,20 @@
 
           <img
             class="about_3_large img-fluid w-100"
-            src="{{ $about->image }}"
+            src="{{ $about?->image }}"
             alt="About us"
           >
 
           <div class="text">
-            <h4> <span>{{ $about->learner_count }}</span>{{ ' ' . $about->learner_count_text }}</h4>
+            <h4> <span>{{ $about?->learner_count }}</span>{{ ' ' . $about?->learner_count_text }}</h4>
             <img
               class="img-fluid"
-              src="{{ $about->learner_image }}"
+              src="{{ $about?->learner_image }}"
               alt="Photo"
             >
           </div>
 
-          @if ($about->round_text)
+          @if ($about?->round_text)
             <div class="circle_box">
               <svg viewBox="0 0 100 100">
                 <defs>
@@ -31,7 +31,7 @@
                 </defs>
                 <text>
                   <textPath xlink:href="#circle">
-                    {{ $about->round_text }}
+                    {{ $about?->round_text }}
                   </textPath>
                 </text>
               </svg>
@@ -43,17 +43,17 @@
         <div class="wsus__about_3_text">
           <div class="wsus__section_heading heading_left mb_15">
             <h5>Learn More About Us</h5>
-            <h2>{{ $about->title }}</h2>
+            <h2>{{ $about?->title }}</h2>
           </div>
-          <p>{!! $about->description !!}</p>
-          @if ($about->button_text)
-            <a class="common_btn" href="{{ $about->button_url }}">{{ $about->button_text }}</a>
+          <p>{!! $about?->description !!}</p>
+          @if ($about?->button_text)
+            <a class="common_btn" href="{{ $about?->button_url }}">{{ $about?->button_text }}</a>
           @endif
-          @if ($about->video_url)
+          @if ($about?->video_url)
             <div class="about_video">
               <img
                 class="img-fluid w-100"
-                src="{{ asset($about->video_image) }}"
+                src="{{ asset($about?->video_image) }}"
                 alt="Video"
               >
               {{-- <span>live</span> --}}
@@ -61,7 +61,7 @@
                 class="play_btn venobox"
                 data-autoplay="true"
                 data-vbtype="video"
-                href="{{ $about->video_url }}"
+                href="{{ $about?->video_url }}"
               >
                 <img
                   class="img-fluid"

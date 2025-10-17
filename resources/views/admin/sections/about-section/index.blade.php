@@ -119,7 +119,7 @@
                   <input
                     class="form-control"
                     name="button_url"
-                    type="url"
+                    type="text"
                     value="{{ old('button_url') ?? $about?->button_url }}"
                     placeholder="Enter button URL"
                   >

@@ -68,6 +68,9 @@ Route::post('/newsletter-subscribe', [FrontendController::class, 'subscribe'])->
 /** About us */
 Route::get('/about', [FrontendController::class, 'about'])->name('about');
 
+/** Blogs */
+Route::get('/blogs', [FrontendController::class, 'blog'])->name('blog');
+
 /** Contact  */
 Route::get('/contact', [FrontendContactController::class, 'index'])->name('contact.index');
 Route::post('/contact', [FrontendContactController::class, 'sendMail'])->name('contact.send');

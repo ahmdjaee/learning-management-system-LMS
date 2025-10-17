@@ -36,20 +36,20 @@
 
             <img
               class="about_3_large img-fluid w-100"
-              src="{{ $about->image }}"
+              src="{{ $about?->image }}"
               alt="About us"
             >
 
             <div class="text">
-              <h4> <span>{{ $about->learner_count }}</span>{{ ' ' . $about->learner_count_text }}</h4>
+              <h4> <span>{{ $about?->learner_count }}</span>{{ ' ' . $about?->learner_count_text }}</h4>
               <img
                 class="img-fluid"
-                src="{{ $about->learner_image }}"
+                src="{{ $about?->learner_image }}"
                 alt="Photo"
               >
             </div>
 
-            @if ($about->round_text)
+            @if ($about?->round_text)
               <div class="circle_box">
                 <svg viewBox="0 0 100 100">
                   <defs>
@@ -61,7 +61,7 @@
                   </defs>
                   <text>
                     <textPath xlink:href="#circle">
-                      {{ $about->round_text }}
+                      {{ $about?->round_text }}
                     </textPath>
                   </text>
                 </svg>
@@ -73,17 +73,17 @@
           <div class="wsus__about_3_text">
             <div class="wsus__section_heading heading_left mb_15">
               <h5>Learn More About Us</h5>
-              <h2>{{ $about->title }}</h2>
+              <h2>{{ $about?->title }}</h2>
             </div>
-            <p>{!! $about->description !!}</p>
-            @if ($about->button_text)
-              <a class="common_btn" href="{{ $about->button_url }}">{{ $about->button_text }}</a>
+            <p>{!! $about?->description !!}</p>
+            @if ($about?->button_text)
+              <a class="common_btn" href="{{ $about?->button_url }}">{{ $about?->button_text }}</a>
             @endif
-            @if ($about->video_url)
+            @if ($about?->video_url)
               <div class="about_video">
                 <img
                   class="img-fluid w-100"
-                  src="{{ asset($about->video_image) }}"
+                  src="{{ asset($about?->video_image) }}"
                   alt="Video"
                 >
                 {{-- <span>live</span> --}}
@@ -91,7 +91,7 @@
                   class="play_btn venobox"
                   data-autoplay="true"
                   data-vbtype="video"
-                  href="{{ $about->video_url }}"
+                  href="{{ $about?->video_url }}"
                 >
                   <img
                     class="img-fluid"
@@ -122,26 +122,26 @@
         <div class="row">
           <div class="col-lg-3 col-md-6 wow fadeInUp">
             <div class="wsus__single_counter">
-              <h2><span class="counter">{{ $counter->counter_1 }}</span>+</h2>
-              <p>{{ $counter->title_1 }}</p>
+              <h2><span class="counter">{{ $counter?->counter_1 }}</span>+</h2>
+              <p>{{ $counter?->title_1 }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 wow fadeInUp">
             <div class="wsus__single_counter">
-              <h2><span class="counter">{{ $counter->counter_2 }}</span>+</h2>
-              <p>{{ $counter->title_2 }}</p>
+              <h2><span class="counter">{{ $counter?->counter_2 }}</span>+</h2>
+              <p>{{ $counter?->title_2 }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 wow fadeInUp">
             <div class="wsus__single_counter">
-              <h2><span class="counter">{{ $counter->counter_3 }}</span>+</h2>
-              <p>{{ $counter->title_3 }}</p>
+              <h2><span class="counter">{{ $counter?->counter_3 }}</span>+</h2>
+              <p>{{ $counter?->title_3 }}</p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6 wow fadeInUp">
             <div class="wsus__single_counter">
-              <h2><span class="counter">{{ $counter->counter_4 }}</span>+</h2>
-              <p>{{ $counter->title_4 }}</p>
+              <h2><span class="counter">{{ $counter?->counter_4 }}</span>+</h2>
+              <p>{{ $counter?->title_4 }}</p>
             </div>
           </div>
         </div>
@@ -228,7 +228,7 @@
           <a class="wsus__single_blog_4_img" href="#">
             <img
               class="img-fluid"
-              src="images/blog_4_img_1.jpg"
+              src="{{ asset('frontend/assets/images/blog_4_img_1.jpg') }}"
               alt="Blog"
             >
             <span class="date">March 23, 2024</span>
@@ -238,7 +238,7 @@
               <li>
                 <span><img
                     class="img-fluid"
-                    src="images/user_icon_black.png"
+                    src="{{ asset('frontend/assets/images/user_icon_black.png') }}"
                     alt="User"
                   ></span>
                 By Richard Tea
@@ -246,7 +246,7 @@
               <li>
                 <span><img
                     class="img-fluid"
-                    src="images/comment_icon_black.png"
+                    src="{{ asset('frontend/assets/images/comment_icon_black.png') }}"
                     alt="Comment"
                   ></span>
                 3 Comments
@@ -263,7 +263,7 @@
           <a class="wsus__single_blog_4_img" href="#">
             <img
               class="img-fluid"
-              src="images/blog_4_img_2.jpg"
+              src="{{ asset('frontend/assets/images/blog_4_img_2.jpg') }}"
               alt="Blog"
             >
             <span class="date">April 28, 2024</span>
@@ -273,7 +273,7 @@
               <li>
                 <span><img
                     class="img-fluid"
-                    src="images/user_icon_black.png"
+                    src="{{ asset('frontend/assets/images/user_icon_black.png') }}"
                     alt="User"
                   ></span>
                 By Doug Lyphe
@@ -281,7 +281,7 @@
               <li>
                 <span><img
                     class="img-fluid"
-                    src="images/comment_icon_black.png"
+                    src="{{ asset('frontend/assets/images/comment_icon_black.png') }}"
                     alt="Comment"
                   ></span>
                 21 Comments
@@ -298,7 +298,7 @@
           <a class="wsus__single_blog_4_img" href="#">
             <img
               class="img-fluid"
-              src="images/blog_4_img_3.jpg"
+              src="{{ asset('frontend/assets/images/blog_4_img_3.jpg') }}"
               alt="Blog"
             >
             <span class="date">Jan 12, 2024</span>
@@ -308,7 +308,7 @@
               <li>
                 <span><img
                     class="img-fluid"
-                    src="images/user_icon_black.png"
+                    src="{{ asset('frontend/assets/images/user_icon_black.png') }}"
                     alt="User"
                   ></span>
                 By Eleanor Fant
@@ -316,7 +316,7 @@
               <li>
                 <span><img
                     class="img-fluid"
-                    src="images/comment_icon_black.png"
+                    src="{{ asset('frontend/assets/images/comment_icon_black.png') }}"
                     alt="Comment"
                   ></span>
                 48 Comments
@@ -333,7 +333,7 @@
           <a class="wsus__single_blog_4_img" href="#">
             <img
               class="img-fluid"
-              src="images/blog_4_img_4.jpg"
+              src="{{ asset('frontend/assets/images/blog_4_img_4.jpg') }}"
               alt="Blog"
             >
             <span class="date">April 28, 2024</span>
@@ -343,7 +343,7 @@
               <li>
                 <span><img
                     class="img-fluid"
-                    src="images/user_icon_black.png"
+                    src="{{ asset('frontend/assets/images/user_icon_black.png') }}"
                     alt="User"
                   ></span>
                 By Doug Lyphe
@@ -351,7 +351,7 @@
               <li>
                 <span><img
                     class="img-fluid"
-                    src="images/comment_icon_black.png"
+                    src="{{ asset('frontend/assets/images/comment_icon_black.png') }}"
                     alt="Comment"
                   ></span>
                 21 Comments

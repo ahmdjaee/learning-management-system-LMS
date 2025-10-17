@@ -7,12 +7,10 @@
         <div class="card-header">
           <h3 class="card-title">Course Category</h3>
           <div class="card-actions">
-            <div class="card-actions">
-              <a class="btn btn-primary btn-3" href="{{ route('admin.course-categories.create') }}">
-                <i class="ti ti-plus me-2" style="font-size: 24px;"></i>
-                Add new
-              </a>
-            </div>
+            <a class="btn btn-primary btn-3" href="{{ route('admin.course-categories.create') }}">
+              <i class="ti ti-plus me-2" style="font-size: 24px;"></i>
+              Add new
+            </a>
           </div>
         </div>
         <div class="card-body">

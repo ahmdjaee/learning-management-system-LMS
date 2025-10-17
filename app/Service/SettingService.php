@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cache;
 
 class SettingService
 {
-        /**
+    /**
      * get all payment gateway setting and store in cache
      * @return array
      */

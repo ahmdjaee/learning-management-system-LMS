@@ -110,3 +110,13 @@ td a i {
     .dropdown-item:active {
     background: rgb(0 0 16 / 14%);
 }
+
+.navbar-vertical.navbar-expand-lg .navbar-collapse .nav-item:not(.dropdown).active,
+.navbar-vertical.navbar-expand-lg .navbar-collapse .nav-item:not(.dropdown):active {
+    background: rgb(0 0 16 / 14%);
+}
+
+.navbar-vertical.navbar-expand-lg .navbar-collapse .nav-item.dropdown.active,
+.navbar-vertical.navbar-expand-lg .navbar-collapse .nav-item.dropdown:active {
+    background: transparent;
+}

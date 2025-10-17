@@ -208,11 +208,23 @@
           <div class="row">
             @forelse ($courses as $course)
               <div class="col-xl-4 col-md-6 wow fadeInUp">
-                                <x-course-card :course="$course" />
+                <x-course-card :course="$course" />
 
               </div>
             @empty
-              No course found
+              <div class="text-center mt-5">
+                <div>
+                  <img
+                    src="{{ asset('admin/assets/static/illustrations/undraw_printing_invoices_5r4r.svg') }}"
+                    alt=""
+                    style="width: 200px !important;"
+                  >
+                </div>
+                <p class="empty-title">No results found</p>
+                <p class="empty-subtitle text-secondary">
+                  Try adjusting your search or filter to find what you're looking for.
+                </p>
+              </div>
             @endforelse
           </div>
 

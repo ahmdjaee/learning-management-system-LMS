@@ -5,7 +5,7 @@
       src="{{ asset($course->thumbnail) }}"
       alt="Courses"
     >
-    <span class="time"><i class="far fa-clock"></i> 15 Hours</span>
+    <span class="time"><i class="far fa-clock"></i> {{ convertMinutesToHours($course->duration ?? 0) }}</span>
   </div>
   <div class="wsus__single_courses_text_3">
     <div class="rating_area">

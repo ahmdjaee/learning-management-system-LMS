@@ -33,7 +33,7 @@
                   tabindex="-1"
                 >Stripe</a>
               </li>
-              <li class="nav-item" role="presentation">
+              {{-- <li class="nav-item" role="presentation">
                 <a
                   class="nav-link"
                   data-bs-toggle="tab"
@@ -42,7 +42,7 @@
                   aria-selected="false"
                   tabindex="-1"
                 >Razorpay</a>
-              </li>
+              </li> --}}
             </ul>
           </div>
           <div class="card-body px-0">

@@ -35,7 +35,7 @@ class BrandSectionController extends Controller
     {
         $request->validate([
             'image' => 'image|required|max:3000',
-            'url' => 'required|max:255|url',
+            'url' => 'nullable|max:255|url',
             'status' => 'required|boolean',
         ]);
 
